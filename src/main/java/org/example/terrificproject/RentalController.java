@@ -24,7 +24,7 @@ public class RentalController {
 
     @FXML
     public void initialize() throws IOException {
-        addingVehicles(); // dodanie pojazdow do bazy danych
+        addingVehicles();
         for (Vehicle vehicles : vehicles) {
             vehiclesList.getItems().add(new Text(vehicles.toString()));
         }
@@ -33,6 +33,12 @@ public class RentalController {
 
     private void addingVehicles() throws IOException {
         ArrayList<LocalDate> rentalDates = new ArrayList<LocalDate>();
+        // dla kazdego vehicle bedzie inny date i obrazek ale nie chcialo mi sie
+        // trzeba tez te vehicles zrobic w jsonie, zeby rezerwacja nadpisywala plik
+        // dzieki czemu po kazdym otwarciu nie bedzie sie zerowac
+        // albo ogolnie zeby rezerwacje byly zapisywane w pliku
+
+
         Image image = new Image("file:src/main/resources/org/example/terrificproject/miata.jpg");
         Vehicle vehicle1 = new Vehicle("2021", "Toyota", "Corolla", "Black", "Sedan", "ICE", rentalDates, image);
         Vehicle vehicle2 = new Vehicle("2021", "Mazda", "Miata", "Red", "Convertible", "ICE", rentalDates, image);
@@ -49,6 +55,8 @@ public class RentalController {
 
     @FXML
     void loginPressed(ActionEvent event) {
+        // jak sie komus bardzo nudzi a mamy juz cala reszte zrobione to mozna sie pierdolic w logowanie
+        // ale hasla sie wypierdalaja bardzo latwo wiec duzo roboty
 
     }
 

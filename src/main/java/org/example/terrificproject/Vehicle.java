@@ -4,9 +4,8 @@ import javafx.scene.image.Image;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 
-public class Vehicle { // jeszcze trzeba dodac class Car itd ktore dziedzicza po Vehicle
+public class Vehicle { // jeszcze trzeba dodac class Car itd ktore dziedzicza po Vehicle z dodatkowymi polami
     private String year;
     private String make;
     private String model;
