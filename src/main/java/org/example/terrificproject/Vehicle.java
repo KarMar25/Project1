@@ -56,14 +56,15 @@ public class Vehicle {
 
     @Override
     public String toString() {
-        return "Vehicle{" +
-                "year='" + year + '\'' +
-                ", make='" + make + '\'' +
-                ", model='" + model + '\'' +
-                ", color='" + color + '\'' +
-                ", type='" + type + '\'' +
-                ", powertrain='" + powertrain + '\'' +
-                ", rentalDates=" + rentalDates +
-                '}';
+        final StringBuilder sb = new StringBuilder("Vehicle{");
+        sb.append("year='").append(year).append('\'');
+        sb.append(", make='").append(make).append('\'');
+        sb.append(", model='").append(model).append('\'');
+        sb.append(", color='").append(color).append('\'');
+        sb.append(", type='").append(type).append('\'');
+        sb.append(", power train='").append(powertrain).append('\'');
+        sb.append(", rentalDates=").append(rentalDates);
+        sb.append('}');
+        return sb.toString();
     }
 }

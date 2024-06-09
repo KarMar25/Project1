@@ -13,7 +13,6 @@ import java.util.Date;
 
 
 public class RentalApplication extends Application {
-
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(org.example.terrificproject.RentalApplication.class.getResource("rental.fxml"));
@@ -27,13 +26,6 @@ public class RentalApplication extends Application {
         launch();
         // najlatwiej bedzie chyba jak bedzie lista obiektow i w niej bedziemy przeszukiwac jak bedzei trzeba
 
-        ArrayList<Vehicle> vehicles = new ArrayList<Vehicle>(); // baza danych pojazdow
-        addingVehicles(vehicles); // dodanie pojazdow do bazy danych
-        searchForVehicle(vehicles, "user input"); // wyszukiwanie pojazdow, user input tymczasowo, potem bedzie z javafx
-        // z rezerwacjami to najlatwiej kazdy pojazd ma liste rezerwacji i wtedy mozna sprawdzac czy jest dostepny
-
-        //trzeba javafx sie zajac przede wszystkim ale sie musimy dogadac jak to bedzie wygladac
-
 
     }
 
@@ -44,20 +36,4 @@ public class RentalApplication extends Application {
             }
         }
     }
-
-    private static void addingVehicles(ArrayList<Vehicle> vehicles) {
-        ArrayList<Date> rentalDates = new ArrayList<Date>(); // dla kazdego pojazdu bedzie inna  ale teraz jest tak
-        Vehicle vehicle1 = new Vehicle("2020", "Toyota", "Corolla", "Black", "Sedan", "ICE", rentalDates);
-        Vehicle vehicle2 = new Vehicle("2020", "Toyota", "Corolla", "Black", "Sedan", "Hybrid",rentalDates);
-        Vehicle vehicle3 = new Vehicle("2020", "Toyota", "Corolla", "Black", "Sedan", "BEV",rentalDates);
-        Vehicle vehicle4 = new Vehicle("2020", "Toyota", "Corolla", "Black", "Sedan", "ICE",rentalDates);
-        Vehicle vehicle5 = new Vehicle("2020", "Toyota", "Corolla", "Black", "Sedan", "Hybrid",rentalDates);
-
-        vehicles.add(vehicle1);
-        vehicles.add(vehicle2);
-        vehicles.add(vehicle3);
-        vehicles.add(vehicle4);
-        vehicles.add(vehicle5);
-        // i tak dalej
     }
-}
