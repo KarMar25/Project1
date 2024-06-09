@@ -12,13 +12,14 @@ public class Vehicle {
     private String powertrain; // Internal Combustion Engine (ICE), Hybrid, Battery Electric Vehicle (BEV)
     private ArrayList<Date> rentalDates = new ArrayList<>(); // Dates the vehicle is rented out
 
-    public Vehicle(String year, String make, String model, String color, String type, String powertrain) {
+    public Vehicle(String year, String make, String model, String color, String type, String powertrain, ArrayList<Date> rentaldates){
         this.year = year;
         this.make = make;
         this.model = model;
         this.color = color;
         this.type = type;
         this.powertrain = powertrain;
+        this.rentalDates = rentaldates;
     }
 
     public String getYear() {
