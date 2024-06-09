@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.text.Text;
 import java.io.IOException;
 
@@ -31,11 +32,12 @@ public class RentalController {
 
     private void addingVehicles() throws IOException {
         ArrayList<Date> rentalDates = new ArrayList<Date>(); // dla kazdego pojazdu bedzie inna  ale teraz jest tak bo mi sie nie chce
-        Vehicle vehicle1 = new Vehicle("2021", "Toyota", "Corolla", "Black", "Sedan", "ICE", rentalDates);
-        Vehicle vehicle2 = new Vehicle("2020", "Miata", "Corolla", "Black", "Sedan", "Hybrid",rentalDates);
-        Vehicle vehicle3 = new Vehicle("2020", "Toyota", "Corolla", "Black", "Sedan", "BEV",rentalDates);
-        Vehicle vehicle4 = new Vehicle("2020", "Toyota", "Corolla", "Black", "Sedan", "ICE",rentalDates);
-        Vehicle vehicle5 = new Vehicle("2020", "Toyota", "Corolla", "Black", "Sedan", "Hybrid",rentalDates);
+        Image image = new Image("file:src/main/resources/org/example/terrificproject/miata.jpg");
+        Vehicle vehicle1 = new Vehicle("2021", "Toyota", "Corolla", "Black", "Sedan", "ICE", rentalDates, image);
+        Vehicle vehicle2 = new Vehicle("2021", "Mazda", "Miata", "Red", "Convertible", "ICE", rentalDates, image);
+        Vehicle vehicle3 = new Vehicle("2021", "Ford", "F-150", "White", "Pickup", "ICE", rentalDates, image);
+        Vehicle vehicle4 = new Vehicle("2021", "Harley-Davidson", "Road King", "Black", "Motorcycle", "ICE", rentalDates, image);
+        Vehicle vehicle5 = new Vehicle("2021", "Winnebago", "Revel", "White", "Camper", "ICE", rentalDates, image);
 
         vehicles.add(vehicle1);
         vehicles.add(vehicle2);
@@ -51,32 +53,10 @@ public class RentalController {
     @FXML
     void searchPressed(ActionEvent event) {
         vehiclesList.getItems().clear();
-        String[] wordList = searchField.getText().split(" ");// podzielenie tekstu na slowa
-        System.out.println(wordList); // test
+        String[] wordList = searchField.getText().toLowerCase().split(" ");// podzielenie tekstu na slowa
         HashMap<Vehicle, Integer> order = new HashMap<Vehicle, Integer>();
         for (Vehicle vehicle : vehicles) {
-            int wordsMatched = 0; //
-            for (String word : wordList) {
-                if (vehicle.getMake().contains(word)) {
-                    wordsMatched++;
-                }
-                if (vehicle.getModel().contains(word)) {
-                    wordsMatched++;
-                }
-                if (vehicle.getYear().contains(word)) {
-                    wordsMatched++;
-                }
-                if (vehicle.getColor().contains(word)) {
-                    wordsMatched++;
-                }
-                if (vehicle.getType().contains(word)) {
-                    wordsMatched++;
-                }
-                if (vehicle.getPowertrain().contains(word)) {
-                    wordsMatched++;
-                }
-            }
-
+            int wordsMatched = getWordsMatched(vehicle, wordList);
             if (wordsMatched == 0) continue; // if no words match do not add to the list
             order.put(vehicle, wordsMatched);
         }
@@ -90,6 +70,30 @@ public class RentalController {
         }
     }
 
+    private static int getWordsMatched(Vehicle vehicle, String[] wordList) {
+        int wordsMatched = 0; //
+        for (String word : wordList) {
+            if (vehicle.getMake().toLowerCase().contains(word)) {
+                wordsMatched++;
+            }
+            if (vehicle.getModel().toLowerCase().contains(word)) {
+                wordsMatched++;
+            }
+            if (vehicle.getYear().toLowerCase().contains(word)) {
+                wordsMatched++;
+            }
+            if (vehicle.getColor().toLowerCase().contains(word)) {
+                wordsMatched++;
+            }
+            if (vehicle.getType().toLowerCase().contains(word)) {
+                wordsMatched++;
+            }
+            if (vehicle.getPowertrain().toLowerCase().contains(word)) {
+                wordsMatched++;
+            }
+        }
+        return wordsMatched;
+    }
 
 
 }
