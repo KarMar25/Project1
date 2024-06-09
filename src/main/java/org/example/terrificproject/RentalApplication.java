@@ -13,12 +13,13 @@ import java.util.Date;
 
 
 public class RentalApplication extends Application {
+
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(org.example.terrificproject.RentalApplication.class.getResource("gemini.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
+        FXMLLoader fxmlLoader = new FXMLLoader(org.example.terrificproject.RentalApplication.class.getResource("rental.fxml"));
+        Scene mainScene = new Scene(fxmlLoader.load());
         stage.setTitle("Rental Software");
-        stage.setScene(scene);
+        stage.setScene(mainScene);
         stage.show();
     }
 
@@ -45,7 +46,7 @@ public class RentalApplication extends Application {
     }
 
     private static void addingVehicles(ArrayList<Vehicle> vehicles) {
-        ArrayList<Date> rentalDates = new ArrayList<Date>();
+        ArrayList<Date> rentalDates = new ArrayList<Date>(); // dla kazdego pojazdu bedzie inna  ale teraz jest tak
         Vehicle vehicle1 = new Vehicle("2020", "Toyota", "Corolla", "Black", "Sedan", "ICE", rentalDates);
         Vehicle vehicle2 = new Vehicle("2020", "Toyota", "Corolla", "Black", "Sedan", "Hybrid",rentalDates);
         Vehicle vehicle3 = new Vehicle("2020", "Toyota", "Corolla", "Black", "Sedan", "BEV",rentalDates);

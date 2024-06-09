@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="60ce9423-d388-4127-b223-406194378b3b" name="Changes" comment="rental dates" />
+    <list default="true" id="60ce9423-d388-4127-b223-406194378b3b" name="Changes" comment="rental dates - naprawione xd">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/terrificproject/RentalApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/terrificproject/RentalApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/terrificproject/RentalController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/terrificproject/RentalController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/terrificproject/Vehicle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/terrificproject/Vehicle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/terrificproject/rental.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/terrificproject/rental.fxml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -39,6 +45,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.HelloApplication.executor": "Run",
+    "Application.RentalApplication.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
@@ -86,7 +93,23 @@
       <option name="project" value="LOCAL" />
       <updated>1717949221226</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="rental dates">
+      <option name="closed" value="true" />
+      <created>1717949498325</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1717949498325</updated>
+    </task>
+    <task id="LOCAL-00005" summary="rental dates - naprawione xd">
+      <option name="closed" value="true" />
+      <created>1717949704877</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1717949704877</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -96,6 +119,7 @@
     <MESSAGE value="java fx" />
     <MESSAGE value="cos zaczete" />
     <MESSAGE value="rental dates" />
-    <option name="LAST_COMMIT_MESSAGE" value="rental dates" />
+    <MESSAGE value="rental dates - naprawione xd" />
+    <option name="LAST_COMMIT_MESSAGE" value="rental dates - naprawione xd" />
   </component>
 </project>
