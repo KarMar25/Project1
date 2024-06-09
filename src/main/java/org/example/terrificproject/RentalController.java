@@ -9,6 +9,7 @@ import javafx.scene.image.Image;
 import javafx.scene.text.Text;
 import java.io.IOException;
 
+import java.time.LocalDate;
 import java.util.*;
 
 public class RentalController {
@@ -31,7 +32,7 @@ public class RentalController {
     }
 
     private void addingVehicles() throws IOException {
-        ArrayList<Date> rentalDates = new ArrayList<Date>(); // dla kazdego pojazdu bedzie inna  ale teraz jest tak bo mi sie nie chce
+        ArrayList<LocalDate> rentalDates = new ArrayList<LocalDate>();
         Image image = new Image("file:src/main/resources/org/example/terrificproject/miata.jpg");
         Vehicle vehicle1 = new Vehicle("2021", "Toyota", "Corolla", "Black", "Sedan", "ICE", rentalDates, image);
         Vehicle vehicle2 = new Vehicle("2021", "Mazda", "Miata", "Red", "Convertible", "ICE", rentalDates, image);
@@ -50,6 +51,7 @@ public class RentalController {
     void loginPressed(ActionEvent event) {
 
     }
+
     @FXML
     void searchPressed(ActionEvent event) {
         vehiclesList.getItems().clear();

@@ -2,21 +2,21 @@ package org.example.terrificproject;
 
 import javafx.scene.image.Image;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Vehicle {
+public class Vehicle { // jeszcze trzeba dodac class Car itd ktore dziedzicza po Vehicle
     private String year;
     private String make;
     private String model;
     private String color;
     private String type; // Car, Motorcycle, Pickup, Camper
     private String powertrain; // Internal Combustion Engine (ICE), Hybrid, Battery Electric Vehicle (BEV)
-    private ArrayList<Date> rentalDates; // Dates the vehicle is rented out
+    private ArrayList<LocalDate> rentalDates; // Dates the vehicle is rented out
+    public Image image;
 
-    public Image image; // Path to the image of the vehicle
-
-    public Vehicle(String year, String make, String model, String color, String type, String powertrain, ArrayList<Date> rentalDates, Image image){
+    public Vehicle(String year, String make, String model, String color, String type, String powertrain, ArrayList<LocalDate> rentalDates, Image image){
         this.year = year;
         this.make = make;
         this.model = model;
@@ -51,11 +51,11 @@ public class Vehicle {
         return powertrain;
     }
 
-    public ArrayList<Date> getRentalDates() {
+    public ArrayList<LocalDate> getRentalDates() {
         return rentalDates;
     }
 
-    public void setRentalDates(ArrayList<Date> rentalDates) {
+    public void setRentalDates(ArrayList<LocalDate> rentalDates) {
         this.rentalDates = rentalDates;
     }
 

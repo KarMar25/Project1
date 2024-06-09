@@ -6,13 +6,18 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
 import javafx.scene.image.ImageView;
 
+import java.time.LocalDate;
+
 
 public class VehicleSceneController {
 
     public static Vehicle selectedVehicle;
 
     @FXML
-    private DatePicker datePicker;
+    private DatePicker datePickerFrom;
+
+    @FXML
+    private DatePicker datePickerTo;
 
     @FXML
     private ListView<String> propertiesList;
@@ -22,8 +27,15 @@ public class VehicleSceneController {
 
     @FXML
     void reservePressed(ActionEvent event) {
-        selectedVehicle.getRentalDates().add(java.sql.Date.valueOf(datePicker.getValue()));
-
+        for(int i = 0; i < selectedVehicle.getRentalDates().size(); i++){
+            if(datePickerFrom.getValue().isAfter(selectedVehicle.getRentalDates().get(i)) && datePickerTo.getValue().isBefore(selectedVehicle.getRentalDates().get(i))){
+                // show error message
+                return;
+            }
+        }
+        for(int i = datePickerFrom.getValue().getDayOfYear(); i < datePickerTo.getValue().getDayOfYear(); i++){
+            selectedVehicle.getRentalDates().add(LocalDate.ofYearDay(datePickerFrom.getValue().getYear(), i)); // add all dates between from and to
+        }  // nwm czy dziala
     }
     @FXML
     void backPressed(ActionEvent event) {
