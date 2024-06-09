@@ -6,9 +6,9 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import java.io.IOException;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class RentalController {
 
@@ -18,19 +18,19 @@ public class RentalController {
     @FXML
     private ListView<Text> vehiclesList;
 
-    public ArrayList<Vehicle> vehicles = new ArrayList<Vehicle>(); // baza danych pojazdow
+    public ArrayList<Vehicle> vehicles = new ArrayList<>(); // baza danych pojazdow
 
     @FXML
-    public void initialize() {
-        addingVehicles(vehicles); // dodanie pojazdow do bazy danych
+    public void initialize() throws IOException {
+        addingVehicles(); // dodanie pojazdow do bazy danych
         for (Vehicle vehicles : vehicles) {
             vehiclesList.getItems().add(new Text(vehicles.toString()));
         }
 
     }
 
-    private void addingVehicles(ArrayList<Vehicle> vehicles) {
-        ArrayList<Date> rentalDates = new ArrayList<Date>(); // dla kazdego pojazdu bedzie inna  ale teraz jest tak
+    private void addingVehicles() throws IOException {
+        ArrayList<Date> rentalDates = new ArrayList<Date>(); // dla kazdego pojazdu bedzie inna  ale teraz jest tak bo mi sie nie chce
         Vehicle vehicle1 = new Vehicle("2021", "Toyota", "Corolla", "Black", "Sedan", "ICE", rentalDates);
         Vehicle vehicle2 = new Vehicle("2020", "Miata", "Corolla", "Black", "Sedan", "Hybrid",rentalDates);
         Vehicle vehicle3 = new Vehicle("2020", "Toyota", "Corolla", "Black", "Sedan", "BEV",rentalDates);
