@@ -10,7 +10,7 @@ public class Vehicle {
     private String color;
     private String type; // Car, Motorcycle, Pickup, Camper
     private String powertrain; // Internal Combustion Engine (ICE), Hybrid, Battery Electric Vehicle (BEV)
-    private ArrayList<Date> rentalDates = new ArrayList<>(); // Dates the vehicle is rented out
+    private ArrayList<Date> rentalDates; // Dates the vehicle is rented out
 
     public Vehicle(String year, String make, String model, String color, String type, String powertrain, ArrayList<Date> rentalDates){
         this.year = year;

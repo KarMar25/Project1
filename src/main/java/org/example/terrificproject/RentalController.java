@@ -50,16 +50,31 @@ public class RentalController {
     }
     @FXML
     void searchPressed(ActionEvent event) {
-        searchForVehicle(vehicles, searchField.getText());
-
-    }
-
-    private void searchForVehicle(ArrayList<Vehicle> vehicles, String text) {
-        for (Vehicle vehicle : vehicles) {
-            if (vehicle.getPowertrain().contains(text)) { // zaleznie od kategorii
-                System.out.println(vehicle.getYear() + " " + vehicle.getMake() + " " + vehicle.getModel() + " " + vehicle.getColor() + " " + vehicle.getType() + " " + vehicle.getPowertrain());
+        vehiclesList.getItems().clear();
+        for(Vehicle vehicle : vehicles){
+            if(vehicle.getMake().contains(searchField.getText())){
+                vehiclesList.getItems().add(new Text(vehicle.toString()));
             }
+            if(vehicle.getModel().contains(searchField.getText())){
+                vehiclesList.getItems().add(new Text(vehicle.toString()));
+            }
+            if(vehicle.getYear().contains(searchField.getText())){
+                vehiclesList.getItems().add(new Text(vehicle.toString()));
+            }
+            if(vehicle.getColor().contains(searchField.getText())){
+                vehiclesList.getItems().add(new Text(vehicle.toString()));
+            }
+            if(vehicle.getType().contains(searchField.getText())){
+                vehiclesList.getItems().add(new Text(vehicle.toString()));
+            }
+            if(vehicle.getPowertrain().contains(searchField.getText())){
+                vehiclesList.getItems().add(new Text(vehicle.toString()));
+            }
+
         }
+
+
+
     }
 
 
