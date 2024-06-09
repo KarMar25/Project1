@@ -1,10 +1,8 @@
 package org.example.terrificproject;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.util.ArrayList;
 // Write software that allows a rental company to manage a fleet of vehicles such as ICE/hybrid/BEV cars, motorcycles, pickups, and campers.
@@ -25,13 +23,6 @@ public class RentalApplication extends Application {
         launch();
         // najlatwiej bedzie chyba jak bedzie lista obiektow i w niej bedziemy przeszukiwac jak bedzei trzeba
 
-        ArrayList<Vehicle> vehicles = new ArrayList<Vehicle>(); // baza danych pojazdow
-        addingVehicles(vehicles); // dodanie pojazdow do bazy danych
-        searchForVehicle(vehicles, "user input"); // wyszukiwanie pojazdow, user input tymczasowo, potem bedzie z javafx
-        // z rezerwacjami to najlatwiej kazdy pojazd ma liste rezerwacji i wtedy mozna sprawdzac czy jest dostepny
-
-        //trzeba javafx sie zajac przede wszystkim ale sie musimy dogadac jak to bedzie wygladac
-
 
     }
 
@@ -44,11 +35,11 @@ public class RentalApplication extends Application {
     }
 
     private static void addingVehicles(ArrayList<Vehicle> vehicles) {
-        Vehicle vehicle1 = new Vehicle("2020", "Toyota", "Corolla", "Black", "Sedan", "ICE");
-        Vehicle vehicle2 = new Vehicle("2020", "Toyota", "Corolla", "Black", "Sedan", "Hybrid");
-        Vehicle vehicle3 = new Vehicle("2020", "Toyota", "Corolla", "Black", "Sedan", "BEV");
-        Vehicle vehicle4 = new Vehicle("2020", "Toyota", "Corolla", "Black", "Sedan", "ICE");
-        Vehicle vehicle5 = new Vehicle("2020", "Toyota", "Corolla", "Black", "Sedan", "Hybrid");
+        Vehicle vehicle1 = new Vehicle("2018", "Toyota", "Corolla", "White", "Sedan", "ICE");
+        Vehicle vehicle2 = new Vehicle("2022", "BMW", "Corolla", "Black", "Sedan", "Hybrid");
+        Vehicle vehicle3 = new Vehicle("2019", "BMW", "Corolla", "Grey", "Sedan", "BEV");
+        Vehicle vehicle4 = new Vehicle("2020", "Toyota", "Corolla", "Blue", "Sedan", "ICE");
+        Vehicle vehicle5 = new Vehicle("2021", "Volvo", "Corolla", "Black", "Sedan", "Hybrid");
 
         vehicles.add(vehicle1);
         vehicles.add(vehicle2);
