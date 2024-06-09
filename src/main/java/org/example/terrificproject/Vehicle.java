@@ -1,5 +1,8 @@
 package org.example.terrificproject;
 
+import java.util.ArrayList;
+import java.util.Date;
+
 public class Vehicle {
     private String year;
     private String make;
@@ -7,6 +10,7 @@ public class Vehicle {
     private String color;
     private String type; // Car, Motorcycle, Pickup, Camper
     private String powertrain; // Internal Combustion Engine (ICE), Hybrid, Battery Electric Vehicle (BEV)
+    private ArrayList<Date> rentalDates = new ArrayList<>(); // Dates the vehicle is rented out
 
     public Vehicle(String year, String make, String model, String color, String type, String powertrain) {
         this.year = year;
@@ -39,5 +43,13 @@ public class Vehicle {
 
     public String getPowertrain() {
         return powertrain;
+    }
+
+    public ArrayList<Date> getRentalDates() {
+        return rentalDates;
+    }
+
+    public void setRentalDates(ArrayList<Date> rentalDates) {
+        this.rentalDates = rentalDates;
     }
 }
