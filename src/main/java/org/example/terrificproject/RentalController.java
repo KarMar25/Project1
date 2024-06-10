@@ -1,6 +1,8 @@
 package org.example.terrificproject;
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
@@ -23,6 +25,7 @@ public class RentalController {
     private Button exitButton;
     private Stage stage;
     private Scene scene;
+    private Parent root;
 
     public ArrayList<Vehicle> vehicles = new ArrayList<>(); // baza danych pojazdow
 
@@ -112,4 +115,13 @@ public class RentalController {
         }
         return wordsMatched;
     }
+    public void switchReserveScene(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("reserve.fxml"));
+        stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        //zmiana sceny jedna for now ale ogarnięte jak zrobić
+    }
+
 }
