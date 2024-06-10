@@ -1,14 +1,14 @@
 package org.example.terrificproject;
-
 import javafx.fxml.FXML;
-
 import javafx.event.ActionEvent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import java.io.IOException;
-
 import java.time.LocalDate;
 import java.util.*;
 
@@ -19,6 +19,10 @@ public class RentalController {
 
     @FXML
     private ListView<Text> vehiclesList;
+    @FXML
+    private Button exitButton;
+    private Stage stage;
+    private Scene scene;
 
     public ArrayList<Vehicle> vehicles = new ArrayList<>(); // baza danych pojazdow
 
@@ -28,7 +32,6 @@ public class RentalController {
         for (Vehicle vehicles : vehicles) {
             vehiclesList.getItems().add(new Text(vehicles.toString()));
         }
-
     }
 
     private void addingVehicles() throws IOException {
@@ -40,11 +43,11 @@ public class RentalController {
 
 
         Image image = new Image("file:src/main/resources/org/example/terrificproject/miata.jpg");
-        Vehicle vehicle1 = new Vehicle("2021", "Toyota", "Corolla", "Black", "Sedan", "ICE", rentalDates, image);
-        Vehicle vehicle2 = new Vehicle("2021", "Mazda", "Miata", "Red", "Convertible", "ICE", rentalDates, image);
-        Vehicle vehicle3 = new Vehicle("2021", "Ford", "F-150", "White", "Pickup", "ICE", rentalDates, image);
-        Vehicle vehicle4 = new Vehicle("2021", "Harley-Davidson", "Road King", "Black", "Motorcycle", "ICE", rentalDates, image);
-        Vehicle vehicle5 = new Vehicle("2021", "Winnebago", "Revel", "White", "Camper", "ICE", rentalDates, image);
+        Vehicle vehicle1 = new Vehicle("2021", "Toyota", "Corolla", "Black", "Sedan", "ICE",true,rentalDates,image);
+        Vehicle vehicle2 = new Vehicle("2021", "Mazda", "Miata", "Red", "Convertible", "ICE",true, rentalDates, image);
+        Vehicle vehicle3 = new Vehicle("2021", "Ford", "F-150", "White", "Pickup", "ICE",true,rentalDates, image);
+        Vehicle vehicle4 = new Vehicle("2021", "Harley-Davidson", "Road King", "Black", "Motorcycle", "ICE",true, rentalDates, image);
+        Vehicle vehicle5 = new Vehicle("2021", "Winnebago", "Revel", "White", "Camper", "ICE",true,rentalDates, image);
 
         vehicles.add(vehicle1);
         vehicles.add(vehicle2);
@@ -79,6 +82,11 @@ public class RentalController {
             vehiclesList.getItems().add(new Text(entry.getKey().toString()));// display vehicles in the correct order
         }
     }
+    @FXML
+    void exitPressed(ActionEvent event){
+        stage = (Stage) exitButton.getScene().getWindow();
+        stage.close();
+    }
 
     private static int getWordsMatched(Vehicle vehicle, String[] wordList) {
         int wordsMatched = 0; //
@@ -104,6 +112,4 @@ public class RentalController {
         }
         return wordsMatched;
     }
-
-
 }

@@ -1,11 +1,10 @@
 package org.example.terrificproject;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.image.ImageView;
-
 import java.time.LocalDate;
 
 
@@ -24,24 +23,28 @@ public class VehicleSceneController {
 
     @FXML
     private ImageView vehicleImage;
+    private Label dateFrom;
+    private Label dateTo;
 
     @FXML
     void reservePressed(ActionEvent event) {
         for(int i = 0; i < selectedVehicle.getRentalDates().size(); i++){
             if(datePickerFrom.getValue().isAfter(selectedVehicle.getRentalDates().get(i)) || datePickerTo.getValue().isBefore(selectedVehicle.getRentalDates().get(i))){
                 // show error message
+               dateFrom.setText(datePickerFrom.toString());
                 return;
             }
         }
         // also trzeba sprawdzac ktory dzisiaj zeby nie mozna bylo rezerwowac pojazdu dzisiaj i w przeszlosci
         for(int i = datePickerFrom.getValue().getDayOfYear(); i < datePickerTo.getValue().getDayOfYear(); i++){
-            selectedVehicle.getRentalDates().add(LocalDate.ofYearDay(datePickerFrom.getValue().getYear(), i)); // add all dates between from and to
+            selectedVehicle.getRentalDates().add(LocalDate.ofYearDay(datePickerFrom.getValue().getYear(), i));
+            dateTo.setText(datePickerTo.toString());
+            // add all dates between from and to
         }  // nwm czy dziala
     }
     @FXML
     void backPressed(ActionEvent event) { // cofnij do poprzedniego okna
         // do zrobienia jak ogarniemy zmiane scen
-
 
     }
 

@@ -1,5 +1,4 @@
 package org.example.terrificproject;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
