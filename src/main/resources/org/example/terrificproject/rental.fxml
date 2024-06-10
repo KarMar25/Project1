@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ColorPicker?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -22,14 +24,20 @@
    <children>
       <TextField fx:id="searchField" onAction="#searchPressed" promptText="What are you looking for?" />
       <Button mnemonicParsing="false" onAction="#searchPressed" text="Search" GridPane.columnIndex="1" />
-      <Button mnemonicParsing="false" onAction="#loginPressed" text="Login" GridPane.columnIndex="1" GridPane.halignment="RIGHT" />
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Our vehicles:" wrappingWidth="182.10223388671875" GridPane.rowIndex="1" GridPane.valignment="TOP">
+      <Button mnemonicParsing="false" onAction="#loginPressed" prefHeight="25.0" prefWidth="58.0" text="Login" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="CENTER" />
+      <Text cache="true" strokeType="OUTSIDE" strokeWidth="0.0" text="Our vehicles:" textAlignment="CENTER" wrappingWidth="99.10223388671875" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
          <font>
-            <Font size="14.0" />
+            <Font size="15.0" />
          </font>
       </Text>
       <ListView fx:id="vehiclesList" prefHeight="319.0" prefWidth="300.0" GridPane.columnSpan="2" GridPane.rowIndex="2" />
-      <Button fx:id="exitButton" mnemonicParsing="false" onAction="#exitPressed" prefWidth="51.0" text="Exit" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-      <Button fx:id="reserveButton" mnemonicParsing="false" onAction="#switchReserveScene" text="Reserve" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <Button fx:id="exitButton" mnemonicParsing="false" onAction="#exitPressed" prefHeight="25.0" prefWidth="60.0" text="Exit" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+      <Button fx:id="reserveButton" mnemonicParsing="false" onAction="#switchReserveScene" text="Reserve" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+      <ColorPicker fx:id="colorPicker" onAction="#setColorPicker" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+         <value>
+            <Color />
+         </value>
+      </ColorPicker>
+      <Button fx:id="vehicleButton" mnemonicParsing="false" onAction="#switchVehicleScene" text="Vehicle" GridPane.columnIndex="1" GridPane.rowIndex="2" />
    </children>
 </GridPane>

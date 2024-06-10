@@ -1,29 +1,40 @@
 package org.example.terrificproject;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
+import java.io.IOException;
 import java.time.LocalDate;
+import java.util.Objects;
 
 
 public class VehicleSceneController {
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
 
     public static Vehicle selectedVehicle; // wybrany pojazd z poprzedniego okna
 
     @FXML
-    private DatePicker datePickerFrom;
+    public DatePicker datePickerFrom;
 
     @FXML
-    private DatePicker datePickerTo;
+    public DatePicker datePickerTo;
 
     @FXML
     private ListView<String> propertiesList;
 
     @FXML
     private ImageView vehicleImage;
+    @FXML
     private Label dateFrom;
+    @FXML
     private Label dateTo;
 
     @FXML
@@ -43,22 +54,26 @@ public class VehicleSceneController {
         }  // nwm czy dziala
     }
     @FXML
-    void backPressed(ActionEvent event) { // cofnij do poprzedniego okna
-        // do zrobienia jak ogarniemy zmiane scen
+    void backPressed(ActionEvent event) throws IOException{
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("rental.fxml")));
+        stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    // @FXML
+    //void initialize() {
+    // propertiesList.getItems().add("Year: " + selectedVehicle.getYear());
+    // propertiesList.getItems().add("Make: " + selectedVehicle.getMake());
+    // propertiesList.getItems().add("Model: " + selectedVehicle.getModel());
+    // propertiesList.getItems().add("Color: " + selectedVehicle.getColor());
+    // propertiesList.getItems().add("Type: " + selectedVehicle.getType());
+    // propertiesList.getItems().add("Powertrain: " + selectedVehicle.getPowertrain());
+    // vehicleImage.setImage(selectedVehicle.getImage());
+
+    //sory wyjebalam na razie bo nie dzielalo inaczej
 
     }
 
-    @FXML
-    void initialize() {
-        propertiesList.getItems().add("Year: " + selectedVehicle.getYear());
-        propertiesList.getItems().add("Make: " + selectedVehicle.getMake());
-        propertiesList.getItems().add("Model: " + selectedVehicle.getModel());
-        propertiesList.getItems().add("Color: " + selectedVehicle.getColor());
-        propertiesList.getItems().add("Type: " + selectedVehicle.getType());
-        propertiesList.getItems().add("Powertrain: " + selectedVehicle.getPowertrain());
-        vehicleImage.setImage(selectedVehicle.getImage());
-
-    }
-
-}
 

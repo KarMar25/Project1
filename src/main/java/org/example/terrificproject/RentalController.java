@@ -5,9 +5,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ColorPicker;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import java.io.IOException;
@@ -18,11 +20,12 @@ public class RentalController {
 
     @FXML
     private TextField searchField;
-
     @FXML
     private ListView<Text> vehiclesList;
     @FXML
     private Button exitButton;
+    @FXML
+    private ColorPicker colorPicker;
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -70,10 +73,14 @@ public class RentalController {
     void searchPressed(ActionEvent event) {
         vehiclesList.getItems().clear();
         String[] wordList = searchField.getText().toLowerCase().split(" ");// podzielenie tekstu na slowa
+        Color selectedColor = colorPicker.getValue();
+        String colorAsString = convertColorToString(selectedColor);
+
         HashMap<Vehicle, Integer> order = new HashMap<Vehicle, Integer>();
         for (Vehicle vehicle : vehicles) {
             int wordsMatched = getWordsMatched(vehicle, wordList);
             if (wordsMatched == 0) continue; // if no words match do not add to the list
+            if(colorAsString!=null && !vehicle.getColor().equalsIgnoreCase(colorAsString)) continue;
             order.put(vehicle, wordsMatched);
         }
 
@@ -115,13 +122,39 @@ public class RentalController {
         }
         return wordsMatched;
     }
+    public void setColorPicker(ActionEvent event){
+        Color color=colorPicker.getValue(); //okej chyba za dużo jebania się jednak z tym kolorem
+    }
+    private String convertColorToString(Color color) {
+        if (color == null) return null;
+        String rgbColor = color.toString().substring(2, 8).toUpperCase();
+        int r = (int) (color.getRed() * 255);
+        int g = (int) (color.getGreen() * 255);
+        int b = (int) (color.getBlue() * 255);
+
+        if (r == 0 && g == 0 && b == 0) return "Black";
+        if (r == 255 && g == 255 && b == 255) return "White";
+        if (r == 255 && g == 0 && b == 0) return "Red";
+        if (r == 255 && g == 255 && b == 0) return "Yellow";
+        if (r == 128 && g == 128 && b == 128) return "Grey";
+        if (r == 255 && g == 192 && b == 203) return "Pink"; //I am just a girl
+        return null;
+    }
+
     public void switchReserveScene(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("reserve.fxml"));
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("reserve.fxml")));
         stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
         //zmiana sceny jedna for now ale ogarnięte jak zrobić
+    }
+    public void switchVehicleScene(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("vehicleTemplate.fxml")));
+        stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
 }
