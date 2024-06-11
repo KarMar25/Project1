@@ -25,15 +25,14 @@
    <children>
       <TextField fx:id="searchField" onAction="#searchPressed" promptText="What are you looking for?" />
       <Button mnemonicParsing="false" onAction="#searchPressed" text="Search" GridPane.columnIndex="1" />
-      <Button mnemonicParsing="false" onAction="#loginPressed" prefHeight="25.0" prefWidth="58.0" text="Login" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="CENTER" />
+      <Button mnemonicParsing="false" onAction="#loginPressed" prefHeight="25.0" prefWidth="58.0" text="Login" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
       <Text cache="true" strokeType="OUTSIDE" strokeWidth="0.0" text="Our vehicles:" textAlignment="CENTER" wrappingWidth="99.10223388671875" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
          <font>
             <Font size="15.0" />
          </font>
       </Text>
-      <ListView fx:id="vehiclesList" onEditCancel="#vehicleClicked" onEditCommit="#vehicleClicked" onEditStart="#vehicleClicked" onMouseClicked="#vehicleClicked" prefHeight="319.0" prefWidth="300.0" GridPane.columnSpan="2" GridPane.rowIndex="2" />
+      <ListView fx:id="vehiclesList" prefHeight="319.0" prefWidth="300.0" GridPane.columnSpan="2" GridPane.rowIndex="2" />
       <Button fx:id="exitButton" mnemonicParsing="false" onAction="#exitPressed" prefHeight="25.0" prefWidth="60.0" text="Exit" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
-      <Button fx:id="reserveButton" mnemonicParsing="false" onAction="#switchReserveScene" text="Reserve" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP" />
       <ColorPicker fx:id="colorPicker" editable="true" onAction="#searchPressed" promptText="Choose " GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
          <value>
             <Color />

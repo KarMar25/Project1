@@ -44,7 +44,7 @@ public class RentalController {
         }
         colorPicker.setValue(null);
 
-        vehiclesList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Text>() { // O KURWA DZIALA
+        vehiclesList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Text>() { // O KURWA DZIALA xd juz nie  //DLACZEGO
             @Override
             public void changed(ObservableValue<? extends Text> observableValue, Text text, Text t1) {
                 VehicleSceneController.selectedVehicle = vehicles.get(vehiclesList.getSelectionModel().getSelectedIndex());
@@ -94,7 +94,7 @@ public class RentalController {
 
     @FXML
     void searchPressed(ActionEvent event) {
-        if (searchField.getText().isEmpty() && colorPicker.getValue() == null) { // jezeli puste, pokaz wszystkie pojazdy
+        if (searchField.getText().isEmpty() && colorPicker.getValue() == null) { // if search field is empty and no color is selected
             vehiclesList.getItems().clear();
             for (Vehicle vehicle : vehicles) {
                 vehiclesList.getItems().add(new Text(vehicle.toString()));
@@ -102,7 +102,7 @@ public class RentalController {
             return;
         }
         vehiclesList.getItems().clear();
-        String[] wordList = searchField.getText().toLowerCase().split(" ");// podzielenie tekstu na slowa
+        String[] wordList = searchField.getText().toLowerCase().split(" ");// split the search field into words
         Color selectedColor = colorPicker.getValue();
         String colorAsString = convertColorToString(selectedColor);
 
@@ -180,13 +180,5 @@ public class RentalController {
         return null;
     }
 
-    public void switchReserveScene(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("reserve.fxml")));
-        stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-        //zmiana sceny jedna for now ale ogarnięte jak zrobić
-    }
 
 }

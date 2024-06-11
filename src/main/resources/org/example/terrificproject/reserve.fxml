@@ -26,5 +26,7 @@
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Surname:" wrappingWidth="61.447265625" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
       <Button fx:id="backButton" mnemonicParsing="false" onAction="#backPressed" text="go back" GridPane.valignment="TOP" />
       <Button fx:id="reserveButton" mnemonicParsing="false" onAction="#reserve" text="Reserve" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+      <Text fx:id="vehicleReserved" strokeType="OUTSIDE" strokeWidth="0.0" text="Vehicle reserved" GridPane.columnIndex="1" />
+      <Text fx:id="period" strokeType="OUTSIDE" strokeWidth="0.0" text="Period" GridPane.columnIndex="1" GridPane.valignment="BOTTOM" />
    </children>
 </GridPane>

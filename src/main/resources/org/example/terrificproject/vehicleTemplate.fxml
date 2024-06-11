@@ -3,7 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -23,7 +22,7 @@
       <RowConstraints maxHeight="361.33335240681964" minHeight="10.0" prefHeight="297.3333333333333" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <ImageView fx:id="vehicleImage" fitHeight="130.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <ImageView fx:id="vehicleImage" fitHeight="245.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="3" />
       <DatePicker fx:id="datePickerFrom" promptText="From" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
       <Button mnemonicParsing="false" onAction="#reservePressed" text="Reserve" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
          <GridPane.margin>
@@ -32,13 +31,12 @@
       </Button>
       <ListView fx:id="propertiesList" prefHeight="359.0" prefWidth="300.0" GridPane.rowIndex="3" />
       <Button mnemonicParsing="false" onAction="#backPressed" text="go back" GridPane.valignment="TOP" />
-      <DatePicker fx:id="datePickerTo" promptText="To" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
+      <DatePicker fx:id="datePickerTo" promptText="To" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="When do you want me?" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="TOP">
          <GridPane.margin>
-            <Insets top="8.0" />
+            <Insets top="20.0" />
          </GridPane.margin>
       </Text>
-      <Label fx:id="dateFrom" prefHeight="26.0" prefWidth="193.0" text="dateFrom" GridPane.rowIndex="1" />
-      <Label fx:id="dateTo" prefHeight="22.0" prefWidth="220.0" text="dateTo" GridPane.rowIndex="2" />
+      <Text fx:id="dateText" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.rowSpan="2" GridPane.valignment="CENTER" />
    </children>
 </GridPane>
