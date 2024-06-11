@@ -15,8 +15,7 @@ public class RentalApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(org.example.terrificproject.RentalApplication.class.getResource("rental.fxml"));
         Scene mainScene = new Scene(fxmlLoader.load());
         stage.setTitle("Rental Software");
-        stage.setScene(mainScene); // bedzie wiecej scen // trzeba ogarnac jak je zmieniax XDD
-        // w drugim branchu sa proby tego zrobienia
+        stage.setScene(mainScene);
         stage.show();
     }
 

@@ -1,0 +1,208 @@
+Index: src/main/resources/org/example/terrificproject/reserve.fxml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n\r\n<?import javafx.scene.control.Button?>\r\n<?import javafx.scene.control.TextField?>\r\n<?import javafx.scene.layout.ColumnConstraints?>\r\n<?import javafx.scene.layout.GridPane?>\r\n<?import javafx.scene.layout.RowConstraints?>\r\n<?import javafx.scene.text.Text?>\r\n\r\n<GridPane maxHeight=\"-Infinity\" maxWidth=\"-Infinity\" minHeight=\"-Infinity\" minWidth=\"-Infinity\" prefHeight=\"400.0\" prefWidth=\"600.0\" xmlns:fx=\"http://javafx.com/fxml/1\" xmlns=\"http://javafx.com/javafx/21\">\r\n  <columnConstraints>\r\n    <ColumnConstraints hgrow=\"SOMETIMES\" minWidth=\"10.0\" prefWidth=\"100.0\" />\r\n    <ColumnConstraints hgrow=\"SOMETIMES\" minWidth=\"10.0\" prefWidth=\"100.0\" />\r\n  </columnConstraints>\r\n  <rowConstraints>\r\n      <RowConstraints minHeight=\"10.0\" prefHeight=\"30.0\" vgrow=\"SOMETIMES\" />\r\n    <RowConstraints minHeight=\"10.0\" prefHeight=\"30.0\" vgrow=\"SOMETIMES\" />\r\n    <RowConstraints minHeight=\"10.0\" prefHeight=\"30.0\" vgrow=\"SOMETIMES\" />\r\n    <RowConstraints minHeight=\"10.0\" prefHeight=\"30.0\" vgrow=\"SOMETIMES\" />\r\n  </rowConstraints>\r\n   <children>\r\n      <TextField GridPane.columnIndex=\"1\" GridPane.rowIndex=\"1\" />\r\n      <TextField GridPane.columnIndex=\"1\" GridPane.rowIndex=\"2\" />\r\n      <Text strokeType=\"OUTSIDE\" strokeWidth=\"0.0\" text=\"Name:\" GridPane.rowIndex=\"1\" />\r\n      <Text strokeType=\"OUTSIDE\" strokeWidth=\"0.0\" text=\"Surname:\" GridPane.rowIndex=\"2\" />\r\n      <Button mnemonicParsing=\"false\" text=\"go back\" />\r\n   </children>\r\n</GridPane>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/resources/org/example/terrificproject/reserve.fxml b/src/main/resources/org/example/terrificproject/reserve.fxml
+--- a/src/main/resources/org/example/terrificproject/reserve.fxml	(revision 6b24c8c4e4596fe10711aed27165ad4477d10e2b)
++++ b/src/main/resources/org/example/terrificproject/reserve.fxml	(date 1717961678879)
+@@ -7,7 +7,7 @@
+ <?import javafx.scene.layout.RowConstraints?>
+ <?import javafx.scene.text.Text?>
+ 
+-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21">
++<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <columnConstraints>
+     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+@@ -19,10 +19,10 @@
+     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+   </rowConstraints>
+    <children>
+-      <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+-      <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
++      <TextField fx:id="nameField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
++      <TextField fx:id="surnameField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Name:" GridPane.rowIndex="1" />
+       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Surname:" GridPane.rowIndex="2" />
+-      <Button mnemonicParsing="false" text="go back" />
++      <Button mnemonicParsing="false" onAction="#backPressed" text="go back" />
+    </children>
+ </GridPane>
+Index: src/main/java/org/example/terrificproject/RentalController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package org.example.terrificproject;\r\n\r\nimport javafx.fxml.FXML;\r\n\r\nimport javafx.event.ActionEvent;\r\nimport javafx.scene.control.ListView;\r\nimport javafx.scene.control.TextField;\r\nimport javafx.scene.image.Image;\r\nimport javafx.scene.text.Text;\r\nimport java.io.IOException;\r\n\r\nimport java.time.LocalDate;\r\nimport java.util.*;\r\n\r\npublic class RentalController {\r\n\r\n    @FXML\r\n    private TextField searchField;\r\n\r\n    @FXML\r\n    private ListView<Text> vehiclesList;\r\n\r\n    public ArrayList<Vehicle> vehicles = new ArrayList<>(); // baza danych pojazdow\r\n\r\n    @FXML\r\n    public void initialize() throws IOException {\r\n        addingVehicles();\r\n        for (Vehicle vehicles : vehicles) {\r\n            vehiclesList.getItems().add(new Text(vehicles.toString()));\r\n        }\r\n\r\n    }\r\n\r\n    private void addingVehicles() throws IOException {\r\n        ArrayList<LocalDate> rentalDates = new ArrayList<LocalDate>();\r\n        // dla kazdego vehicle bedzie inny date i obrazek ale nie chcialo mi sie\r\n        // trzeba tez te vehicles zrobic w jsonie, zeby rezerwacja nadpisywala plik\r\n        // dzieki czemu po kazdym otwarciu nie bedzie sie zerowac\r\n        // albo ogolnie zeby rezerwacje byly zapisywane w pliku\r\n\r\n\r\n        Image image = new Image(\"file:src/main/resources/org/example/terrificproject/miata.jpg\");\r\n        Vehicle vehicle1 = new Vehicle(\"2021\", \"Toyota\", \"Corolla\", \"Black\", \"Sedan\", \"ICE\", rentalDates, image);\r\n        Vehicle vehicle2 = new Vehicle(\"2021\", \"Mazda\", \"Miata\", \"Red\", \"Convertible\", \"ICE\", rentalDates, image);\r\n        Vehicle vehicle3 = new Vehicle(\"2021\", \"Ford\", \"F-150\", \"White\", \"Pickup\", \"ICE\", rentalDates, image);\r\n        Vehicle vehicle4 = new Vehicle(\"2021\", \"Harley-Davidson\", \"Road King\", \"Black\", \"Motorcycle\", \"ICE\", rentalDates, image);\r\n        Vehicle vehicle5 = new Vehicle(\"2021\", \"Winnebago\", \"Revel\", \"White\", \"Camper\", \"ICE\", rentalDates, image);\r\n\r\n        vehicles.add(vehicle1);\r\n        vehicles.add(vehicle2);\r\n        vehicles.add(vehicle3);\r\n        vehicles.add(vehicle4);\r\n        vehicles.add(vehicle5);\r\n    }\r\n\r\n    @FXML\r\n    void loginPressed(ActionEvent event) {\r\n        // jak sie komus bardzo nudzi a mamy juz cala reszte zrobione to mozna sie pierdolic w logowanie\r\n        // ale hasla sie wypierdalaja bardzo latwo wiec duzo roboty\r\n\r\n    }\r\n\r\n    @FXML\r\n    void searchPressed(ActionEvent event) {\r\n        vehiclesList.getItems().clear();\r\n        String[] wordList = searchField.getText().toLowerCase().split(\" \");// podzielenie tekstu na slowa\r\n        HashMap<Vehicle, Integer> order = new HashMap<Vehicle, Integer>();\r\n        for (Vehicle vehicle : vehicles) {\r\n            int wordsMatched = getWordsMatched(vehicle, wordList);\r\n            if (wordsMatched == 0) continue; // if no words match do not add to the list\r\n            order.put(vehicle, wordsMatched);\r\n        }\r\n\r\n        List<Map.Entry<Vehicle, Integer>> sortedEntries = order.entrySet().stream()\r\n                .sorted(Map.Entry.<Vehicle, Integer>comparingByValue().reversed())\r\n                .toList(); // sort the vehicles by the number of words matched\r\n\r\n        for (Map.Entry<Vehicle, Integer> entry : sortedEntries) {\r\n            vehiclesList.getItems().add(new Text(entry.getKey().toString()));// display vehicles in the correct order\r\n        }\r\n    }\r\n\r\n    private static int getWordsMatched(Vehicle vehicle, String[] wordList) {\r\n        int wordsMatched = 0; //\r\n        for (String word : wordList) {\r\n            if (vehicle.getMake().toLowerCase().contains(word)) {\r\n                wordsMatched++;\r\n            }\r\n            if (vehicle.getModel().toLowerCase().contains(word)) {\r\n                wordsMatched++;\r\n            }\r\n            if (vehicle.getYear().toLowerCase().contains(word)) {\r\n                wordsMatched++;\r\n            }\r\n            if (vehicle.getColor().toLowerCase().contains(word)) {\r\n                wordsMatched++;\r\n            }\r\n            if (vehicle.getType().toLowerCase().contains(word)) {\r\n                wordsMatched++;\r\n            }\r\n            if (vehicle.getPowertrain().toLowerCase().contains(word)) {\r\n                wordsMatched++;\r\n            }\r\n        }\r\n        return wordsMatched;\r\n    }\r\n\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/org/example/terrificproject/RentalController.java b/src/main/java/org/example/terrificproject/RentalController.java
+--- a/src/main/java/org/example/terrificproject/RentalController.java	(revision 6b24c8c4e4596fe10711aed27165ad4477d10e2b)
++++ b/src/main/java/org/example/terrificproject/RentalController.java	(date 1717962556325)
+@@ -1,26 +1,51 @@
+ package org.example.terrificproject;
+ 
+-import javafx.fxml.FXML;
+-
+ import javafx.event.ActionEvent;
++import javafx.fxml.FXML;
+ import javafx.scene.control.ListView;
+ import javafx.scene.control.TextField;
+ import javafx.scene.image.Image;
+ import javafx.scene.text.Text;
++
+ import java.io.IOException;
+-
+ import java.time.LocalDate;
+-import java.util.*;
++import java.util.ArrayList;
++import java.util.HashMap;
++import java.util.List;
++import java.util.Map;
+ 
+ public class RentalController {
+ 
++    public ArrayList<Vehicle> vehicles = new ArrayList<>(); // baza danych pojazdow
+     @FXML
+     private TextField searchField;
+-
+     @FXML
+     private ListView<Text> vehiclesList;
+ 
+-    public ArrayList<Vehicle> vehicles = new ArrayList<>(); // baza danych pojazdow
++    private static int getWordsMatched(Vehicle vehicle, String[] wordList) {
++        int wordsMatched = 0; //
++        for (String word : wordList) {
++            if (vehicle.getMake().toLowerCase().contains(word)) {
++                wordsMatched++;
++            }
++            if (vehicle.getModel().toLowerCase().contains(word)) {
++                wordsMatched++;
++            }
++            if (vehicle.getYear().toLowerCase().contains(word)) {
++                wordsMatched++;
++            }
++            if (vehicle.getColor().toLowerCase().contains(word)) {
++                wordsMatched++;
++            }
++            if (vehicle.getType().toLowerCase().contains(word)) {
++                wordsMatched++;
++            }
++            if (vehicle.getPowertrain().toLowerCase().contains(word)) {
++                wordsMatched++;
++            }
++        }
++        return wordsMatched;
++    }
+ 
+     @FXML
+     public void initialize() throws IOException {
+@@ -80,30 +105,5 @@
+         }
+     }
+ 
+-    private static int getWordsMatched(Vehicle vehicle, String[] wordList) {
+-        int wordsMatched = 0; //
+-        for (String word : wordList) {
+-            if (vehicle.getMake().toLowerCase().contains(word)) {
+-                wordsMatched++;
+-            }
+-            if (vehicle.getModel().toLowerCase().contains(word)) {
+-                wordsMatched++;
+-            }
+-            if (vehicle.getYear().toLowerCase().contains(word)) {
+-                wordsMatched++;
+-            }
+-            if (vehicle.getColor().toLowerCase().contains(word)) {
+-                wordsMatched++;
+-            }
+-            if (vehicle.getType().toLowerCase().contains(word)) {
+-                wordsMatched++;
+-            }
+-            if (vehicle.getPowertrain().toLowerCase().contains(word)) {
+-                wordsMatched++;
+-            }
+-        }
+-        return wordsMatched;
+-    }
+-
+ 
+ }
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"60ce9423-d388-4127-b223-406194378b3b\" name=\"Changes\" comment=\"chujow sto\">\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/org/example/terrificproject/ReserveController.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/org/example/terrificproject/RentalApplication.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/org/example/terrificproject/RentalApplication.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/org/example/terrificproject/RentalController.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/org/example/terrificproject/RentalController.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/org/example/terrificproject/Vehicle.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/org/example/terrificproject/Vehicle.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/org/example/terrificproject/VehicleSceneController.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/org/example/terrificproject/VehicleSceneController.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/resources/org/example/terrificproject/vehicleTemplate.fxml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/resources/org/example/terrificproject/vehicleTemplate.fxml\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Enum\" />\r\n        <option value=\"FxmlFile\" />\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 4\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2heEillbCObxRtv37f3rghCAZPU\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,\r\n    &quot;Application.RentalApplication.executor&quot;: &quot;Run&quot;,\r\n    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;git-widget-placeholder&quot;: &quot;master&quot;,\r\n    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,\r\n    &quot;last_opened_file_path&quot;: &quot;C:/Users/Win-11/IdeaProjects/terrificProject&quot;,\r\n    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,\r\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;\r\n  }\r\n}</component>\r\n  <component name=\"RunManager\">\r\n    <configuration default=\"true\" type=\"JetRunConfigurationType\">\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration default=\"true\" type=\"KotlinStandaloneScriptRunConfigurationType\">\r\n      <option name=\"filePath\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"jdk-17.0.10-corretto-17.0.10-4caba194b151-5cd809f4\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"60ce9423-d388-4127-b223-406194378b3b\" name=\"Changes\" comment=\"\" />\r\n      <created>1717946276719</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1717946276719</updated>\r\n      <workItem from=\"1717946277476\" duration=\"755000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"java fx\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1717947370836</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1717947370836</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"cos zaczete\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1717948523796</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1717948523796</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"rental dates\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1717949221226</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1717949221226</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"rental dates\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1717949498325</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1717949498325</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"rental dates - naprawione xd\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1717949704877</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1717949704877</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"updates fx\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1717952464568</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1717952464568</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"updates\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1717953119216</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1717953119216</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\"szukanie update\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1717954014377</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1717954014377</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00009\" summary=\"szukanie update\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1717954537977</created>\r\n      <option name=\"number\" value=\"00009\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1717954537977</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00010\" summary=\"vehicle scene\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1717956704933</created>\r\n      <option name=\"number\" value=\"00010\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1717956704933</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00011\" summary=\"vehicle scene\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1717958816053</created>\r\n      <option name=\"number\" value=\"00011\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00011\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1717958816053</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00012\" summary=\"vehicle scene\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1717958826010</created>\r\n      <option name=\"number\" value=\"00012\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00012\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1717958826010</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00013\" summary=\"chujow sto\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1717960196892</created>\r\n      <option name=\"number\" value=\"00013\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00013\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1717960196892</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"14\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"java fx\" />\r\n    <MESSAGE value=\"cos zaczete\" />\r\n    <MESSAGE value=\"rental dates\" />\r\n    <MESSAGE value=\"rental dates - naprawione xd\" />\r\n    <MESSAGE value=\"updates fx\" />\r\n    <MESSAGE value=\"updates\" />\r\n    <MESSAGE value=\"szukanie update\" />\r\n    <MESSAGE value=\"vehicle scene\" />\r\n    <MESSAGE value=\"chujow sto\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"chujow sto\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 6b24c8c4e4596fe10711aed27165ad4477d10e2b)
++++ b/.idea/workspace.xml	(date 1718110265964)
+@@ -4,14 +4,10 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="60ce9423-d388-4127-b223-406194378b3b" name="Changes" comment="chujow sto">
+-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/terrificproject/ReserveController.java" afterDir="false" />
++    <list default="true" id="60ce9423-d388-4127-b223-406194378b3b" name="Changes" comment="chujow sto z komentarzami">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/terrificproject/RentalApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/terrificproject/RentalApplication.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/terrificproject/RentalController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/terrificproject/RentalController.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/terrificproject/Vehicle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/terrificproject/Vehicle.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/terrificproject/VehicleSceneController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/terrificproject/VehicleSceneController.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/terrificproject/vehicleTemplate.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/terrificproject/vehicleTemplate.fxml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/terrificproject/reserve.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/terrificproject/reserve.fxml" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -68,13 +64,6 @@
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
+-  </component>
+-  <component name="SharedIndexes">
+-    <attachedChunks>
+-      <set>
+-        <option value="jdk-17.0.10-corretto-17.0.10-4caba194b151-5cd809f4" />
+-      </set>
+-    </attachedChunks>
+   </component>
+   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+   <component name="TaskManager">
+@@ -85,6 +74,7 @@
+       <option name="presentableId" value="Default" />
+       <updated>1717946276719</updated>
+       <workItem from="1717946277476" duration="755000" />
++      <workItem from="1717962348432" duration="883000" />
+     </task>
+     <task id="LOCAL-00001" summary="java fx">
+       <option name="closed" value="true" />
+@@ -190,7 +180,15 @@
+       <option name="project" value="LOCAL" />
+       <updated>1717960196892</updated>
+     </task>
+-    <option name="localTasksCounter" value="14" />
++    <task id="LOCAL-00014" summary="chujow sto z komentarzami">
++      <option name="closed" value="true" />
++      <created>1717961710021</created>
++      <option name="number" value="00014" />
++      <option name="presentableId" value="LOCAL-00014" />
++      <option name="project" value="LOCAL" />
++      <updated>1717961710021</updated>
++    </task>
++    <option name="localTasksCounter" value="15" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -206,6 +204,7 @@
+     <MESSAGE value="szukanie update" />
+     <MESSAGE value="vehicle scene" />
+     <MESSAGE value="chujow sto" />
+-    <option name="LAST_COMMIT_MESSAGE" value="chujow sto" />
++    <MESSAGE value="chujow sto z komentarzami" />
++    <option name="LAST_COMMIT_MESSAGE" value="chujow sto z komentarzami" />
+   </component>
+ </project>
+\ No newline at end of file

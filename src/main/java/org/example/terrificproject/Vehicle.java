@@ -10,18 +10,16 @@ public class Vehicle { // jeszcze trzeba dodac class Car itd ktore dziedzicza po
     private String color;
     private String type; // Car, Motorcycle, Pickup, Camper
     private String powertrain; // Internal Combustion Engine (ICE), Hybrid, Battery Electric Vehicle (BEV)
-    private boolean available;
     private ArrayList<LocalDate> rentalDates; // Dates the vehicle is rented out
     public Image image;
 
-    public Vehicle(String year, String make, String model, String color, String type, String powertrain, boolean available, ArrayList<LocalDate> rentalDates, Image image) {
+    public Vehicle(String year, String make, String model, String color, String type, String powertrain, ArrayList<LocalDate> rentalDates, Image image) {
         this.year = year;
         this.make = make;
         this.model = model;
         this.color = color;
         this.type = type;
         this.powertrain = powertrain;
-        this.available = available;
         this.rentalDates = rentalDates;
         this.image = image;
     }
@@ -66,13 +64,6 @@ public class Vehicle { // jeszcze trzeba dodac class Car itd ktore dziedzicza po
         this.image = image;
     }
 
-    public boolean isAvailable() {
-        return available;
-    }
-
-    public void setAvailable(boolean available) {
-        this.available = available;
-    }
 
     public void setYear(String year) {
         this.year = year;
@@ -100,13 +91,7 @@ public class Vehicle { // jeszcze trzeba dodac class Car itd ktore dziedzicza po
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("");
-        sb.append(year).append('\'');
-        sb.append(make).append('\'');
-        sb.append(model).append('\'');
-        sb.append(color).append('\'');
-        sb.append(type).append('\'');
-        sb.append(powertrain).append('\'');
-        return sb.toString();
+        return year + " " + make + " " + model + " " + color + " " + type + " " + powertrain;
+
     }
 }

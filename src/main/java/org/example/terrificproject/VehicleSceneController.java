@@ -62,18 +62,16 @@ public class VehicleSceneController {
         stage.show();
     }
 
-    // @FXML
-    //void initialize() {
-    // propertiesList.getItems().add("Year: " + selectedVehicle.getYear());
-    // propertiesList.getItems().add("Make: " + selectedVehicle.getMake());
-    // propertiesList.getItems().add("Model: " + selectedVehicle.getModel());
-    // propertiesList.getItems().add("Color: " + selectedVehicle.getColor());
-    // propertiesList.getItems().add("Type: " + selectedVehicle.getType());
-    // propertiesList.getItems().add("Powertrain: " + selectedVehicle.getPowertrain());
-    // vehicleImage.setImage(selectedVehicle.getImage());
-
-    //sory wyjebalam na razie bo nie dzielalo inaczej
-
+     @FXML
+    void initialize() {
+         propertiesList.getItems().add("Year: " + selectedVehicle.getYear());
+         propertiesList.getItems().add("Make: " + selectedVehicle.getMake());
+         propertiesList.getItems().add("Model: " + selectedVehicle.getModel());
+         propertiesList.getItems().add("Color: " + selectedVehicle.getColor());
+         propertiesList.getItems().add("Type: " + selectedVehicle.getType());
+         propertiesList.getItems().add("Powertrain: " + selectedVehicle.getPowertrain());
+         vehicleImage.setImage(selectedVehicle.getImage());
+     }
     }
 
 

@@ -1,6 +1,9 @@
 package org.example.terrificproject;
-import javafx.fxml.FXML;
+
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -12,14 +15,17 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.*;
 
 public class RentalController {
 
+    public ArrayList<Vehicle> vehicles = new ArrayList<>(); // baza danych pojazdow
     @FXML
     private TextField searchField;
+
     @FXML
     private ListView<Text> vehiclesList;
     @FXML
@@ -30,14 +36,31 @@ public class RentalController {
     private Scene scene;
     private Parent root;
 
-    public ArrayList<Vehicle> vehicles = new ArrayList<>(); // baza danych pojazdow
-
     @FXML
     public void initialize() throws IOException {
         addingVehicles();
         for (Vehicle vehicles : vehicles) {
             vehiclesList.getItems().add(new Text(vehicles.toString()));
         }
+        colorPicker.setValue(null);
+
+        vehiclesList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Text>() { // O KURWA DZIALA
+            @Override
+            public void changed(ObservableValue<? extends Text> observableValue, Text text, Text t1) {
+                VehicleSceneController.selectedVehicle = vehicles.get(vehiclesList.getSelectionModel().getSelectedIndex());
+                try {
+                    root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("vehicleTemplate.fxml")));
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                stage = (Stage) vehiclesList.getScene().getWindow();
+                scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+
+            }
+        });
+
     }
 
     private void addingVehicles() throws IOException {
@@ -49,11 +72,11 @@ public class RentalController {
 
 
         Image image = new Image("file:src/main/resources/org/example/terrificproject/miata.jpg");
-        Vehicle vehicle1 = new Vehicle("2021", "Toyota", "Corolla", "Black", "Sedan", "ICE",true,rentalDates,image);
-        Vehicle vehicle2 = new Vehicle("2021", "Mazda", "Miata", "Red", "Convertible", "ICE",true, rentalDates, image);
-        Vehicle vehicle3 = new Vehicle("2021", "Ford", "F-150", "White", "Pickup", "ICE",true,rentalDates, image);
-        Vehicle vehicle4 = new Vehicle("2021", "Harley-Davidson", "Road King", "Black", "Motorcycle", "ICE",true, rentalDates, image);
-        Vehicle vehicle5 = new Vehicle("2021", "Winnebago", "Revel", "White", "Camper", "ICE",true,rentalDates, image);
+        Vehicle vehicle1 = new Vehicle("2021", "Toyota", "Corolla", "Black", "Sedan", "ICE", rentalDates, image);
+        Vehicle vehicle2 = new Vehicle("2021", "Mazda", "Miata", "Red", "Convertible", "ICE", rentalDates, image);
+        Vehicle vehicle3 = new Vehicle("2021", "Ford", "F-150", "White", "Pickup", "ICE", rentalDates, image);
+        Vehicle vehicle4 = new Vehicle("2021", "Harley-Davidson", "Road King", "Black", "Motorcycle", "ICE", rentalDates, image);
+        Vehicle vehicle5 = new Vehicle("2021", "Winnebago", "Revel", "White", "Camper", "ICE", rentalDates, image);
 
         vehicles.add(vehicle1);
         vehicles.add(vehicle2);
@@ -71,16 +94,25 @@ public class RentalController {
 
     @FXML
     void searchPressed(ActionEvent event) {
+        if (searchField.getText().isEmpty() && colorPicker.getValue() == null) { // jezeli puste, pokaz wszystkie pojazdy
+            vehiclesList.getItems().clear();
+            for (Vehicle vehicle : vehicles) {
+                vehiclesList.getItems().add(new Text(vehicle.toString()));
+            }
+            return;
+        }
         vehiclesList.getItems().clear();
         String[] wordList = searchField.getText().toLowerCase().split(" ");// podzielenie tekstu na slowa
         Color selectedColor = colorPicker.getValue();
         String colorAsString = convertColorToString(selectedColor);
 
         HashMap<Vehicle, Integer> order = new HashMap<Vehicle, Integer>();
+
         for (Vehicle vehicle : vehicles) {
             int wordsMatched = getWordsMatched(vehicle, wordList);
             if (wordsMatched == 0) continue; // if no words match do not add to the list
-            if(colorAsString!=null && !vehicle.getColor().equalsIgnoreCase(colorAsString)) continue;
+            if (colorAsString != null && !vehicle.getColor().equalsIgnoreCase(colorAsString))
+                continue; // if color does not match do not add to the list
             order.put(vehicle, wordsMatched);
         }
 
@@ -91,11 +123,9 @@ public class RentalController {
         for (Map.Entry<Vehicle, Integer> entry : sortedEntries) {
             vehiclesList.getItems().add(new Text(entry.getKey().toString()));// display vehicles in the correct order
         }
-    }
-    @FXML
-    void exitPressed(ActionEvent event){
-        stage = (Stage) exitButton.getScene().getWindow();
-        stage.close();
+        if (vehiclesList.getItems().isEmpty()) {
+            vehiclesList.getItems().add(new Text("No vehicles found!"));
+        }
     }
 
     private static int getWordsMatched(Vehicle vehicle, String[] wordList) {
@@ -122,9 +152,18 @@ public class RentalController {
         }
         return wordsMatched;
     }
-    public void setColorPicker(ActionEvent event){
-        Color color=colorPicker.getValue(); //okej chyba za dużo jebania się jednak z tym kolorem
+
+    @FXML
+    void exitPressed(ActionEvent event) {
+        stage = (Stage) exitButton.getScene().getWindow();
+        stage.close();
     }
+
+    @FXML
+    void anyColor(ActionEvent event) { // czyszczenie koloru
+        colorPicker.setValue(null);
+    }
+
     private String convertColorToString(Color color) {
         if (color == null) return null;
         String rgbColor = color.toString().substring(2, 8).toUpperCase();
@@ -148,13 +187,6 @@ public class RentalController {
         stage.setScene(scene);
         stage.show();
         //zmiana sceny jedna for now ale ogarnięte jak zrobić
-    }
-    public void switchVehicleScene(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("vehicleTemplate.fxml")));
-        stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
     }
 
 }
