@@ -1,19 +1,20 @@
 package org.example.terrificproject;
-import javafx.scene.image.Image;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Vehicle { // jeszcze trzeba dodac class Car itd ktore dziedzicza po Vehicle z dodatkowymi polami
-    private String year;
-    private String make;
-    private String model;
-    private String color;
-    private String type; // Car, Motorcycle, Pickup, Camper
-    private String powertrain; // Internal Combustion Engine (ICE), Hybrid, Battery Electric Vehicle (BEV)
-    private ArrayList<LocalDate> rentalDates; // Dates the vehicle is rented out
-    public Image image;
+    public String year;
+    public String make;
+    public String model;
+    public String color;
+    public String type; // Car, Motorcycle, Pickup, Camper
+    public String powertrain; // Internal Combustion Engine (ICE), Hybrid, Battery Electric Vehicle (BEV)
+    public ArrayList<LocalDate> rentalDates; // Dates the vehicle is rented out
 
-    public Vehicle(String year, String make, String model, String color, String type, String powertrain, ArrayList<LocalDate> rentalDates, Image image) {
+    public String imagePath; // path to image
+
+    public Vehicle(String year, String make, String model, String color, String type, String powertrain, ArrayList<LocalDate> rentalDates, String imagePath) {
         this.year = year;
         this.make = make;
         this.model = model;
@@ -21,7 +22,7 @@ public class Vehicle { // jeszcze trzeba dodac class Car itd ktore dziedzicza po
         this.type = type;
         this.powertrain = powertrain;
         this.rentalDates = rentalDates;
-        this.image = image;
+        this.imagePath = imagePath;
     }
 
     public String getYear() {
@@ -56,12 +57,12 @@ public class Vehicle { // jeszcze trzeba dodac class Car itd ktore dziedzicza po
         this.rentalDates = rentalDates;
     }
 
-    public Image getImage() {
-        return image;
+    public String getImagePath() {
+        return imagePath;
     }
 
-    public void setImage(Image image) {
-        this.image = image;
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 
 

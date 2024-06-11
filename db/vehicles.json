@@ -1,0 +1,192 @@
+[
+  {
+    "year": "2020",
+    "make": "Lamborghini",
+    "model": "Aventador",
+    "color": "Yellow",
+    "type": "Car",
+    "powertrain": "ICE",
+    "rentalDates": [],
+    "imagePath": "/org/example/terrificproject/miata.jpg"
+  },
+  {
+    "year": "2019",
+    "make": "Lamborghini",
+    "model": "Huracan",
+    "color": "Red",
+    "type": "Car",
+    "powertrain": "ICE",
+    "rentalDates": [],
+    "imagePath": "/org/example/terrificproject/miata.jpg"
+  },
+  {
+    "year": "2018",
+    "make": "Ferrari",
+    "model": "488 GTB",
+    "color": "Red",
+    "type": "Car",
+    "powertrain": "ICE",
+    "rentalDates": [],
+    "imagePath": "/org/example/terrificproject/miata.jpg"
+  },
+  {
+    "year": "2021",
+    "make": "Kawasaki",
+    "model": "Ninja",
+    "color": "Green",
+    "type": "Motorcycle",
+    "powertrain": "ICE",
+    "rentalDates": [],
+    "imagePath": "/org/example/terrificproject/miata.jpg"
+  },
+  {
+    "year": "2022",
+    "make": "Toyota",
+    "model": "Prius",
+    "color": "Blue",
+    "type": "Car",
+    "powertrain": "Hybrid",
+    "rentalDates": [],
+    "imagePath": "/org/example/terrificproject/miata.jpg"
+  },
+  {
+    "year": "2020",
+    "make": "Toyota",
+    "model": "Corolla",
+    "color": "White",
+    "type": "Car",
+    "powertrain": "ICE",
+    "rentalDates": [],
+    "imagePath": "/org/example/terrificproject/miata.jpg"
+  },
+  {
+    "year": "2019",
+    "make": "Range Rover",
+    "model": "Evoque",
+    "color": "Black",
+    "type": "Car",
+    "powertrain": "ICE",
+    "rentalDates": [],
+    "imagePath": "/org/example/terrificproject/miata.jpg"
+  },
+  {
+    "year": "2023",
+    "make": "Mustang",
+    "model": "Mach-E",
+    "color": "White",
+    "type": "Car",
+    "powertrain": "BEV",
+    "rentalDates": [],
+    "imagePath": "/org/example/terrificproject/miata.jpg"
+  },
+  {
+    "year": "2020",
+    "make": "Tesla",
+    "model": "Model S",
+    "color": "Black",
+    "type": "Car",
+    "powertrain": "BEV",
+    "rentalDates": [],
+    "imagePath": "/org/example/terrificproject/miata.jpg"
+  },
+  {
+    "year": "2019",
+    "make": "Tesla",
+    "model": "Model 3",
+    "color": "White",
+    "type": "Car",
+    "powertrain": "BEV",
+    "rentalDates": [],
+    "imagePath": "/org/example/terrificproject/miata.jpg"
+  },
+  {
+    "year": "2021",
+    "make": "BMW",
+    "model": "M3",
+    "color": "Blue",
+    "type": "Car",
+    "powertrain": "ICE",
+    "rentalDates": [],
+    "imagePath": "/org/example/terrificproject/miata.jpg"
+  },
+  {
+    "year": "2018",
+    "make": "BMW",
+    "model": "X5",
+    "color": "White",
+    "type": "Car",
+    "powertrain": "ICE",
+    "rentalDates": [],
+    "imagePath": "/org/example/terrificproject/miata.jpg"
+  },
+  {
+    "year": "2020",
+    "make": "Audi",
+    "model": "A4",
+    "color": "Black",
+    "type": "Car",
+    "powertrain": "ICE",
+    "rentalDates": [],
+    "imagePath": "/org/example/terrificproject/miata.jpg"
+  },
+  {
+    "year": "2019",
+    "make": "Audi",
+    "model": "Q7",
+    "color": "White",
+    "type": "Car",
+    "powertrain": "ICE",
+    "rentalDates": [],
+    "imagePath": "/org/example/terrificproject/miata.jpg"
+  },
+  {
+    "year": "2018",
+    "make": "Mercedes-Benz",
+    "model": "GLE",
+    "color": "Black",
+    "type": "Car",
+    "powertrain": "ICE",
+    "rentalDates": [],
+    "imagePath": "/org/example/terrificproject/miata.jpg"
+  },
+  {
+    "year": "2019",
+    "make": "Harley-Davidson",
+    "model": "Street 750",
+    "color": "Black",
+    "type": "Motorcycle",
+    "powertrain": "ICE",
+    "rentalDates": [],
+    "imagePath": "/org/example/terrificproject/miata.jpg"
+  },
+  {
+    "year": "2020",
+    "make": "Ducati",
+    "model": "Panigale",
+    "color": "Red",
+    "type": "Motorcycle",
+    "powertrain": "ICE",
+    "rentalDates": [],
+    "imagePath": "/org/example/terrificproject/miata.jpg"
+  },
+  {
+    "year": "2019",
+    "make": "Chevrolet",
+    "model": "Silverado",
+    "color": "Silver",
+    "type": "Pickup",
+    "powertrain": "ICE",
+    "rentalDates": [],
+    "imagePath": "/org/example/terrificproject/miata.jpg"
+  },
+  {
+    "year": "2021",
+    "make": "Winnebago",
+    "model": "Travato",
+    "color": "White",
+    "type": "Camper",
+    "powertrain": "ICE",
+    "rentalDates": [],
+    "imagePath": "/org/example/terrificproject/miata.jpg"
+  }
+]
