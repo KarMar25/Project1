@@ -1,0 +1,116 @@
+[
+  {
+    "brand": "Lamborghini",
+    "model": "Aventador",
+    "year": 2020,
+    "type": "ICE"
+  },
+  {
+    "brand": "Lamborghini",
+    "model": "Huracan",
+    "year": 2019,
+    "type": "ICE"
+  },
+  {
+    "brand": "Ferrari",
+    "model": "488 GTB",
+    "year": 2018,
+    "type": "ICE"
+  },
+  {
+    "brand": "Kawasaki",
+    "model": "Ninja",
+    "year": 2021,
+    "type": "Motorcycle"
+  },
+  {
+    "brand": "Toyota",
+    "model": "Prius",
+    "year": 2022,
+    "type": "Hybrid"
+  },
+  {
+    "brand": "Toyota",
+    "model": "Corolla",
+    "year": 2020,
+    "type": "ICE"
+  },
+  {
+    "brand": "Range Rover",
+    "model": "Evoque",
+    "year": 2019,
+    "type": "ICE"
+  },
+  {
+    "brand": "Mustang",
+    "model": "Mach-E",
+    "year": 2023,
+    "type": "BEV"
+  },
+  {
+    "brand": "Tesla",
+    "model": "Model S",
+    "year": 2020,
+    "type": "BEV"
+  },
+  {
+    "brand": "Tesla",
+    "model": "Model 3",
+    "year": 2019,
+    "type": "BEV"
+  },
+  {
+    "brand": "BMW",
+    "model": "M3",
+    "year": 2021,
+    "type": "ICE"
+  },
+  {
+    "brand": "BMW",
+    "model": "X5",
+    "year": 2018,
+    "type": "ICE"
+  },
+  {
+    "brand": "Audi",
+    "model": "A4",
+    "year": 2020,
+    "type": "ICE"
+  },
+  {
+    "brand": "Audi",
+    "model": "Q7",
+    "year": 2019,
+    "type": "ICE"
+  },
+  {
+    "brand": "Mercedes-Benz",
+    "model": "GLE",
+    "year": 2018,
+    "type": "ICE"
+  },
+  {
+    "brand": "Harley-Davidson",
+    "model": "Street 750",
+    "year": 2019,
+    "type": "Motorcycle"
+  },
+  {
+    "brand": "Ducati",
+    "model": "Panigale",
+    "year": 2020,
+    "type": "Motorcycle"
+  },
+  {
+    "brand": "Chevrolet",
+    "model": "Silverado",
+    "year": 2019,
+    "type": "Pickup"
+  },
+  {
+    "brand": "Winnebago",
+    "model": "Travato",
+    "year": 2021,
+    "type": "Camper"
+  }
+]
