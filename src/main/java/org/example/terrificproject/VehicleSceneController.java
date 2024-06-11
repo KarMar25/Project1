@@ -1,18 +1,21 @@
 package org.example.terrificproject;
 
+import com.google.gson.Gson;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -31,10 +34,6 @@ public class VehicleSceneController {
 
     @FXML
     private ImageView vehicleImage;
-    @FXML
-    private Label dateFrom;
-    @FXML
-    private Label dateTo;
 
     @FXML
     private Text dateText;
@@ -45,39 +44,54 @@ public class VehicleSceneController {
             dateText.setText("Invalid date range");
             return;
         }
-        if(datePickerFrom.getValue().isBefore(LocalDate.now()) || datePickerTo.getValue().isBefore(LocalDate.now())){ // before today
+        if (datePickerFrom.getValue().isBefore(LocalDate.now()) || datePickerTo.getValue().isBefore(LocalDate.now())) { // before today
             dateText.setText("Choose a date in the future");
             return;
         }
         for (LocalDate date : selectedVehicle.getRentalDates()) {
-            if (date.isAfter(datePickerFrom.getValue()) && date.isBefore(datePickerTo.getValue())) {
+            if (date.isAfter(datePickerFrom.getValue()) && date.isBefore(datePickerTo.getValue()) || date.isEqual(datePickerFrom.getValue()) || date.isEqual(datePickerTo.getValue())) {
                 dateText.setText("Vehicle is already reserved for this date range");
-                return; // sprawdzanie czy pojazd jest dostepny w podanym przedziale dat
+                return; // checks if the vehicle is already reserved for this date range
             }
         }
-        for (int i = datePickerFrom.getValue().getDayOfYear(); i < datePickerTo.getValue().getDayOfYear(); i++) {
-            selectedVehicle.getRentalDates().add(LocalDate.ofYearDay(datePickerFrom.getValue().getYear(), i));
-            // add all dates between from and to, idk if it works
+        for (int i = datePickerFrom.getValue().getDayOfYear(); i <= datePickerTo.getValue().getDayOfYear(); i++) { // add all dates between from and to
+            for(Vehicle vehicle : RentalController.vehicles) {
+                if (vehicle.equals(selectedVehicle)) { // if the vehicle is the one we are reserving
+                    System.out.println("Vehicle: " + vehicle.getRentalDates().toString());
+                    vehicle.getRentalDates().add(LocalDate.ofYearDay(datePickerFrom.getValue().getYear(), i)); // add the date to the list of reserved dates
+                }
+            }
+
         }
 
-        ReserveController.periodString = datePickerFrom.getValue().toString() + " to " + datePickerTo.getValue().toString();
-        ReserveController.vehicleReservedString = selectedVehicle.toString();
 
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("reserve.fxml"))); // zmien scene na reserve
+        Gson gson = GsonProvider.createGson().newBuilder().setPrettyPrinting().create();
+        FileWriter file = new FileWriter("db/vehicles.json");
+        file.write(gson.toJson(RentalController.vehicles));
+        file.close(); // close the file after saving the changes
+
+        updateReserveScene();
+
+        changeScene("reserve.fxml", event);
+
+    }
+
+    private void changeScene(String name, ActionEvent event) throws IOException {
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(name))); // zmien scene na reserve
         stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
 
+    private void updateReserveScene() {
+        ReserveController.periodString = datePickerFrom.getValue().toString() + " to " + datePickerTo.getValue().toString();
+        ReserveController.vehicleReservedString = selectedVehicle.toString();
     }
 
     @FXML
     void backPressed(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("rental.fxml")));
-        stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        changeScene("rental.fxml", event);
     }
 
     @FXML
@@ -88,8 +102,21 @@ public class VehicleSceneController {
         propertiesList.getItems().add("Color: " + selectedVehicle.getColor());
         propertiesList.getItems().add("Type: " + selectedVehicle.getType());
         propertiesList.getItems().add("Powertrain: " + selectedVehicle.getPowertrain());
-        vehicleImage.setImage(selectedVehicle.getImage());
-        propertiesList.getItems().add("Rental dates: " + selectedVehicle.getRentalDates().toString()); // for testing purposes
+        propertiesList.getItems().add("Unavailable dates: " + selectedVehicle.getRentalDates()); // testing
+
+
+        String imagePath = selectedVehicle.getImagePath();
+        if (imagePath != null && !imagePath.isEmpty()) { // sprawdzamy czy sciezka jest poprawna vo sie wyjebuje co chwile
+            Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(imagePath)));
+            if (vehicleImage != null) {
+                vehicleImage.setImage(image);
+            } else {
+                System.out.println("vehicleImage is null.");
+            }
+        } else {
+            // Handle missing image scenario
+            System.out.println("Image path is invalid or empty.");
+        }
     }
 }
 

@@ -9,6 +9,7 @@ import java.io.IOException;
 // The software should allow you to search for available vehicles in a given category,  make a reservation, and issue an invoice.
 
 // fx jest napisany zeby dzialal, jak ktos chce to moze upiekniac
+// mozna zrobic jeszcze wyszukiwanie po kategorii, dodac wiecej pojazdow
 public class RentalApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
