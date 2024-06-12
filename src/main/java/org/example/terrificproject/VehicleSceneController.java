@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 
 
@@ -95,6 +96,9 @@ public class VehicleSceneController {
     private void updateReserveScene() {
         ReserveController.periodString = datePickerFrom.getValue().toString() + " to " + datePickerTo.getValue().toString();
         ReserveController.vehicleReservedString = selectedVehicle.toString();
+        long daysBetween = ChronoUnit.DAYS.between(datePickerFrom.getValue(), datePickerTo.getValue());
+        double totalAmount = daysBetween * selectedVehicle.getPricePerDay();
+        ReserveController.vehicleReservedString = selectedVehicle.toString() + " for " + daysBetween + " days. Total amount: $" + totalAmount;
     }
 
     @FXML
@@ -104,7 +108,7 @@ public class VehicleSceneController {
 
     @FXML
     void initialize() {
-        propertiesList.getItems().add("Price per day: " + selectedVehicle.getPricePerDay());
+        propertiesList.getItems().add("Price per day: " + selectedVehicle.getPricePerDay() + "$");
         propertiesList.getItems().add("Year: " + selectedVehicle.getYear());
         propertiesList.getItems().add("Make: " + selectedVehicle.getMake());
         propertiesList.getItems().add("Model: " + selectedVehicle.getModel());
