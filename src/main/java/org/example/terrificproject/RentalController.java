@@ -5,12 +5,10 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ColorPicker;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
@@ -23,10 +21,12 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.URL;
+import java.time.LocalDate;
 import java.util.*;
 
 
-public class RentalController {
+public class RentalController implements Initializable{
 
     public static ArrayList<Vehicle> vehicles; //  pojazdy
     @FXML
@@ -41,6 +41,12 @@ public class RentalController {
     private Stage stage;
     private Scene scene;
     private Parent root;
+    @FXML
+    Label category;
+    @FXML
+    private ChoiceBox<String> choiceBoxCategory;
+    private final String[] categoriesArray = {"ICE", "Hybrid", "Bev", "Motorcycles", "Pickups", "Campers", "Cars"};
+
 
     @FXML
     public void initialize() throws IOException {
@@ -191,6 +197,21 @@ public class RentalController {
         if (r == 255 && g == 192 && b == 203) return "Pink"; //I am just a girl
         return "Unknown color";
     }
-
-
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        try {
+            addingVehicles();
+            for (Vehicle vehicles : vehicles) {
+                vehiclesList.getItems().add(new Text(vehicles.toString()));
+            }
+            choiceBoxCategory.getItems().addAll(categoriesArray);
+            choiceBoxCategory.setOnAction(this::printSetCategory);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public void printSetCategory(ActionEvent event) {
+        String chosenCategory = choiceBoxCategory.getValue();
+        category.setText(chosenCategory);
+    }
 }

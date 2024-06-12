@@ -3,6 +3,7 @@ module org.example.terrificproject {
     requires javafx.fxml;
     requires java.sql;
     requires com.google.gson;
+    requires java.net.http;
 
 
     opens org.example.terrificproject to javafx.fxml, com.google.gson;
