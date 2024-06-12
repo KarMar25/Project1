@@ -18,6 +18,13 @@ public class ReserveController {
     @FXML
     private TextField surnameField;
 
+    public void reserve(ActionEvent event) throws IOException{
+    String name = nameField.getText();
+    String surname = surnameField.getText();
+    InvoiceGenerator invoice = new InvoiceGenerator();
+    invoice.printInvoice();
+
+    }
     @FXML
     public void backPressed(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("rental.fxml"));
@@ -25,11 +32,5 @@ public class ReserveController {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-    }
-    @FXML
-    public void reserve(ActionEvent event) throws IOException{
-        String name = nameField.getText();
-        String surname = surnameField.getText();
-
     }
 }

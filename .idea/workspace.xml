@@ -5,12 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="60ce9423-d388-4127-b223-406194378b3b" name="Changes" comment="chujow sto">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/terrificproject/InvoiceGenerator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/terrificproject/RentalController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/terrificproject/RentalController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/terrificproject/ReserveController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/terrificproject/ReserveController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/terrificproject/VehicleSceneController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/terrificproject/VehicleSceneController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/terrificproject/rental.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/terrificproject/rental.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/terrificproject/reserve.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/terrificproject/reserve.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,24 +43,35 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.HelloApplication.executor": "Run",
-    "Application.RentalApplication.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Natalia/AppData/Local/SceneBuilder/SceneBuilder.exe",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.RentalApplication.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Natalia/AppData/Local/SceneBuilder/SceneBuilder.exe&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <method v="2">
         <option name="Make" enabled="true" />
@@ -89,7 +100,10 @@
       <option name="presentableId" value="Default" />
       <updated>1717946276719</updated>
       <workItem from="1717946277476" duration="755000" />
-      <workItem from="1718041068407" duration="5137000" />
+      <workItem from="1718041068407" duration="5470000" />
+      <workItem from="1718134026502" duration="730000" />
+      <workItem from="1718173415272" duration="7682000" />
+      <workItem from="1718189500753" duration="680000" />
     </task>
     <task id="LOCAL-00001" summary="java fx">
       <option name="closed" value="true" />
