@@ -3,8 +3,7 @@ package org.example.terrificproject;
 import com.google.gson.GsonBuilder;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -69,7 +68,6 @@ public class RentalController implements Initializable{
                 @Override
                 public void changed(ObservableValue<? extends Text> observableValue, Text oldText, Text newText) {
                     if (newText != null) {
-                        int selectedIndex = vehiclesList.getSelectionModel().getSelectedIndex();
                         VehicleSceneController.selectedVehicle = getVehicleFromText(newText);
                         try {
                             root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("vehicleTemplate.fxml")));
