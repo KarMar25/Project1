@@ -11,6 +11,7 @@ import java.io.IOException;
 // fx jest napisany zeby dzialal, jak ktos chce to moze upiekniac
 // mozna zrobic jeszcze wyszukiwanie po kategorii, dodac wiecej pojazdow
 public class RentalApplication extends Application {
+
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(org.example.terrificproject.RentalApplication.class.getResource("rental.fxml"));

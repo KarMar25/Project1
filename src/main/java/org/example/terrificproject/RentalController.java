@@ -3,6 +3,8 @@ package org.example.terrificproject;
 import com.google.gson.GsonBuilder;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,8 +28,8 @@ import java.util.*;
 
 
 public class RentalController implements Initializable{
+    public static ArrayList<Vehicle> vehicles;
 
-    public static ArrayList<Vehicle> vehicles; //  pojazdy
     @FXML
     private TextField searchField;
 
@@ -45,32 +47,61 @@ public class RentalController implements Initializable{
     private final String[] categoriesArray = {"ICE", "Hybrid", "Bev", "Motorcycles", "Pickups", "Campers", "Cars"};
 
 
-    private void ifVehicleChosenSwitchScenes() {
-        vehiclesList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Text>() { // O KURWA DZIALA // wybieranie pojazdu kliknieciem
-            @Override
-            public void changed(ObservableValue<? extends Text> observableValue, Text text, Text t1) {
-                VehicleSceneController.selectedVehicle = vehicles.get(vehiclesList.getSelectionModel().getSelectedIndex());
-                try {
-                    root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("vehicleTemplate.fxml")));
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-                stage = (Stage) vehiclesList.getScene().getWindow();
-                scene = new Scene(root);
-                stage.setScene(scene);
-                stage.show();
-
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        try {
+            addingVehicles();
+            for (Vehicle vehicles : vehicles) {
+                vehiclesList.getItems().add(new Text(vehicles.toString()));
             }
-        });
+
+            colorPicker.setValue(null);
+            ifVehicleChosenSwitchScenes();
+
+            choiceBoxCategory.getItems().addAll(categoriesArray);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void ifVehicleChosenSwitchScenes() {
+        vehiclesList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Text>() { // O KURWA DZIALA // JUZ NI
+                @Override
+                public void changed(ObservableValue<? extends Text> observableValue, Text oldText, Text newText) {
+                    if (newText != null) {
+                        int selectedIndex = vehiclesList.getSelectionModel().getSelectedIndex();
+                        VehicleSceneController.selectedVehicle = getVehicleFromText(newText);
+                        try {
+                            root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("vehicleTemplate.fxml")));
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+
+                        stage = (Stage) vehiclesList.getScene().getWindow();
+                        scene = new Scene(root);
+                        stage.setScene(scene);
+                        stage.show();
+                    }
+                }
+            });
+
+    }
+    private Vehicle getVehicleFromText(Text text) {
+        for (Vehicle vehicle : vehicles) {
+            if (text.getText().equals(vehicle.toString())) {
+                return vehicle;
+            }
+        }
+        return null;
     }
 
     private void addingVehicles() throws IOException {
-
         Gson gson = new GsonBuilder()
                 .registerTypeAdapter(Vehicle.class, new VehicleAdapterFactory())
                 .registerTypeAdapter(LocalDate.class, new LocalDateTypeAdapter())
                 .setPrettyPrinting()
                 .create();
+
         try (JsonReader jsonReader = new JsonReader(new FileReader("db/vehicles.json"))) {
             vehicles = gson.fromJson(jsonReader, new TypeToken<ArrayList<Vehicle>>() {
             }.getType());
@@ -101,43 +132,44 @@ public class RentalController implements Initializable{
         String colorAsString = convertColorToString(selectedColor);
         String category = getCategory();
 
-        String[] wordList = searchField.getText().toLowerCase().split(" ") ;// split the search field into words
+        String[] wordList = searchField.getText().toLowerCase().split(" ");
 
-        if(colorAsString != null) {
+        if (colorAsString != null) {
             if (!colorAsString.equals("Unknown color")) { // if color is not null and is not unknown
                 wordList = Arrays.copyOf(wordList, wordList.length + 1);
-                wordList[wordList.length - 1] = colorAsString.toLowerCase(); // add the color to the list of words
-            } else { // if color is unknown
+                wordList[wordList.length - 1] = colorAsString.toLowerCase();
+            } else {
                 vehiclesList.getItems().add(new Text("No vehicles found!"));
                 return;
             }
         }
-        if(category != null) {
+        if (category != null) {
             wordList = Arrays.copyOf(wordList, wordList.length + 1);
-            wordList[wordList.length - 1] = category.toLowerCase(); // add the category to the list of words
+            wordList[wordList.length - 1] = category.toLowerCase();
         }
 
         wordList = Arrays.stream(wordList).distinct().toArray(String[]::new); // remove duplicates
         wordList = Arrays.stream(wordList).filter(s -> !s.isEmpty()).toArray(String[]::new); // remove empty strings
 
-        HashMap<Vehicle, Integer> order = new HashMap<Vehicle, Integer>(); // create a map to store the vehicles and the number of words matched
+        HashMap<Vehicle, Integer> order = new HashMap<>(); // create a map to store the vehicles and the number of words matched
         for (Vehicle vehicle : vehicles) {
             int wordsMatched = getWordsMatched(vehicle, wordList);
-            if (wordsMatched == 0) continue; // if no words match do not add to the list
+            if (wordsMatched == 0) continue;
             order.put(vehicle, wordsMatched);
         }
         List<Map.Entry<Vehicle, Integer>> sortedEntries = order.entrySet().stream()
                 .sorted(Map.Entry.<Vehicle, Integer>comparingByValue().reversed())
                 .toList(); // sort the vehicles by the number of words matched
 
-
-        for (Map.Entry<Vehicle, Integer> entry : sortedEntries) {
-            vehiclesList.getItems().add(new Text(entry.getKey().toString()));// display vehicles in the correct order
+        for (Map.Entry<Vehicle, Integer> entry : sortedEntries) { // display vehicles in the correct order
+            vehiclesList.getItems().add(new Text(entry.getKey().toString()));
         }
 
         if (vehiclesList.getItems().isEmpty()) {
             vehiclesList.getItems().add(new Text("No vehicles found!"));
         }
+        ifVehicleChosenSwitchScenes();
+
     }
 
     private String getCategory() {
@@ -223,20 +255,5 @@ public class RentalController implements Initializable{
 
         return "Unknown color";
     }
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        try {
-            addingVehicles();
-            for (Vehicle vehicles : vehicles) {
-                vehiclesList.getItems().add(new Text(vehicles.toString()));
-            }
 
-            colorPicker.setValue(null);
-            ifVehicleChosenSwitchScenes();
-
-            choiceBoxCategory.getItems().addAll(categoriesArray);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
 }
