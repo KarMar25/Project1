@@ -15,7 +15,6 @@ import javafx.stage.Stage;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -55,7 +54,7 @@ public class VehicleSceneController {
             }
         }
         for (int i = datePickerFrom.getValue().getDayOfYear(); i <= datePickerTo.getValue().getDayOfYear(); i++) { // add all dates between from and to
-            for(Vehicle vehicle : RentalController.vehicles) {
+            for (Vehicle vehicle : RentalController.vehicles) {
                 if (vehicle.equals(selectedVehicle)) { // if the vehicle is the one we are reserving
                     System.out.println("Vehicle: " + vehicle.getRentalDates().toString());
                     vehicle.getRentalDates().add(LocalDate.ofYearDay(datePickerFrom.getValue().getYear(), i)); // add the date to the list of reserved dates
@@ -104,16 +103,17 @@ public class VehicleSceneController {
         propertiesList.getItems().add("Type: " + selectedVehicle.getType());
         propertiesList.getItems().add("Powertrain: " + selectedVehicle.getPowertrain());
         propertiesList.getItems().add("Unavailable dates: " + selectedVehicle.getRentalDates()); // testing
-        if (selectedVehicle instanceof Motorcycle){
+
+        if (selectedVehicle instanceof Motorcycle) {
             propertiesList.getItems().add("Has sidecar: " + ((Motorcycle) selectedVehicle).hasSidecar());
         }
-        if(selectedVehicle instanceof Camper){
+        if (selectedVehicle instanceof Camper) {
             propertiesList.getItems().add("Number of beds: " + ((Camper) selectedVehicle).getNumberOfBeds());
         }
-        if(selectedVehicle instanceof Pickup){
+        if (selectedVehicle instanceof Pickup) {
             propertiesList.getItems().add("Has tow hitch: " + ((Pickup) selectedVehicle).getLoadCapacity());
         }
-        if(selectedVehicle instanceof Car){
+        if (selectedVehicle instanceof Car) {
             propertiesList.getItems().add("Number of doors: " + ((Car) selectedVehicle).getDoorCount());
         }
 
