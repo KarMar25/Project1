@@ -44,6 +44,6 @@
             <Insets top="20.0" />
          </GridPane.margin>
       </Button>
-      <ChoiceBox fx:id="choiceBoxCategory" prefWidth="150.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
+      <ChoiceBox fx:id="choiceBoxCategory"  onAction="#searchPressed" prefWidth="150.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
    </children>
 </GridPane>

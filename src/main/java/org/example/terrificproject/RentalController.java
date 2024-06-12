@@ -90,36 +90,46 @@ public class RentalController implements Initializable{
     @FXML
     void searchPressed(ActionEvent event) {
 
-        if (searchField.getText().isEmpty() && colorPicker.getValue() == null) { // if search field is empty and no color is selected
+        if (searchField.getText().isEmpty() && colorPicker.getValue() == null && choiceBoxCategory.getSelectionModel().getSelectedItem() == null) { // if search field is empty and no color is selected and no category is selected
             showAll();
             return;
         }
+
         vehiclesList.getItems().clear();
 
-        String[] wordList = searchField.getText().toLowerCase().split(" ");// split the search field into words
         Color selectedColor = colorPicker.getValue();
         String colorAsString = convertColorToString(selectedColor);
+        String category = getCategory();
+
+        String[] wordList = searchField.getText().toLowerCase().split(" ") ;// split the search field into words
 
         if(colorAsString != null) {
-            if (colorAsString.equals("Unknown color")) {
+            if (!colorAsString.equals("Unknown color")) { // if color is not null and is not unknown
+                wordList = Arrays.copyOf(wordList, wordList.length + 1);
+                wordList[wordList.length - 1] = colorAsString.toLowerCase(); // add the color to the list of words
+            } else { // if color is unknown
                 vehiclesList.getItems().add(new Text("No vehicles found!"));
                 return;
             }
         }
+        if(category != null) {
+            wordList = Arrays.copyOf(wordList, wordList.length + 1);
+            wordList[wordList.length - 1] = category.toLowerCase(); // add the category to the list of words
+        }
 
-        HashMap<Vehicle, Integer> order = new HashMap<Vehicle, Integer>();
+        wordList = Arrays.stream(wordList).distinct().toArray(String[]::new); // remove duplicates
+        wordList = Arrays.stream(wordList).filter(s -> !s.isEmpty()).toArray(String[]::new); // remove empty strings
 
+        HashMap<Vehicle, Integer> order = new HashMap<Vehicle, Integer>(); // create a map to store the vehicles and the number of words matched
         for (Vehicle vehicle : vehicles) {
             int wordsMatched = getWordsMatched(vehicle, wordList);
             if (wordsMatched == 0) continue; // if no words match do not add to the list
-            if (colorAsString != null && !vehicle.getColor().equalsIgnoreCase(colorAsString))
-                continue; // if color does not match do not add to the list
             order.put(vehicle, wordsMatched);
         }
-
         List<Map.Entry<Vehicle, Integer>> sortedEntries = order.entrySet().stream()
                 .sorted(Map.Entry.<Vehicle, Integer>comparingByValue().reversed())
                 .toList(); // sort the vehicles by the number of words matched
+
 
         for (Map.Entry<Vehicle, Integer> entry : sortedEntries) {
             vehiclesList.getItems().add(new Text(entry.getKey().toString()));// display vehicles in the correct order
@@ -128,6 +138,23 @@ public class RentalController implements Initializable{
         if (vehiclesList.getItems().isEmpty()) {
             vehiclesList.getItems().add(new Text("No vehicles found!"));
         }
+    }
+
+    private String getCategory() {
+        String category = null;
+
+        if(Objects.equals(choiceBoxCategory.getSelectionModel().getSelectedItem(), "Motorcycles")) {
+            category = "Motorcycle";
+        } else if(Objects.equals(choiceBoxCategory.getSelectionModel().getSelectedItem(), "Pickups")) {
+            category = "Pickup";
+        } else if(Objects.equals(choiceBoxCategory.getSelectionModel().getSelectedItem(), "Campers")) {
+            category = "Camper";
+        } else if(Objects.equals(choiceBoxCategory.getSelectionModel().getSelectedItem(), "Cars")) {
+            category = "Car";
+        } else if(choiceBoxCategory.getSelectionModel().getSelectedItem() != null) {
+            category = choiceBoxCategory.getSelectionModel().getSelectedItem();
+        }
+        return category;
     }
 
     private void showAll() {
