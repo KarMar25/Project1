@@ -99,7 +99,7 @@ public class Vehicle {
 
     @Override
     public String toString() {
-        return year + " " + make + " " + model + " " + color + " " + type + " " + powertrain + " " + pricePerDay;
+        return year + " " + make + " " + model + " " + color + " " + type + " " + powertrain;
 
     }
 }
