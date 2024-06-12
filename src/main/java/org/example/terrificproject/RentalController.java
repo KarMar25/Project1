@@ -42,8 +42,6 @@ public class RentalController implements Initializable{
     private Scene scene;
     private Parent root;
     @FXML
-    Label category;
-    @FXML
     private ChoiceBox<String> choiceBoxCategory;
     private final String[] categoriesArray = {"ICE", "Hybrid", "Bev", "Motorcycles", "Pickups", "Campers", "Cars"};
 
@@ -196,13 +194,8 @@ public class RentalController implements Initializable{
             ifVehicleChosenSwitchScenes();
 
             choiceBoxCategory.getItems().addAll(categoriesArray);
-            choiceBoxCategory.setOnAction(this::printSetCategory);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-    }
-    public void printSetCategory(ActionEvent event) {
-        String chosenCategory = choiceBoxCategory.getValue();
-        category.setText(chosenCategory);
     }
 }
