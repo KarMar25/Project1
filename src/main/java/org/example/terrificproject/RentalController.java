@@ -102,10 +102,13 @@ public class RentalController {
         Color selectedColor = colorPicker.getValue();
         String colorAsString = convertColorToString(selectedColor);
 
-        if(colorAsString.equals("Unknown color")) {
-            vehiclesList.getItems().add(new Text("No vehicles found!"));
-            return;
-        }
+if(colorAsString != null) {
+    if (colorAsString.equals("Unknown color")) {
+        vehiclesList.getItems().add(new Text("No vehicles found!"));
+        return;
+    }
+}
+
         HashMap<Vehicle, Integer> order = new HashMap<Vehicle, Integer>();
 
         for (Vehicle vehicle : vehicles) {

@@ -19,7 +19,6 @@ public class RentalApplication extends Application {
         stage.setScene(mainScene);
         stage.show();
     }
-
     public static void main(String[] args) {
         launch();
     }
