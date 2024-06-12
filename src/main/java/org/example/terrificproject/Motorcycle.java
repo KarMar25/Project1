@@ -8,7 +8,7 @@ public class Motorcycle extends Vehicle {
     public String topSpeed;
     public boolean abs;
 
-    public Motorcycle(String year, String make, String model, String color, String powertrain, ArrayList<LocalDate> rentalDates, String image, boolean hasSidecar, String pricePerDay, String vin, String mileage, String topSpeed, boolean abs) {
+    public Motorcycle(String year, String make, String model, String color, String powertrain, ArrayList<LocalDate> rentalDates, String image, boolean hasSidecar, int pricePerDay, String vin, String mileage, String topSpeed, boolean abs) {
         super(year, make, model, color, "Motorcycle", powertrain, rentalDates, image, pricePerDay, vin, mileage);
         this.hasSidecar = hasSidecar;
         this.topSpeed = topSpeed;

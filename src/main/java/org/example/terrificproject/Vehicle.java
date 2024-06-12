@@ -14,13 +14,13 @@ public class Vehicle {
 
     public String imagePath; // path to image
 
-    public String pricePerDay;
+    public int pricePerDay;
 
     public String vin;
 
     public String mileage;
 
-    public Vehicle(String year, String make, String model, String color, String type, String powertrain, ArrayList<LocalDate> rentalDates, String imagePath, String pricePerDay, String vin, String mileage) {
+    public Vehicle(String year, String make, String model, String color, String type, String powertrain, ArrayList<LocalDate> rentalDates, String imagePath, int pricePerDay, String vin, String mileage) {
         this.year = year;
         this.make = make;
         this.model = model;
@@ -99,9 +99,9 @@ public class Vehicle {
         this.powertrain = powertrain;
     }
 
-    public String getPricePerDay() {return pricePerDay;}
+    public int getPricePerDay() {return pricePerDay;}
 
-    public void setPricePerDay(String pricePerDay) {this.pricePerDay = pricePerDay;}
+    public void setPricePerDay(int pricePerDay) {this.pricePerDay = pricePerDay;}
 
     public String getVin() {
         return vin;
