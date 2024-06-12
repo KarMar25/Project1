@@ -1,6 +1,7 @@
 package org.example.terrificproject;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -64,7 +65,11 @@ public class VehicleSceneController {
         }
 
 
-        Gson gson = GsonProvider.createGson().newBuilder().setPrettyPrinting().create();
+        Gson gson = new GsonBuilder()
+                .registerTypeAdapter(Vehicle.class, new VehicleAdapterFactory())
+                .registerTypeAdapter(LocalDate.class, new LocalDateTypeAdapter())
+                .setPrettyPrinting()
+                .create();
         FileWriter file = new FileWriter("db/vehicles.json");
         file.write(gson.toJson(RentalController.vehicles));
         file.close(); // close the file after saving the changes
