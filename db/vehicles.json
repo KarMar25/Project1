@@ -87,7 +87,7 @@
     "type": "Car",
     "powertrain": "BEV",
     "rentalDates": [],
-    "imagePath": "/org/example/terrificproject/carphotos/Tesla_ModS_W.jpg"
+    "imagePath": "/org/example/terrificproject/carphotos/Tesla_ModS_Black.jpg"
   },
   {
     "year": "2019",
@@ -97,7 +97,7 @@
     "type": "Car",
     "powertrain": "BEV",
     "rentalDates": [],
-    "imagePath": "/org/example/terrificproject/carphotos/Tesla_Mod3_Black.jpg"
+    "imagePath": "/org/example/terrificproject/carphotos/Tesla_Mod3_W.jpg"
   },
   {
     "year": "2021",

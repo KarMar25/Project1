@@ -47,6 +47,7 @@ public class RentalController implements Initializable{
     private ChoiceBox<String> choiceBoxCategory;
     private final String[] categoriesArray = {"ICE", "Hybrid", "Bev", "Motorcycles", "Pickups", "Campers", "Cars"};
 
+
     private void ifVehicleChosenSwitchScenes() {
         vehiclesList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Text>() { // O KURWA DZIALA // wybieranie pojazdu kliknieciem
             @Override
@@ -67,12 +68,10 @@ public class RentalController implements Initializable{
     }
 
     private void addingVehicles() throws IOException {
-
-        // dla kazdego vehicle bedzie inny obrazek ale nie chcialo mi sie
-
         Gson gson = GsonProvider.createGson().newBuilder().setPrettyPrinting().create();
         JsonReader jsonReader = new JsonReader(new FileReader(("db/vehicles.json")));
         vehicles = gson.fromJson(jsonReader, new TypeToken<ArrayList<Vehicle>>(){}.getType());
+        System.out.println(vehicles.toString());
 
     }
 
@@ -85,13 +84,14 @@ public class RentalController implements Initializable{
 
     @FXML
     void searchPressed(ActionEvent event) {
+
         if (searchField.getText().isEmpty() && colorPicker.getValue() == null) { // if search field is empty and no color is selected
             showAll();
             return;
         }
         vehiclesList.getItems().clear();
-        String[] wordList = searchField.getText().toLowerCase().split(" ");// split the search field into words
 
+        String[] wordList = searchField.getText().toLowerCase().split(" ");// split the search field into words
         Color selectedColor = colorPicker.getValue();
         String colorAsString = convertColorToString(selectedColor);
 
@@ -191,8 +191,10 @@ public class RentalController implements Initializable{
             for (Vehicle vehicles : vehicles) {
                 vehiclesList.getItems().add(new Text(vehicles.toString()));
             }
+
             colorPicker.setValue(null);
             ifVehicleChosenSwitchScenes();
+
             choiceBoxCategory.getItems().addAll(categoriesArray);
             choiceBoxCategory.setOnAction(this::printSetCategory);
         } catch (IOException e) {
