@@ -103,18 +103,24 @@ public class VehicleSceneController {
         propertiesList.getItems().add("Color: " + selectedVehicle.getColor());
         propertiesList.getItems().add("Type: " + selectedVehicle.getType());
         propertiesList.getItems().add("Powertrain: " + selectedVehicle.getPowertrain());
+        propertiesList.getItems().add("VIN: " + selectedVehicle.getVin());
+        propertiesList.getItems().add("Mileage: " + selectedVehicle.getMileage());
         propertiesList.getItems().add("Unavailable dates: " + selectedVehicle.getRentalDates()); // testing
         if (selectedVehicle instanceof Motorcycle){
             propertiesList.getItems().add("Has sidecar: " + ((Motorcycle) selectedVehicle).hasSidecar());
+            propertiesList.getItems().add("Top speed: " + ((Motorcycle) selectedVehicle).getTopSpeed());
+            propertiesList.getItems().add("ABS: " + ((Motorcycle) selectedVehicle).isAbs());
         }
         if(selectedVehicle instanceof Camper){
             propertiesList.getItems().add("Number of beds: " + ((Camper) selectedVehicle).getNumberOfBeds());
+            propertiesList.getItems().add("Has bathroom: " + ((Camper) selectedVehicle).isHasBathroom());
         }
         if(selectedVehicle instanceof Pickup){
             propertiesList.getItems().add("Has tow hitch: " + ((Pickup) selectedVehicle).getLoadCapacity());
         }
         if(selectedVehicle instanceof Car){
             propertiesList.getItems().add("Number of doors: " + ((Car) selectedVehicle).getDoorCount());
+            propertiesList.getItems().add("Trunk capacity: " + ((Car) selectedVehicle).getTrunkCapacity());
         }
 
         String imagePath = selectedVehicle.getImagePath();
