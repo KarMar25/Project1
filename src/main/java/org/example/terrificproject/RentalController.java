@@ -213,7 +213,9 @@ public class RentalController implements Initializable{
         if (r == 255 && g == 0 && b == 0) return "Red";
         if (r == 255 && g == 255 && b == 0) return "Yellow";
         if (r == 128 && g == 128 && b == 128) return "Grey";
-        if (r == 255 && g == 192 && b == 203) return "Pink"; //I am just a girl
+        if (r == 255 && g == 192 && b == 203) return "Pink";
+        if(r == 0 && g == 0 && b == 255) return "Blue";
+
         return "Unknown color";
     }
     @Override
