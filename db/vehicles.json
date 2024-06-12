@@ -54,16 +54,7 @@
     "color": "Green",
     "type": "Motorcycle",
     "powertrain": "ICE",
-    "rentalDates": [
-      "2024-06-13",
-      "2024-06-14",
-      "2024-06-15",
-      "2024-06-16",
-      "2024-06-20",
-      "2024-06-21",
-      "2024-06-22",
-      "2024-06-23"
-    ],
+    "rentalDates": [],
     "imagePath": "/org/example/terrificproject/carphotos/Kawa_NinjaZX_G.jpg",
     "pricePerDay": 100,
     "vin": "1HGCM82633A789012",

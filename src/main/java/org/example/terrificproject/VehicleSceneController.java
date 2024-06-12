@@ -62,7 +62,6 @@ public class VehicleSceneController {
         for (int i = datePickerFrom.getValue().getDayOfYear(); i <= datePickerTo.getValue().getDayOfYear(); i++) { // add all dates between from and to
             for (Vehicle vehicle : RentalController.vehicles) {
                 if (vehicle.equals(selectedVehicle)) { // if the vehicle is the one we are reserving
-                    System.out.println("Vehicle: " + vehicle.getRentalDates().toString());
                     vehicle.getRentalDates().add(LocalDate.ofYearDay(datePickerFrom.getValue().getYear(), i)); // add the date to the list of reserved dates
                 }
             }
@@ -96,9 +95,10 @@ public class VehicleSceneController {
     private void updateReserveScene() {
         ReserveController.periodString = datePickerFrom.getValue().toString() + " to " + datePickerTo.getValue().toString();
         ReserveController.vehicleReservedString = selectedVehicle.toString();
-        long daysBetween = ChronoUnit.DAYS.between(datePickerFrom.getValue(), datePickerTo.getValue());
+        long daysBetween = ChronoUnit.DAYS.between(datePickerFrom.getValue(), datePickerTo.getValue()) + 1;
         double totalAmount = daysBetween * selectedVehicle.getPricePerDay();
-        ReserveController.vehicleReservedString = selectedVehicle.toString() + " for " + daysBetween + " days. Total amount: $" + totalAmount;
+        ReserveController.vehicleReservedString = "\"" + selectedVehicle.toString() +"\"" + " for " + daysBetween + " days.";
+        ReserveController.amountString = totalAmount + "$";
     }
 
     @FXML
@@ -141,12 +141,7 @@ public class VehicleSceneController {
             Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(imagePath)));
             if (vehicleImage != null) {
                 vehicleImage.setImage(image);
-            } else {
-                System.out.println("vehicleImage is null.");
             }
-        } else {
-            // Handle missing image scenario
-            System.out.println("Image path is invalid or empty.");
         }
     }
 }

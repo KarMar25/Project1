@@ -18,6 +18,8 @@ public class ReserveController {
 
     public static String periodString;
     public static String vehicleReservedString;
+
+    public static String amountString;
     @FXML
     private TextField nameField;
     @FXML
@@ -30,9 +32,14 @@ public class ReserveController {
     public Text vehicleReserved;
 
     @FXML
+    public Text totalAmount;
+
+    @FXML
     public void initialize() {
         period.setText("For period from " + periodString);
-        vehicleReserved.setText("You are reserving \"" + vehicleReservedString + "\"");
+        vehicleReserved.setText("You are reserving " + vehicleReservedString);
+        totalAmount.setText("Total amount: " + amountString);
+
     }
 
 
