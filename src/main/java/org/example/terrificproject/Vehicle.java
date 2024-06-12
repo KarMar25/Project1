@@ -16,7 +16,11 @@ public class Vehicle {
 
     public String pricePerDay;
 
-    public Vehicle(String year, String make, String model, String color, String type, String powertrain, ArrayList<LocalDate> rentalDates, String imagePath, String pricePerDay) {
+    public String vin;
+
+    public String mileage;
+
+    public Vehicle(String year, String make, String model, String color, String type, String powertrain, ArrayList<LocalDate> rentalDates, String imagePath, String pricePerDay, String vin, String mileage) {
         this.year = year;
         this.make = make;
         this.model = model;
@@ -26,6 +30,8 @@ public class Vehicle {
         this.rentalDates = rentalDates;
         this.imagePath = imagePath;
         this.pricePerDay = pricePerDay;
+        this.vin = vin;
+        this.mileage = mileage;
     }
 
     public String getYear() {
@@ -96,6 +102,22 @@ public class Vehicle {
     public String getPricePerDay() {return pricePerDay;}
 
     public void setPricePerDay(String pricePerDay) {this.pricePerDay = pricePerDay;}
+
+    public String getVin() {
+        return vin;
+    }
+
+    public void setVin(String vic) {
+        this.vin = vin;
+    }
+
+    public String getMileage() {
+        return mileage;
+    }
+
+    public void setMileage(String mileage) {
+        this.mileage = mileage;
+    }
 
     @Override
     public String toString() {
