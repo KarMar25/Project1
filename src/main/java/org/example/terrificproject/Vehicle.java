@@ -3,7 +3,7 @@ package org.example.terrificproject;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Vehicle { // jeszcze trzeba dodac class Car itd ktore dziedzicza po Vehicle z dodatkowymi polami
+public class Vehicle {
     public String year;
     public String make;
     public String model;
@@ -14,7 +14,9 @@ public class Vehicle { // jeszcze trzeba dodac class Car itd ktore dziedzicza po
 
     public String imagePath; // path to image
 
-    public Vehicle(String year, String make, String model, String color, String type, String powertrain, ArrayList<LocalDate> rentalDates, String imagePath) {
+    public String pricePerDay;
+
+    public Vehicle(String year, String make, String model, String color, String type, String powertrain, ArrayList<LocalDate> rentalDates, String imagePath, String pricePerDay) {
         this.year = year;
         this.make = make;
         this.model = model;
@@ -23,6 +25,7 @@ public class Vehicle { // jeszcze trzeba dodac class Car itd ktore dziedzicza po
         this.powertrain = powertrain;
         this.rentalDates = rentalDates;
         this.imagePath = imagePath;
+        this.pricePerDay = pricePerDay;
     }
 
     public String getYear() {
@@ -90,9 +93,13 @@ public class Vehicle { // jeszcze trzeba dodac class Car itd ktore dziedzicza po
         this.powertrain = powertrain;
     }
 
+    public String getPricePerDay() {return pricePerDay;}
+
+    public void setPricePerDay(String pricePerDay) {this.pricePerDay = pricePerDay;}
+
     @Override
     public String toString() {
-        return year + " " + make + " " + model + " " + color + " " + type + " " + powertrain;
+        return year + " " + make + " " + model + " " + color + " " + type + " " + powertrain + " " + pricePerDay;
 
     }
 }

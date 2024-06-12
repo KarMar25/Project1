@@ -1,5 +1,6 @@
 package org.example.terrificproject;
 
+import com.google.gson.GsonBuilder;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -68,11 +69,17 @@ public class RentalController implements Initializable{
 
     private void addingVehicles() throws IOException {
 
-        // dla kazdego vehicle bedzie inny obrazek ale nie chcialo mi sie
-
-        Gson gson = GsonProvider.createGson().newBuilder().setPrettyPrinting().create();
-        JsonReader jsonReader = new JsonReader(new FileReader(("db/vehicles.json")));
-        vehicles = gson.fromJson(jsonReader, new TypeToken<ArrayList<Vehicle>>(){}.getType());
+        Gson gson = new GsonBuilder()
+                .registerTypeAdapter(Vehicle.class, new VehicleAdapterFactory())
+                .registerTypeAdapter(LocalDate.class, new LocalDateTypeAdapter())
+                .setPrettyPrinting()
+                .create();
+        try (JsonReader jsonReader = new JsonReader(new FileReader("db/vehicles.json"))) {
+            vehicles = gson.fromJson(jsonReader, new TypeToken<ArrayList<Vehicle>>() {
+            }.getType());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 

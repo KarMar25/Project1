@@ -96,6 +96,7 @@ public class VehicleSceneController {
 
     @FXML
     void initialize() {
+        propertiesList.getItems().add("Price per day: " + selectedVehicle.getPricePerDay());
         propertiesList.getItems().add("Year: " + selectedVehicle.getYear());
         propertiesList.getItems().add("Make: " + selectedVehicle.getMake());
         propertiesList.getItems().add("Model: " + selectedVehicle.getModel());
@@ -103,7 +104,18 @@ public class VehicleSceneController {
         propertiesList.getItems().add("Type: " + selectedVehicle.getType());
         propertiesList.getItems().add("Powertrain: " + selectedVehicle.getPowertrain());
         propertiesList.getItems().add("Unavailable dates: " + selectedVehicle.getRentalDates()); // testing
-
+        if (selectedVehicle instanceof Motorcycle){
+            propertiesList.getItems().add("Has sidecar: " + ((Motorcycle) selectedVehicle).hasSidecar());
+        }
+        if(selectedVehicle instanceof Camper){
+            propertiesList.getItems().add("Number of beds: " + ((Camper) selectedVehicle).getNumberOfBeds());
+        }
+        if(selectedVehicle instanceof Pickup){
+            propertiesList.getItems().add("Has tow hitch: " + ((Pickup) selectedVehicle).getLoadCapacity());
+        }
+        if(selectedVehicle instanceof Car){
+            propertiesList.getItems().add("Number of doors: " + ((Car) selectedVehicle).getDoorCount());
+        }
 
         String imagePath = selectedVehicle.getImagePath();
         if (imagePath != null && !imagePath.isEmpty()) { // sprawdzamy czy sciezka jest poprawna vo sie wyjebuje co chwile
