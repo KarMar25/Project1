@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import javafx.scene.image.Image;
 public class Camper extends Vehicle {
     private int numberOfBeds;
-    public Camper(String year, String make, String model, String color, String powertrain, ArrayList<LocalDate> rentalDates, Image image, int numberOfBeds) {
+    public Camper(String year, String make, String model, String color, String powertrain, ArrayList<LocalDate> rentalDates, String image, int numberOfBeds) {
         super(year, make, model, color, "Camper", powertrain, rentalDates, image);
         this.numberOfBeds = numberOfBeds;
     }
