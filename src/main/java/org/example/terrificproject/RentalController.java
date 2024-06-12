@@ -43,10 +43,9 @@ public class RentalController implements Initializable{
     private Scene scene;
     private Parent root;
     @FXML
-    Label category;
-    @FXML
     private ChoiceBox<String> choiceBoxCategory;
     private final String[] categoriesArray = {"ICE", "Hybrid", "Bev", "Motorcycles", "Pickups", "Campers", "Cars"};
+
 
     private void ifVehicleChosenSwitchScenes() {
         vehiclesList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Text>() { // O KURWA DZIALA // wybieranie pojazdu kliknieciem
@@ -92,13 +91,14 @@ public class RentalController implements Initializable{
 
     @FXML
     void searchPressed(ActionEvent event) {
+
         if (searchField.getText().isEmpty() && colorPicker.getValue() == null) { // if search field is empty and no color is selected
             showAll();
             return;
         }
         vehiclesList.getItems().clear();
-        String[] wordList = searchField.getText().toLowerCase().split(" ");// split the search field into words
 
+        String[] wordList = searchField.getText().toLowerCase().split(" ");// split the search field into words
         Color selectedColor = colorPicker.getValue();
         String colorAsString = convertColorToString(selectedColor);
 
@@ -198,16 +198,13 @@ public class RentalController implements Initializable{
             for (Vehicle vehicles : vehicles) {
                 vehiclesList.getItems().add(new Text(vehicles.toString()));
             }
+
             colorPicker.setValue(null);
             ifVehicleChosenSwitchScenes();
+
             choiceBoxCategory.getItems().addAll(categoriesArray);
-            choiceBoxCategory.setOnAction(this::printSetCategory);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-    }
-    public void printSetCategory(ActionEvent event) {
-        String chosenCategory = choiceBoxCategory.getValue();
-        category.setText(chosenCategory);
     }
 }
