@@ -47,19 +47,6 @@ public class RentalController implements Initializable{
     private ChoiceBox<String> choiceBoxCategory;
     private final String[] categoriesArray = {"ICE", "Hybrid", "Bev", "Motorcycles", "Pickups", "Campers", "Cars"};
 
-
-    @FXML
-    public void initialize() throws IOException {
-        addingVehicles();
-        for (Vehicle vehicles : vehicles) {
-            vehiclesList.getItems().add(new Text(vehicles.toString()));
-        }
-        colorPicker.setValue(null);
-
-        ifVehicleChosenSwitchScenes();
-
-    }
-
     private void ifVehicleChosenSwitchScenes() {
         vehiclesList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Text>() { // O KURWA DZIALA // wybieranie pojazdu kliknieciem
             @Override
@@ -204,6 +191,8 @@ public class RentalController implements Initializable{
             for (Vehicle vehicles : vehicles) {
                 vehiclesList.getItems().add(new Text(vehicles.toString()));
             }
+            colorPicker.setValue(null);
+            ifVehicleChosenSwitchScenes();
             choiceBoxCategory.getItems().addAll(categoriesArray);
             choiceBoxCategory.setOnAction(this::printSetCategory);
         } catch (IOException e) {

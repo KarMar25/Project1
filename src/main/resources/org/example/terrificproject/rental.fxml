@@ -13,15 +13,15 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.terrificproject.RentalController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="409.0" prefWidth="629.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.terrificproject.RentalController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
   <rowConstraints>
-    <RowConstraints maxHeight="129.33334350585938" minHeight="10.0" prefHeight="47.333337148030594" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="196.00000127156574" minHeight="10.0" prefHeight="30.99998219807943" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="324.3333511352539" minHeight="10.0" prefHeight="315.3333511352539" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="129.33334350585938" minHeight="10.0" prefHeight="62.39999008178711" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="196.00000127156574" minHeight="10.0" prefHeight="87.19998779296876" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="324.3333511352539" minHeight="10.0" prefHeight="251.20001220703125" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
       <TextField fx:id="searchField" onAction="#searchPressed" promptText="What are you looking for?" />
@@ -44,6 +44,6 @@
             <Insets top="20.0" />
          </GridPane.margin>
       </Button>
-      <ChoiceBox fx:id="choiceBoxCategory" prefWidth="150.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+      <ChoiceBox fx:id="choiceBoxCategory" prefWidth="150.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
    </children>
 </GridPane>
