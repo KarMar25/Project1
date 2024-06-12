@@ -40,6 +40,10 @@ public class VehicleSceneController {
 
     @FXML
     void reservePressed(ActionEvent event) throws IOException {
+        if (datePickerFrom.getValue() == null || datePickerTo.getValue() == null) { // if the date is not selected
+            dateText.setText("Select a date");
+            return;
+        }
         if (datePickerFrom.getValue().isAfter(datePickerTo.getValue()) || datePickerTo.getValue().isBefore(datePickerFrom.getValue())) { // from has to be before to
             dateText.setText("Invalid date range");
             return;

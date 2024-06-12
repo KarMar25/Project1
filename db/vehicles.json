@@ -9,10 +9,7 @@
     "powertrain": "ICE",
     "rentalDates": [],
     "imagePath": "/org/example/terrificproject/carphotos/Lamb_Avent_Y.jpg",
-    "pricePerDay": "100$",
-    "vin": "1HGCM82633A123456",
-    "mileage": "85.634",
-    "trunkCapacity" : "450 L"
+    "pricePerDay": "100$"
   },
   {
     "doorCount": 2,
@@ -24,10 +21,7 @@
     "powertrain": "ICE",
     "rentalDates": [],
     "imagePath": "/org/example/terrificproject/carphotos/Lamb_Hur_R.jpg",
-    "pricePerDay": "100$",
-    "vin": "2FZHAZBD23AK45678",
-    "mileage": "47.129",
-    "trunkCapacity" : "500 L"
+    "pricePerDay": "100$"
   },
   {
     "doorCount": 2,
@@ -39,10 +33,7 @@
     "powertrain": "ICE",
     "rentalDates": [],
     "imagePath": "/org/example/terrificproject/carphotos/Ferr_488_R.jpg",
-    "pricePerDay": "100$",
-    "vin": "3FAHP0HA2AR123456",
-    "mileage": "122.334",
-    "trunkCapacity" : "470 L"
+    "pricePerDay": "100$"
   },
   {
     "hasSidecar": false,
@@ -54,11 +45,7 @@
     "powertrain": "ICE",
     "rentalDates": [],
     "imagePath": "/org/example/terrificproject/carphotos/Kawa_NinjaZX_G.jpg",
-    "pricePerDay": "100$",
-    "vin": "1HGCM82633A789012",
-    "mileage": "76.543",
-    "topSpeed": "180 km/h",
-    "abs": true
+    "pricePerDay": "100$"
   },
   {
     "doorCount": 4,
@@ -70,10 +57,7 @@
     "powertrain": "Hybrid",
     "rentalDates": [],
     "imagePath": "/org/example/terrificproject/carphotos/Toyo_Prius_Blue.jpg",
-    "pricePerDay": "100$",
-    "vin": "2G1WF52E759123456",
-    "mileage": "65.432",
-    "trunkCapacity" : "450 L"
+    "pricePerDay": "100$"
   },
   {
     "doorCount": 4,
@@ -85,10 +69,7 @@
     "powertrain": "ICE",
     "rentalDates": [],
     "imagePath": "/org/example/terrificproject/carphotos/Toyo_Corr_W.jpg",
-    "pricePerDay": "100$",
-    "vin": "5J6RM4H59EL123456",
-    "mileage": "98.765",
-    "trunkCapacity" : "430 L"
+    "pricePerDay": "100$"
   },
   {
     "doorCount": 4,
@@ -100,10 +81,7 @@
     "powertrain": "ICE",
     "rentalDates": [],
     "imagePath": "/org/example/terrificproject/carphotos/Rang_Evoq_Black.jpg",
-    "pricePerDay": "100$",
-    "vin": "1FTPW14V07KC12345",
-    "mileage": "34.567",
-    "trunkCapacity" : "440 L"
+    "pricePerDay": "100$"
   },
   {
     "doorCount": 4,
@@ -115,10 +93,7 @@
     "powertrain": "BEV",
     "rentalDates": [],
     "imagePath": "/org/example/terrificproject/carphotos/Must_Mach_W.jpg",
-    "pricePerDay": "100$",
-    "vin": "1HGFA16526L123456",
-    "mileage": "87.654",
-    "trunkCapacity" : "550 L"
+    "pricePerDay": "100$"
   },
   {
     "doorCount": 4,
@@ -130,10 +105,7 @@
     "powertrain": "BEV",
     "rentalDates": [],
     "imagePath": "/org/example/terrificproject/carphotos/Tesla_ModS_Black.jpg",
-    "pricePerDay": "100$",
-    "vin": "1FTSW21P06EB12345",
-    "mileage": "93.847",
-    "trunkCapacity" : "450 L"
+    "pricePerDay": "100$"
   },
   {
     "doorCount": 4,
@@ -145,10 +117,7 @@
     "powertrain": "BEV",
     "rentalDates": [],
     "imagePath": "/org/example/terrificproject/carphotos/Tesla_Mod3_W.jpg",
-    "pricePerDay": "100$",
-    "vin": "1J4GZ58S6VC123456",
-    "mileage": "77.123",
-    "trunkCapacity" : "470 L"
+    "pricePerDay": "100$"
   },
   {
     "doorCount": 4,
@@ -160,10 +129,7 @@
     "powertrain": "ICE",
     "rentalDates": [],
     "imagePath": "/org/example/terrificproject/carphotos/BMW_M3_Blue.jpg",
-    "pricePerDay": "100$",
-    "vin": "3D7KU28C14G123456",
-    "mileage": "50.239",
-    "trunkCapacity" : "450 L"
+    "pricePerDay": "100$"
   },
   {
     "doorCount": 4,
@@ -175,10 +141,7 @@
     "powertrain": "ICE",
     "rentalDates": [],
     "imagePath": "/org/example/terrificproject/carphotos/BMW_X5_W.jpg",
-    "pricePerDay": "100$",
-    "vin": "1N4AL11D75C123456",
-    "mileage": "2.137",
-    "trunkCapacity" : "445 L"
+    "pricePerDay": "100$"
   },
   {
     "doorCount": 4,
@@ -190,10 +153,7 @@
     "powertrain": "ICE",
     "rentalDates": [],
     "imagePath": "/org/example/terrificproject/carphotos/Audi_A4_Black.jpg",
-    "pricePerDay": "100$",
-    "vin": "2HGEJ6674XH123456",
-    "mileage": "105.678",
-    "trunkCapacity" : "450 L"
+    "pricePerDay": "100$"
   },
   {
     "doorCount": 4,
@@ -205,10 +165,7 @@
     "powertrain": "ICE",
     "rentalDates": [],
     "imagePath": "/org/example/terrificproject/carphotos/Audi_Q7_W.jpg",
-    "pricePerDay": "100$",
-    "vin": "4T1BE32K45U123456",
-    "mileage": "61.234",
-    "trunkCapacity" : "520 L"
+    "pricePerDay": "100$"
   },
   {
     "doorCount": 4,
@@ -220,10 +177,7 @@
     "powertrain": "ICE",
     "rentalDates": [],
     "imagePath": "/org/example/terrificproject/carphotos/Merc_GLE_Black.jpg",
-    "pricePerDay": "100$",
-    "vin": "1NXBR32E76Z123456",
-    "mileage": "70.456",
-    "trunkCapacity" : "460 L"
+    "pricePerDay": "100$"
   },
   {
     "hasSidecar": false,
@@ -235,11 +189,7 @@
     "powertrain": "ICE",
     "rentalDates": [],
     "imagePath": "/org/example/terrificproject/carphotos/Herl_Str750_Black.jpg",
-    "pricePerDay": "100$",
-    "vin": "1J4FF48S9YL123456",
-    "mileage": "85.123",
-    "topSpeed": "210 km/h",
-    "abs": false
+    "pricePerDay": "100$"
   },
   {
     "hasSidecar": false,
@@ -251,11 +201,7 @@
     "powertrain": "ICE",
     "rentalDates": [],
     "imagePath": "/org/example/terrificproject/carphotos/Duca_Pani_R.jpg",
-    "pricePerDay": "100$",
-    "vin": "1HGCM66555A123456",
-    "mileage": "80.789",
-    "topSpeed": "200 km/h",
-    "abs": true
+    "pricePerDay": "100$"
   },
   {
     "loadCapacity": 2000.0,
@@ -267,9 +213,7 @@
     "powertrain": "ICE",
     "rentalDates": [],
     "imagePath": "/org/example/terrificproject/carphotos/Chev_Silv_S.jpg",
-    "pricePerDay": "100$",
-    "vin": "1FAFP34P74W123456",
-    "mileage": "55.321"
+    "pricePerDay": "100$"
   },
   {
     "numberOfBeds": 2,
@@ -281,9 +225,6 @@
     "powertrain": "ICE",
     "rentalDates": [],
     "imagePath": "/org/example/terrificproject/carphotos/Winn_Trav_W.jpg",
-    "pricePerDay": "100$",
-    "vin": "1GCHK23D56F123456",
-    "mileage": "43.678",
-    "hasBathroom": true
+    "pricePerDay": "100$"
   }
 ]
