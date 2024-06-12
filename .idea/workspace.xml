@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="60ce9423-d388-4127-b223-406194378b3b" name="Changes" comment="klasy update">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/vehicles.json" beforeDir="false" afterPath="$PROJECT_DIR$/db/vehicles.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/terrificproject/Camper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/terrificproject/Camper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/terrificproject/Car.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/terrificproject/Car.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/terrificproject/Motorcycle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/terrificproject/Motorcycle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/terrificproject/Pickup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/terrificproject/Pickup.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="FxmlFile" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="scenceProblem" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="Use Maven wrapper" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="2heEillbCObxRtv37f3rghCAZPU" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.HelloApplication.executor": "Run",
+    "Application.RentalApplication.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "klasy",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/48600/Reposietories/TerrificProject",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-17.0.10-corretto-17.0.10-4caba194b151-5cd809f4" />
+        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-4f524021" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="60ce9423-d388-4127-b223-406194378b3b" name="Changes" comment="" />
+      <created>1717946276719</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1717946276719</updated>
+      <workItem from="1717946277476" duration="755000" />
+      <workItem from="1718041068407" duration="5137000" />
+      <workItem from="1718118864229" duration="6431000" />
+      <workItem from="1718172299607" duration="4797000" />
+      <workItem from="1718189543576" duration="1089000" />
+      <workItem from="1718193758039" duration="93000" />
+    </task>
+    <task id="LOCAL-00001" summary="java fx">
+      <option name="closed" value="true" />
+      <created>1717947370836</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1717947370836</updated>
+    </task>
+    <task id="LOCAL-00002" summary="cos zaczete">
+      <option name="closed" value="true" />
+      <created>1717948523796</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1717948523796</updated>
+    </task>
+    <task id="LOCAL-00003" summary="rental dates">
+      <option name="closed" value="true" />
+      <created>1717949221226</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1717949221226</updated>
+    </task>
+    <task id="LOCAL-00004" summary="rental dates">
+      <option name="closed" value="true" />
+      <created>1717949498325</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1717949498325</updated>
+    </task>
+    <task id="LOCAL-00005" summary="rental dates - naprawione xd">
+      <option name="closed" value="true" />
+      <created>1717949704877</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1717949704877</updated>
+    </task>
+    <task id="LOCAL-00006" summary="updates fx">
+      <option name="closed" value="true" />
+      <created>1717952464568</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1717952464568</updated>
+    </task>
+    <task id="LOCAL-00007" summary="updates">
+      <option name="closed" value="true" />
+      <created>1717953119216</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1717953119216</updated>
+    </task>
+    <task id="LOCAL-00008" summary="szukanie update">
+      <option name="closed" value="true" />
+      <created>1717954014377</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1717954014377</updated>
+    </task>
+    <task id="LOCAL-00009" summary="szukanie update">
+      <option name="closed" value="true" />
+      <created>1717954537977</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1717954537977</updated>
+    </task>
+    <task id="LOCAL-00010" summary="vehicle scene">
+      <option name="closed" value="true" />
+      <created>1717956704933</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1717956704933</updated>
+    </task>
+    <task id="LOCAL-00011" summary="vehicle scene">
+      <option name="closed" value="true" />
+      <created>1717958816053</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1717958816053</updated>
+    </task>
+    <task id="LOCAL-00012" summary="vehicle scene">
+      <option name="closed" value="true" />
+      <created>1717958826010</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1717958826010</updated>
+    </task>
+    <task id="LOCAL-00013" summary="chujow sto">
+      <option name="closed" value="true" />
+      <created>1717960196892</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1717960196892</updated>
+    </task>
+    <task id="LOCAL-00014" summary="kolorki i zmiana scen updates">
+      <option name="closed" value="true" />
+      <created>1718114467741</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1718114467741</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="java fx" />
+    <MESSAGE value="cos zaczete" />
+    <MESSAGE value="rental dates" />
+    <MESSAGE value="rental dates - naprawione xd" />
+    <MESSAGE value="updates fx" />
+    <MESSAGE value="updates" />
+    <MESSAGE value="szukanie update" />
+    <MESSAGE value="vehicle scene" />
+    <MESSAGE value="chujow sto" />
+    <MESSAGE value="coś tam porobione" />
+    <MESSAGE value="chujow sto z komentarzami" />
+    <MESSAGE value="kolorki i zmiana scen updates" />
+    <option name="LAST_COMMIT_MESSAGE" value="kolorki i zmiana scen updates" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/example/terrificproject/RentalApplication.java</url>
+          <line>24</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
