@@ -1,5 +1,6 @@
 [
   {
+    "doorCount": 2,
     "year": "2020",
     "make": "Lamborghini",
     "model": "Aventador",
@@ -7,9 +8,11 @@
     "type": "Car",
     "powertrain": "ICE",
     "rentalDates": [],
-    "imagePath": "/org/example/terrificproject/carphotos/Lamb_Avent_Y.jpg"
+    "imagePath": "/org/example/terrificproject/carphotos/Lamb_Avent_Y.jpg",
+    "pricePerDay": "100$"
   },
   {
+    "doorCount": 2,
     "year": "2019",
     "make": "Lamborghini",
     "model": "Huracan",
@@ -17,9 +20,11 @@
     "type": "Car",
     "powertrain": "ICE",
     "rentalDates": [],
-    "imagePath": "/org/example/terrificproject/carphotos/Lamb_Hur_R.jpg"
+    "imagePath": "/org/example/terrificproject/carphotos/Lamb_Hur_R.jpg",
+    "pricePerDay": "100$"
   },
   {
+    "doorCount": 2,
     "year": "2018",
     "make": "Ferrari",
     "model": "488 GTB",
@@ -27,9 +32,11 @@
     "type": "Car",
     "powertrain": "ICE",
     "rentalDates": [],
-    "imagePath": "/org/example/terrificproject/carphotos/Ferr_488_R.jpg"
+    "imagePath": "/org/example/terrificproject/carphotos/Ferr_488_R.jpg",
+    "pricePerDay": "100$"
   },
   {
+    "hasSidecar": false,
     "year": "2021",
     "make": "Kawasaki",
     "model": "Ninja",
@@ -37,9 +44,11 @@
     "type": "Motorcycle",
     "powertrain": "ICE",
     "rentalDates": [],
-    "imagePath": "/org/example/terrificproject/carphotos/Kawa_NinjaZX_G.jpg"
+    "imagePath": "/org/example/terrificproject/carphotos/Kawa_NinjaZX_G.jpg",
+    "pricePerDay": "100$"
   },
   {
+    "doorCount": 4,
     "year": "2022",
     "make": "Toyota",
     "model": "Prius",
@@ -47,9 +56,11 @@
     "type": "Car",
     "powertrain": "Hybrid",
     "rentalDates": [],
-    "imagePath": "/org/example/terrificproject/carphotos/Toyo_Prius_Blue.jpg"
+    "imagePath": "/org/example/terrificproject/carphotos/Toyo_Prius_Blue.jpg",
+    "pricePerDay": "100$"
   },
   {
+    "doorCount": 4,
     "year": "2020",
     "make": "Toyota",
     "model": "Corolla",
@@ -57,9 +68,11 @@
     "type": "Car",
     "powertrain": "ICE",
     "rentalDates": [],
-    "imagePath": "/org/example/terrificproject/carphotos/Toyo_Corr_W.jpg"
+    "imagePath": "/org/example/terrificproject/carphotos/Toyo_Corr_W.jpg",
+    "pricePerDay": "100$"
   },
   {
+    "doorCount": 4,
     "year": "2019",
     "make": "Range Rover",
     "model": "Evoque",
@@ -67,9 +80,11 @@
     "type": "Car",
     "powertrain": "ICE",
     "rentalDates": [],
-    "imagePath": "/org/example/terrificproject/carphotos/Rang_Evoq_Black.jpg"
+    "imagePath": "/org/example/terrificproject/carphotos/Rang_Evoq_Black.jpg",
+    "pricePerDay": "100$"
   },
   {
+    "doorCount": 4,
     "year": "2023",
     "make": "Mustang",
     "model": "Mach-E",
@@ -77,9 +92,11 @@
     "type": "Car",
     "powertrain": "BEV",
     "rentalDates": [],
-    "imagePath": "/org/example/terrificproject/carphotos/Must_Mach_W.jpg"
+    "imagePath": "/org/example/terrificproject/carphotos/Must_Mach_W.jpg",
+    "pricePerDay": "100$"
   },
   {
+    "doorCount": 4,
     "year": "2020",
     "make": "Tesla",
     "model": "Model S",
@@ -87,9 +104,11 @@
     "type": "Car",
     "powertrain": "BEV",
     "rentalDates": [],
-    "imagePath": "/org/example/terrificproject/carphotos/Tesla_ModS_Black.jpg"
+    "imagePath": "/org/example/terrificproject/carphotos/Tesla_ModS_Black.jpg",
+    "pricePerDay": "100$"
   },
   {
+    "doorCount": 4,
     "year": "2019",
     "make": "Tesla",
     "model": "Model 3",
@@ -97,9 +116,11 @@
     "type": "Car",
     "powertrain": "BEV",
     "rentalDates": [],
-    "imagePath": "/org/example/terrificproject/carphotos/Tesla_Mod3_W.jpg"
+    "imagePath": "/org/example/terrificproject/carphotos/Tesla_Mod3_W.jpg",
+    "pricePerDay": "100$"
   },
   {
+    "doorCount": 4,
     "year": "2021",
     "make": "BMW",
     "model": "M3",
@@ -107,9 +128,11 @@
     "type": "Car",
     "powertrain": "ICE",
     "rentalDates": [],
-    "imagePath": "/org/example/terrificproject/carphotos/BMW_M3_Blue.jpg"
+    "imagePath": "/org/example/terrificproject/carphotos/BMW_M3_Blue.jpg",
+    "pricePerDay": "100$"
   },
   {
+    "doorCount": 4,
     "year": "2018",
     "make": "BMW",
     "model": "X5",
@@ -117,9 +140,11 @@
     "type": "Car",
     "powertrain": "ICE",
     "rentalDates": [],
-    "imagePath": "/org/example/terrificproject/carphotos/BMW_X5_W.jpg"
+    "imagePath": "/org/example/terrificproject/carphotos/BMW_X5_W.jpg",
+    "pricePerDay": "100$"
   },
   {
+    "doorCount": 4,
     "year": "2020",
     "make": "Audi",
     "model": "A4",
@@ -127,9 +152,11 @@
     "type": "Car",
     "powertrain": "ICE",
     "rentalDates": [],
-    "imagePath": "/org/example/terrificproject/carphotos/Audi_A4_Black.jpg"
+    "imagePath": "/org/example/terrificproject/carphotos/Audi_A4_Black.jpg",
+    "pricePerDay": "100$"
   },
   {
+    "doorCount": 4,
     "year": "2019",
     "make": "Audi",
     "model": "Q7",
@@ -137,9 +164,11 @@
     "type": "Car",
     "powertrain": "ICE",
     "rentalDates": [],
-    "imagePath": "/org/example/terrificproject/carphotos/Audi_Q7_W.jpg"
+    "imagePath": "/org/example/terrificproject/carphotos/Audi_Q7_W.jpg",
+    "pricePerDay": "100$"
   },
   {
+    "doorCount": 4,
     "year": "2018",
     "make": "Mercedes-Benz",
     "model": "GLE",
@@ -147,9 +176,11 @@
     "type": "Car",
     "powertrain": "ICE",
     "rentalDates": [],
-    "imagePath": "/org/example/terrificproject/carphotos/Merc_GLE_Black.jpg"
+    "imagePath": "/org/example/terrificproject/carphotos/Merc_GLE_Black.jpg",
+    "pricePerDay": "100$"
   },
   {
+    "hasSidecar": false,
     "year": "2019",
     "make": "Harley-Davidson",
     "model": "Street 750",
@@ -157,9 +188,11 @@
     "type": "Motorcycle",
     "powertrain": "ICE",
     "rentalDates": [],
-    "imagePath": "/org/example/terrificproject/carphotos/Herl_Str750_Black.jpg"
+    "imagePath": "/org/example/terrificproject/carphotos/Herl_Str750_Black.jpg",
+    "pricePerDay": "100$"
   },
   {
+    "hasSidecar": false,
     "year": "2020",
     "make": "Ducati",
     "model": "Panigale",
@@ -167,9 +200,11 @@
     "type": "Motorcycle",
     "powertrain": "ICE",
     "rentalDates": [],
-    "imagePath": "/org/example/terrificproject/carphotos/Duca_Pani_R.jpg"
+    "imagePath": "/org/example/terrificproject/carphotos/Duca_Pani_R.jpg",
+    "pricePerDay": "100$"
   },
   {
+    "loadCapacity": 2000.0,
     "year": "2019",
     "make": "Chevrolet",
     "model": "Silverado",
@@ -177,9 +212,11 @@
     "type": "Pickup",
     "powertrain": "ICE",
     "rentalDates": [],
-    "imagePath": "/org/example/terrificproject/carphotos/Chev_Silv_S.jpg"
+    "imagePath": "/org/example/terrificproject/carphotos/Chev_Silv_S.jpg",
+    "pricePerDay": "100$"
   },
   {
+    "numberOfBeds": 2,
     "year": "2021",
     "make": "Winnebago",
     "model": "Travato",
@@ -187,6 +224,7 @@
     "type": "Camper",
     "powertrain": "ICE",
     "rentalDates": [],
-    "imagePath": "/org/example/terrificproject/carphotos/Winn_Trav_W.jpg"
+    "imagePath": "/org/example/terrificproject/carphotos/Winn_Trav_W.jpg",
+    "pricePerDay": "100$"
   }
 ]

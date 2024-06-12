@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import javafx.scene.image.Image;
 public class Pickup extends Vehicle {
     private double loadCapacity;
-    public Pickup(String year, String make, String model, String color, String powertrain, ArrayList<LocalDate> rentalDates, String image, double loadCapacity) {
-        super(year, make, model, color, "Pickup", powertrain, rentalDates, image);
+    public Pickup(String year, String make, String model, String color, String powertrain, ArrayList<LocalDate> rentalDates, String image, double loadCapacity, String pricePerDay) {
+        super(year, make, model, color, "Pickup", powertrain, rentalDates, image, pricePerDay);
         this.loadCapacity = loadCapacity;
     }
     public double getLoadCapacity() {
