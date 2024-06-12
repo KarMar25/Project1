@@ -47,8 +47,8 @@ public class ReserveController {
     @FXML
     public void reserve(ActionEvent event) throws IOException{
 
-        String name = nameField.getText();
-        String surname = surnameField.getText();
+//        String name = nameField.getText();
+//        String surname = surnameField.getText();
         // invoice
 
     }

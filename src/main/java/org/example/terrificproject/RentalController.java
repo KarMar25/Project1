@@ -11,18 +11,24 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
+
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
 
+import java.io.FileReader;
 import java.io.IOException;
-import java.time.LocalDate;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.*;
+
 
 public class RentalController {
 
-    public ArrayList<Vehicle> vehicles = new ArrayList<>(); // baza danych pojazdow
+    public static ArrayList<Vehicle> vehicles; //  pojazdy
     @FXML
     private TextField searchField;
 
@@ -44,7 +50,12 @@ public class RentalController {
         }
         colorPicker.setValue(null);
 
-        vehiclesList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Text>() { // O KURWA DZIALA xd juz nie  //DLACZEGO
+        ifVehicleChosenSwitchScenes();
+
+    }
+
+    private void ifVehicleChosenSwitchScenes() {
+        vehiclesList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Text>() { // O KURWA DZIALA // wybieranie pojazdu kliknieciem
             @Override
             public void changed(ObservableValue<? extends Text> observableValue, Text text, Text t1) {
                 VehicleSceneController.selectedVehicle = vehicles.get(vehiclesList.getSelectionModel().getSelectedIndex());
@@ -60,29 +71,16 @@ public class RentalController {
 
             }
         });
-
     }
 
     private void addingVehicles() throws IOException {
-        ArrayList<LocalDate> rentalDates = new ArrayList<LocalDate>();
-        // dla kazdego vehicle bedzie inny date i obrazek ale nie chcialo mi sie
-        // trzeba tez te vehicles zrobic w jsonie, zeby rezerwacja nadpisywala plik
-        // dzieki czemu po kazdym otwarciu nie bedzie sie zerowac
-        // albo ogolnie zeby rezerwacje byly zapisywane w pliku
 
+        // dla kazdego vehicle bedzie inny obrazek ale nie chcialo mi sie
 
-        Image image = new Image("file:src/main/resources/org/example/terrificproject/miata.jpg");
-        Vehicle vehicle1 = new Vehicle("2021", "Toyota", "Corolla", "Black", "Sedan", "ICE", rentalDates, image);
-        Vehicle vehicle2 = new Vehicle("2021", "Mazda", "Miata", "Red", "Convertible", "ICE", rentalDates, image);
-        Vehicle vehicle3 = new Vehicle("2021", "Ford", "F-150", "White", "Pickup", "ICE", rentalDates, image);
-        Vehicle vehicle4 = new Vehicle("2021", "Harley-Davidson", "Road King", "Black", "Motorcycle", "ICE", rentalDates, image);
-        Vehicle vehicle5 = new Vehicle("2021", "Winnebago", "Revel", "White", "Camper", "ICE", rentalDates, image);
+        Gson gson = GsonProvider.createGson().newBuilder().setPrettyPrinting().create();
+        JsonReader jsonReader = new JsonReader(new FileReader(("db/vehicles.json")));
+        vehicles = gson.fromJson(jsonReader, new TypeToken<ArrayList<Vehicle>>(){}.getType());
 
-        vehicles.add(vehicle1);
-        vehicles.add(vehicle2);
-        vehicles.add(vehicle3);
-        vehicles.add(vehicle4);
-        vehicles.add(vehicle5);
     }
 
     @FXML
@@ -95,16 +93,21 @@ public class RentalController {
     @FXML
     void searchPressed(ActionEvent event) {
         if (searchField.getText().isEmpty() && colorPicker.getValue() == null) { // if search field is empty and no color is selected
-            vehiclesList.getItems().clear();
-            for (Vehicle vehicle : vehicles) {
-                vehiclesList.getItems().add(new Text(vehicle.toString()));
-            }
+            showAll();
             return;
         }
         vehiclesList.getItems().clear();
         String[] wordList = searchField.getText().toLowerCase().split(" ");// split the search field into words
+
         Color selectedColor = colorPicker.getValue();
         String colorAsString = convertColorToString(selectedColor);
+
+if(colorAsString != null) {
+    if (colorAsString.equals("Unknown color")) {
+        vehiclesList.getItems().add(new Text("No vehicles found!"));
+        return;
+    }
+}
 
         HashMap<Vehicle, Integer> order = new HashMap<Vehicle, Integer>();
 
@@ -123,8 +126,16 @@ public class RentalController {
         for (Map.Entry<Vehicle, Integer> entry : sortedEntries) {
             vehiclesList.getItems().add(new Text(entry.getKey().toString()));// display vehicles in the correct order
         }
+
         if (vehiclesList.getItems().isEmpty()) {
             vehiclesList.getItems().add(new Text("No vehicles found!"));
+        }
+    }
+
+    private void showAll() {
+        vehiclesList.getItems().clear();
+        for (Vehicle vehicle : vehicles) {
+            vehiclesList.getItems().add(new Text(vehicle.toString()));
         }
     }
 
@@ -162,6 +173,7 @@ public class RentalController {
     @FXML
     void anyColor(ActionEvent event) { // czyszczenie koloru
         colorPicker.setValue(null);
+        searchPressed(event);
     }
 
     private String convertColorToString(Color color) {
@@ -177,7 +189,7 @@ public class RentalController {
         if (r == 255 && g == 255 && b == 0) return "Yellow";
         if (r == 128 && g == 128 && b == 128) return "Grey";
         if (r == 255 && g == 192 && b == 203) return "Pink"; //I am just a girl
-        return null;
+        return "Unknown color";
     }
 
 
