@@ -58,7 +58,13 @@ public class ReserveController {
         //   Scanner scanner = new Scanner(Paths.get(invoicesDataFilePath));
         //  int invoiceNumber = scanner.nextInt(); a mialo być tak idealnie ale nie dziala
         int invoiceNumber = 1;
-
+        int amount;
+        try {double amountInDollars = Double.parseDouble(amountString.replaceAll("[^0-9.]", ""));
+            amount = (int) (amountInDollars);
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            amount = 0;
+        }
         InvoiceGenerator generator = new InvoiceGenerator();
         generator.printInvoice(
                 "Terrific Rental Company",
@@ -71,7 +77,7 @@ public class ReserveController {
                 periodString,
                 vehicleReservedString,
                 1,
-                Integer.parseInt(amountString.replaceAll("[^0-9]", ""))
+                amount
         );
     }
 }
