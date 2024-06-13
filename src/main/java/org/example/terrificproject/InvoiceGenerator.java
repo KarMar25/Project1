@@ -1,6 +1,8 @@
 package org.example.terrificproject;
 import com.google.gson.Gson;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.http.HttpClient;
@@ -8,6 +10,8 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+
+import static org.example.terrificproject.ReserveController.invoicesDataFilePath;
 
 public class InvoiceGenerator {
     String apiKey = "sk_kiAoeX93rLivVbpNODQtoR9lTB3FsWRK";
