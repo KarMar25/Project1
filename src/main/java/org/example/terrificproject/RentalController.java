@@ -6,12 +6,15 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -38,6 +41,15 @@ public class RentalController implements Initializable{
     private Button exitButton;
     @FXML
     private ColorPicker colorPicker;
+    @FXML
+    private TextField usernameField;
+    @FXML
+    private TextField textMessage;
+
+    @FXML
+    private Button loginButt;
+    @FXML
+    private PasswordField passwordField;
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -76,12 +88,19 @@ public class RentalController implements Initializable{
 
     }
 
-    @FXML
-    void loginPressed(ActionEvent event) {
-        // jak sie komus bardzo nudzi a mamy juz cala reszte zrobione to mozna sie pierdolic w logowanie
-        // ale hasla sie wypierdalaja bardzo latwo wiec duzo roboty
+  @FXML
+    void loginPressed(ActionEvent event) throws IOException {
+//        // jak sie komus bardzo nudzi a mamy juz cala reszte zrobione to mozna sie pierdolic w logowanie
+//        // ale hasla sie wypierdalaja bardzo latwo wiec duzo roboty
+      root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("login1.fxml")));
+      stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+      scene = new Scene(root);
+      stage.setScene(scene);
+      stage.show();
 
-    }
+
+        }
+
 
     @FXML
     void searchPressed(ActionEvent event) {

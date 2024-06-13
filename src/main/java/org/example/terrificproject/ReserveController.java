@@ -2,12 +2,14 @@ package org.example.terrificproject;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import java.io.IOException;
 import java.util.Objects;
 
@@ -24,6 +26,11 @@ public class ReserveController {
     private TextField surnameField;
 
     @FXML
+    private TextField usernameField;
+
+    @FXML
+    private PasswordField passwordField;
+    @FXML
     public Text period;
 
     @FXML
@@ -34,6 +41,7 @@ public class ReserveController {
         period.setText("For period from " + periodString);
         vehicleReserved.setText("You are reserving \"" + vehicleReservedString + "\"");
     }
+
 
 
     @FXML
