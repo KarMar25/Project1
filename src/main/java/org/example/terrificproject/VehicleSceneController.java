@@ -59,24 +59,24 @@ public class VehicleSceneController {
                 return; // checks if the vehicle is already reserved for this date range
             }
         }
-        for (int i = datePickerFrom.getValue().getDayOfYear(); i <= datePickerTo.getValue().getDayOfYear(); i++) { // add all dates between from and to
-            for (Vehicle vehicle : RentalController.vehicles) {
-                if (vehicle.equals(selectedVehicle)) { // if the vehicle is the one we are reserving
-                    vehicle.getRentalDates().add(LocalDate.ofYearDay(datePickerFrom.getValue().getYear(), i)); // add the date to the list of reserved dates
-                }
-            }
-
-        }
-
-
-        Gson gson = new GsonBuilder()
-                .registerTypeAdapter(Vehicle.class, new VehicleAdapterFactory())
-                .registerTypeAdapter(LocalDate.class, new LocalDateTypeAdapter())
-                .setPrettyPrinting()
-                .create();
-        FileWriter file = new FileWriter("db/vehicles.json");
-        file.write(gson.toJson(RentalController.vehicles));
-        file.close(); // close the file after saving the changes
+//        for (int i = datePickerFrom.getValue().getDayOfYear(); i <= datePickerTo.getValue().getDayOfYear(); i++) { // add all dates between from and to
+//            for (Vehicle vehicle : RentalController.vehicles) {
+//                if (vehicle.equals(selectedVehicle)) { // if the vehicle is the one we are reserving
+//                    vehicle.getRentalDates().add(LocalDate.ofYearDay(datePickerFrom.getValue().getYear(), i)); // add the date to the list of reserved dates
+//                }
+//            }
+//
+//        }
+//
+//
+//        Gson gson = new GsonBuilder()
+//                .registerTypeAdapter(Vehicle.class, new VehicleAdapterFactory())
+//                .registerTypeAdapter(LocalDate.class, new LocalDateTypeAdapter())
+//                .setPrettyPrinting()
+//                .create();
+//        FileWriter file = new FileWriter("db/vehicles.json");
+//        file.write(gson.toJson(RentalController.vehicles));
+//        file.close(); // close the file after saving the changes
 
         updateReserveScene();
 
@@ -93,12 +93,9 @@ public class VehicleSceneController {
     }
 
     private void updateReserveScene() {
-        ReserveController.periodString = datePickerFrom.getValue().toString() + " to " + datePickerTo.getValue().toString();
-        ReserveController.vehicleReservedString = selectedVehicle.toString();
-        long daysBetween = ChronoUnit.DAYS.between(datePickerFrom.getValue(), datePickerTo.getValue()) + 1;
-        double totalAmount = daysBetween * selectedVehicle.getPricePerDay();
-        ReserveController.vehicleReservedString = "\"" + selectedVehicle.toString() +"\"" + " for " + daysBetween + " days.";
-        ReserveController.amountString = totalAmount + "$";
+        ReserveController.reservedVehicle = selectedVehicle;
+        ReserveController.dateFrom = datePickerFrom.getValue();
+        ReserveController.dateTo = datePickerTo.getValue();
     }
 
     @FXML

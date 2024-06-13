@@ -24,15 +24,15 @@
    <children>
       <ImageView fx:id="vehicleImage" fitHeight="245.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="3" />
       <DatePicker fx:id="datePickerFrom" promptText="From" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-      <Button mnemonicParsing="false" onAction="#reservePressed" text="Reserve" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+      <Button mnemonicParsing="false" onAction="#reservePressed" text="Reserve" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.rowSpan="2" GridPane.valignment="CENTER">
          <GridPane.margin>
             <Insets />
          </GridPane.margin>
       </Button>
       <ListView fx:id="propertiesList" prefHeight="359.0" prefWidth="300.0" GridPane.rowIndex="3" />
-      <Button mnemonicParsing="false" onAction="#backPressed" text="go back" GridPane.valignment="TOP" />
+      <Button mnemonicParsing="false" onAction="#backPressed" text="Go back" GridPane.valignment="TOP" />
       <DatePicker fx:id="datePickerTo" promptText="To" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="When do you want me?" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="TOP">
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Choose the dates:" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
          <GridPane.margin>
             <Insets top="20.0" />
          </GridPane.margin>
