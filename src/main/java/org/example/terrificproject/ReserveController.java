@@ -7,7 +7,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.util.Objects;
 
@@ -33,7 +32,7 @@ public class ReserveController {
 
     @FXML
     public Text totalAmount;
-
+    protected static final String invoicesDataFilePath = "db/invoice.txt";
     @FXML
     public void initialize() {
         period.setText("For period from " + periodString);
@@ -51,12 +50,28 @@ public class ReserveController {
         stage.setScene(scene);
         stage.show();
     }
+
     @FXML
-    public void reserve(ActionEvent event) throws IOException{
+    public void reserve(ActionEvent event) throws IOException {
+        String ClientName = nameField.getText();
+        String ClientSurname = surnameField.getText();
+        //   Scanner scanner = new Scanner(Paths.get(invoicesDataFilePath));
+        //  int invoiceNumber = scanner.nextInt(); a mialo być tak idealnie ale nie dziala
+        int invoiceNumber = 1;
 
-//        String name = nameField.getText();
-//        String surname = surnameField.getText();
-        // invoice
-
+        InvoiceGenerator generator = new InvoiceGenerator();
+        generator.printInvoice(
+                "Terrific Rental Company",
+                ClientName + " " + ClientSurname,
+                "Shipping Address",
+                "https://example.com/img/logo-invoice.png",
+                invoiceNumber,
+                "June 16, 2024",
+                "Reservation Period",
+                periodString,
+                vehicleReservedString,
+                1,
+                Integer.parseInt(amountString.replaceAll("[^0-9]", ""))
+        );
     }
 }

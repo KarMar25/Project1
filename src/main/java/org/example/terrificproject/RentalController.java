@@ -26,9 +26,9 @@ import java.util.*;
 
 public class RentalController implements Initializable {
     public static ArrayList<Vehicle> vehicles;
-    private final String[] categoriesArray = {"ICE", "Hybrid", "Bev", "Motorcycles", "Pickups", "Campers", "Cars", "All"};
     @FXML
     private TextField searchField;
+
     @FXML
     private ListView<Text> vehiclesList;
     @FXML
@@ -39,7 +39,10 @@ public class RentalController implements Initializable {
     private Scene scene;
     private Parent root;
     @FXML
+    Label category;
+    @FXML
     private ChoiceBox<String> choiceBoxCategory;
+    private final String[] categoriesArray = {"ICE", "Hybrid", "Bev", "Motorcycles", "Pickups", "Campers", "Cars"};
 
     private static int getWordsMatched(Vehicle vehicle, String[] wordList) {
         int wordsMatched = 0; //
@@ -84,7 +87,7 @@ public class RentalController implements Initializable {
     }
 
     private void ifVehicleChosenSwitchScenes() {
-        vehiclesList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Text>() { // O KURWA DZIALA // JUZ NI
+        vehiclesList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Text>() {
             @Override
             public void changed(ObservableValue<? extends Text> observableValue, Text oldText, Text newText) {
                 if (newText != null) {
@@ -132,8 +135,8 @@ public class RentalController implements Initializable {
 
     @FXML
     void loginPressed(ActionEvent event) {
-        // jak sie komus bardzo nudzi a mamy juz cala reszte zrobione to mozna sie pierdolic w logowanie
-        // ale hasla sie wypierdalaja bardzo latwo wiec duzo roboty
+        // jak sie komus bardzo nudzi a mamy juz cala reszte zrobione to mozna porobić logowanie
+        // ale hasla sie wyywalaja bardzo latwo wiec duzo roboty
 
     }
 
@@ -154,7 +157,7 @@ public class RentalController implements Initializable {
         String[] wordList = searchField.getText().toLowerCase().split(" ");
 
         if (colorAsString != null) {
-            if (!colorAsString.equals("Unknown color")) { // if color is not null and is not unknown
+            if (!colorAsString.equals("Unknown color")) {
                 wordList = Arrays.copyOf(wordList, wordList.length + 1);
                 wordList[wordList.length - 1] = colorAsString.toLowerCase();
             } else {
@@ -167,10 +170,10 @@ public class RentalController implements Initializable {
             wordList[wordList.length - 1] = category.toLowerCase();
         }
 
-        wordList = Arrays.stream(wordList).distinct().toArray(String[]::new); // remove duplicates
-        wordList = Arrays.stream(wordList).filter(s -> !s.isEmpty()).toArray(String[]::new); // remove empty strings
+        wordList = Arrays.stream(wordList).distinct().toArray(String[]::new);
+        wordList = Arrays.stream(wordList).filter(s -> !s.isEmpty()).toArray(String[]::new);
 
-        HashMap<Vehicle, Integer> order = new HashMap<>(); // create a map to store the vehicles and the number of words matched
+        HashMap<Vehicle, Integer> order = new HashMap<>();
         for (Vehicle vehicle : vehicles) {
             int wordsMatched = getWordsMatched(vehicle, wordList);
             if (wordsMatched == 0) continue;
@@ -178,9 +181,9 @@ public class RentalController implements Initializable {
         }
         List<Map.Entry<Vehicle, Integer>> sortedEntries = order.entrySet().stream()
                 .sorted(Map.Entry.<Vehicle, Integer>comparingByValue().reversed())
-                .toList(); // sort the vehicles by the number of words matched
+                .toList();
 
-        for (Map.Entry<Vehicle, Integer> entry : sortedEntries) { // display vehicles in the correct order
+        for (Map.Entry<Vehicle, Integer> entry : sortedEntries) {
             vehiclesList.getItems().add(new Text(entry.getKey().toString()));
         }
 
@@ -215,11 +218,6 @@ public class RentalController implements Initializable {
         }
     }
 
-    @FXML
-    void exitPressed(ActionEvent event) {
-        stage = (Stage) exitButton.getScene().getWindow();
-        stage.close();
-    }
 
     @FXML
     void anyColor(ActionEvent event) { // czyszczenie koloru
@@ -248,6 +246,11 @@ public class RentalController implements Initializable {
         if (r == 0 && g == 255 && b == 255) return "Cyan";
 
         return "Unknown color";
+    }
+    @FXML
+    void exitPressed(ActionEvent event) {
+        stage = (Stage) exitButton.getScene().getWindow();
+        stage.close();
     }
 
 }
