@@ -132,7 +132,10 @@ public class VehicleSceneController {
             propertiesList.getItems().add("Number of doors: " + ((Car) selectedVehicle).getDoorCount());
             propertiesList.getItems().add("Trunk capacity: " + ((Car) selectedVehicle).getTrunkCapacity());
         }
-
+        if (selectedVehicle instanceof Tractor) {
+            propertiesList.getItems().add("Type of cab: " + ((Tractor) selectedVehicle).getCabType());
+            propertiesList.getItems().add("Trunk capacity: " + ((Tractor) selectedVehicle).getTrunkCapacity());
+        }
         String imagePath = selectedVehicle.getImagePath();
         if (imagePath != null && !imagePath.isEmpty()) { // sprawdzamy czy sciezka jest poprawna vo sie wyjebuje co chwile
             Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(imagePath)));
