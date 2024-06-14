@@ -22,7 +22,7 @@ import java.util.Objects;
 
 
 public class VehicleSceneController {
-    public static Vehicle selectedVehicle; // wybrany pojazd z poprzedniego okna
+    public static Vehicle selectedVehicle; // selected vehicle
     @FXML
     public DatePicker datePickerFrom;
     @FXML
@@ -59,25 +59,6 @@ public class VehicleSceneController {
                 return; // checks if the vehicle is already reserved for this date range
             }
         }
-//        for (int i = datePickerFrom.getValue().getDayOfYear(); i <= datePickerTo.getValue().getDayOfYear(); i++) { // add all dates between from and to
-//            for (Vehicle vehicle : RentalController.vehicles) {
-//                if (vehicle.equals(selectedVehicle)) { // if the vehicle is the one we are reserving
-//                    vehicle.getRentalDates().add(LocalDate.ofYearDay(datePickerFrom.getValue().getYear(), i)); // add the date to the list of reserved dates
-//                }
-//            }
-//
-//        }
-//
-//
-//        Gson gson = new GsonBuilder()
-//                .registerTypeAdapter(Vehicle.class, new VehicleAdapterFactory())
-//                .registerTypeAdapter(LocalDate.class, new LocalDateTypeAdapter())
-//                .setPrettyPrinting()
-//                .create();
-//        FileWriter file = new FileWriter("db/vehicles.json");
-//        file.write(gson.toJson(RentalController.vehicles));
-//        file.close(); // close the file after saving the changes
-
         updateReserveScene();
 
         changeScene("reserve.fxml", event);
@@ -134,7 +115,7 @@ public class VehicleSceneController {
         }
 
         String imagePath = selectedVehicle.getImagePath();
-        if (imagePath != null && !imagePath.isEmpty()) { // sprawdzamy czy sciezka jest poprawna vo sie wyjebuje co chwile
+        if (imagePath != null && !imagePath.isEmpty()) {
             Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(imagePath)));
             if (vehicleImage != null) {
                 vehicleImage.setImage(image);

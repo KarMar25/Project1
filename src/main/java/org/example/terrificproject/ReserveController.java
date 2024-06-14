@@ -22,7 +22,7 @@ public class ReserveController {
     public static Vehicle reservedVehicle;
     public static LocalDate dateFrom;
     public static LocalDate dateTo;
-    public String periodString;
+    public String periodString = dateFrom + " to " + dateTo;
     public double totalAmount = (ChronoUnit.DAYS.between(dateFrom, dateTo) + 1) * reservedVehicle.getPricePerDay();
     @FXML
     public Text period;
@@ -40,8 +40,6 @@ public class ReserveController {
 
     @FXML
     public void initialize() {
-        periodString = dateFrom + " to " + dateTo;
-
         period.setText("For period from " + periodString);
         vehicleReservedText.setText("You are reserving " + reservedVehicle);
         totalAmountText.setText("Total amount: " + totalAmount + "$");

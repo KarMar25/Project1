@@ -2,51 +2,152 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.ColorPicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="409.0" prefWidth="629.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.terrificproject.RentalController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="409.0" prefWidth="610.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.terrificproject.RentalController">
   <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="414.0" minWidth="10.0" prefWidth="377.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="322.6666259765625" minWidth="10.0" prefWidth="199.00002034505212" />
   </columnConstraints>
   <rowConstraints>
-    <RowConstraints maxHeight="129.33334350585938" minHeight="10.0" prefHeight="62.39999008178711" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="196.00000127156574" minHeight="10.0" prefHeight="87.19998779296876" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="324.3333511352539" minHeight="10.0" prefHeight="251.20001220703125" vgrow="SOMETIMES" />
+      <RowConstraints />
+    <RowConstraints maxHeight="129.33334350585938" minHeight="10.0" prefHeight="29.999994913736977" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="149.66666666666669" minHeight="10.0" prefHeight="50.66666158040364" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="196.00000127156574" minHeight="0.0" prefHeight="39.66667683919272" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="324.3333511352539" minHeight="10.0" prefHeight="290.33332316080725" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <TextField fx:id="searchField" onAction="#searchPressed" promptText="What are you looking for?" />
-      <Button mnemonicParsing="false" onAction="#searchPressed" text="Search" GridPane.columnIndex="1" />
-      <Button mnemonicParsing="false" onAction="#loginPressed" prefHeight="25.0" prefWidth="58.0" text="Login" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-      <Text cache="true" strokeType="OUTSIDE" strokeWidth="0.0" text="Our vehicles:" textAlignment="CENTER" wrappingWidth="99.10223388671875" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+      <VBox prefHeight="241.0" prefWidth="211.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="4">
+         <children>
+            <HBox prefHeight="48.0" prefWidth="211.0">
+               <children>
+                  <VBox prefHeight="97.0" prefWidth="114.0">
+                     <children>
+                        <HBox prefHeight="63.0" prefWidth="110.0" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Type" />
+                        <CheckBox fx:id="carCheck" mnemonicParsing="false" onAction="#searchPressed" text="Car" />
+                        <CheckBox fx:id="motorcycleCheck" mnemonicParsing="false" onAction="#searchPressed" text="Motorcycle" />
+                        <CheckBox fx:id="pickupCheck" mnemonicParsing="false" onAction="#searchPressed" text="Pickup" />
+                        <CheckBox fx:id="camperCheck" mnemonicParsing="false" onAction="#searchPressed" text="Camper" />
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="99.0" prefWidth="101.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Powertrain" />
+                        <CheckBox fx:id="iceCheck" mnemonicParsing="false" onAction="#searchPressed" text="ICE" />
+                        <CheckBox fx:id="bevCheck" mnemonicParsing="false" onAction="#searchPressed" text="BEV" />
+                        <CheckBox fx:id="hybridCheck" mnemonicParsing="false" onAction="#searchPressed" text="Hybrid" />
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </VBox>
+               </children>
+            </HBox>
+            <Separator prefWidth="200.0" />
+            <VBox alignment="CENTER_LEFT" prefHeight="28.0" prefWidth="211.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Price per day" />
+               </children>
+            </VBox>
+            <VBox prefHeight="6.0" prefWidth="213.0">
+               <children>
+                  <HBox prefHeight="25.0" prefWidth="216.0">
+                     <children>
+                        <VBox alignment="TOP_CENTER" prefHeight="74.0" prefWidth="39.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="From" textAlignment="CENTER" wrappingWidth="33.065128326416016" />
+                              <VBox prefHeight="19.0" prefWidth="36.0" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="To" textAlignment="CENTER" wrappingWidth="18.731895446777344" />
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="74.0" prefWidth="184.0">
+                           <children>
+                              <Slider fx:id="priceFromSlider" maxHeight="-Infinity" maxWidth="-Infinity" min="50.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="37.0" prefWidth="172.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" VBox.vgrow="NEVER">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </Slider>
+                              <Slider fx:id="priceToSlider" maxHeight="-Infinity" maxWidth="-Infinity" min="50.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="37.0" prefWidth="172.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="100.0">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </Slider>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children></VBox>
+            <Separator prefWidth="200.0" />
+            <VBox alignment="CENTER_LEFT" prefHeight="44.0" prefWidth="211.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Color" />
+               </children>
+            </VBox>
+            <HBox prefHeight="25.0" prefWidth="216.0">
+               <children>
+                  <ColorPicker fx:id="colorPicker" editable="true" onAction="#searchPressed" promptText="Choose ">
+                     <value>
+                        <Color />
+                     </value>
+                  </ColorPicker>
+                  <Button mnemonicParsing="false" onAction="#anyColor" prefHeight="25.0" prefWidth="71.0" text=" Any color" textAlignment="CENTER">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+            <VBox prefHeight="39.0" prefWidth="211.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Year" />
+                  <Spinner fx:id="yearSpin" prefHeight="25.0" prefWidth="169.0" />
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+      <TextField fx:id="searchField" onAction="#searchPressed" prefHeight="25.0" prefWidth="386.0" promptText="What are you looking for?" GridPane.rowIndex="2" />
+      <Button mnemonicParsing="false" onAction="#searchPressed" text="Search" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <Text cache="true" strokeType="OUTSIDE" strokeWidth="0.0" text="Our vehicles:" textAlignment="CENTER" wrappingWidth="99.10223388671875" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
          <font>
             <Font size="15.0" />
          </font>
       </Text>
-      <ListView fx:id="vehiclesList" prefHeight="319.0" prefWidth="300.0" GridPane.columnSpan="2" GridPane.rowIndex="2" />
-      <Button fx:id="exitButton" mnemonicParsing="false" onAction="#exitPressed" prefHeight="25.0" prefWidth="60.0" text="Exit" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
-      <ColorPicker fx:id="colorPicker" editable="true" onAction="#searchPressed" promptText="Choose " GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-         <value>
-            <Color />
-         </value>
-      </ColorPicker>
-      <Button mnemonicParsing="false" onAction="#anyColor" prefHeight="25.0" prefWidth="83.0" text="Any color" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+      <ListView fx:id="vehiclesList" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="256.0" prefWidth="394.0" GridPane.columnSpan="2" GridPane.rowIndex="4" />
+      <ChoiceBox fx:id="choiceBoxSortBy" onAction="#sortBy" prefWidth="150.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+      <Label fx:id="category" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.valignment="BOTTOM" />
+      <ToolBar maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" prefHeight="28.0" prefWidth="611.0" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="TOP">
+         <items>
+            <Button fx:id="exitButton" mnemonicParsing="false" onAction="#exitPressed" prefHeight="25.0" prefWidth="60.0" text="Exit" />
+            <Button mnemonicParsing="false" onAction="#loginPressed" prefHeight="25.0" prefWidth="58.0" text="Login" />
+         </items>
+      </ToolBar>
+      <Text cache="true" strokeType="OUTSIDE" strokeWidth="0.0" text="Filtr:" textAlignment="CENTER" wrappingWidth="46.7689208984375" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Text>
+      <Button mnemonicParsing="false" onAction="#clearFilterPressed" prefHeight="25.0" prefWidth="64.0" text="Clear all" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
          <GridPane.margin>
-            <Insets top="20.0" />
+            <Insets right="20.0" />
          </GridPane.margin>
       </Button>
-      <ChoiceBox fx:id="choiceBoxCategory" prefWidth="150.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
-      <Label fx:id="category" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
-      <ChoiceBox fx:id="choiceBoxCategory"  onAction="#searchPressed" prefWidth="150.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
    </children>
 </GridPane>
