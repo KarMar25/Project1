@@ -15,6 +15,7 @@ public class VehicleAdapterFactory implements JsonDeserializer<Vehicle> {
             case "Motorcycle" -> context.deserialize(jsonObject, Motorcycle.class);
             case "Pickup" -> context.deserialize(jsonObject, Pickup.class);
             case "Camper" -> context.deserialize(jsonObject, Camper.class);
+            case "Tractor" -> context.deserialize(jsonObject, Tractor.class);
             default -> throw new JsonParseException("Unknown element type: " + type);
         };
     }
