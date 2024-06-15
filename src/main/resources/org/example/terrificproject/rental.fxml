@@ -136,7 +136,8 @@
       <ToolBar maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" prefHeight="35.0" prefWidth="611.0" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="TOP">
          <items>
             <Button fx:id="exitButton" mnemonicParsing="false" onAction="#exitPressed" prefHeight="25.0" prefWidth="60.0" text="Exit" />
-            <Button mnemonicParsing="false" onAction="#loginPressed" prefHeight="25.0" prefWidth="58.0" text="Login" />
+            <Button fx:id="loginButton" mnemonicParsing="false" onAction="#loginPressed" prefHeight="25.0" prefWidth="58.0" text="Log in" />
+            <Text fx:id="loginInfo" strokeType="OUTSIDE" strokeWidth="0.0" />
          </items>
       </ToolBar>
       <Text cache="true" strokeType="OUTSIDE" strokeWidth="0.0" text="Filtr:" textAlignment="CENTER" wrappingWidth="46.7689208984375" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.valignment="CENTER">

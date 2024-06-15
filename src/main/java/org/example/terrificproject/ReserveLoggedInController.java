@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
+
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -17,8 +18,7 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 
-public class ReserveController {
-    protected static final String invoicesDataFilePath = "db/invoice.txt";
+public class ReserveLoggedInController {
     public static Vehicle reservedVehicle;
     public static String periodString;
     public static double totalAmount;
@@ -49,20 +49,21 @@ public class ReserveController {
         period.setText("For period from " + periodString);
         vehicleReservedText.setText("You are reserving " + reservedVehicle);
         totalAmountText.setText("Total amount: " + totalAmount + "$");
-    }
 
+        nameField.setText(LoginController.loggedInUser.getName());
+        surnameField.setText(LoginController.loggedInUser.getSurname());
 
-    @FXML
-    public void backPressed(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("rental.fxml")));
-        stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
     }
 
     @FXML
-    public void  rent(ActionEvent event) throws IOException {
+    void backPressed(ActionEvent event) {
+        changeScene(event);
+
+
+    }
+
+    @FXML
+    void rentPressed(ActionEvent event) throws IOException {
         String ClientName = nameField.getText();
         String ClientSurname = surnameField.getText();
         String ClientAddress = addressField.getText();
@@ -108,22 +109,20 @@ public class ReserveController {
 
         changeScene(event);
 
-    }
-    @FXML
-    private void loginPressed(ActionEvent event) throws IOException {
-        LoginController.whileRenting = true;
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("login.fxml")));
-        stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+
+
     }
 
-    private void changeScene(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("final.fxml"))); // zmien scene na reserve
-        stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+    private void changeScene(ActionEvent event) {
+        try {
+            root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("final.fxml")));
+            stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
 }
