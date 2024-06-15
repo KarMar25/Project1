@@ -29,8 +29,8 @@ import java.util.stream.Collectors;
 
 
 public class RentalController implements Initializable {
-    public static final int PRICE_LOW = 50;
-    public static final int PRICE_MAX = 100;
+    public static final int PRICE_LOW = 85;
+    public static final int PRICE_MAX = 230;
     public static ArrayList<Vehicle> vehicles;
 
     @FXML
@@ -67,40 +67,51 @@ public class RentalController implements Initializable {
     @FXML
     private ChoiceBox<String> choiceBoxSortBy;
 
+    private static ArrayList<String> getYearsArray() {
+        ArrayList<String> years = new ArrayList<>();
+        for (Vehicle vehicle : vehicles) {
+            if (!years.contains(vehicle.getYear())) {
+                years.add(vehicle.getYear());
+            }
+        }
+        years.sort(Comparator.comparingInt(Integer::parseInt));
+        years.add("Choose year");
+        return years;
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
             addingVehicles();
-            for (Vehicle vehicles : vehicles) {
-                vehiclesList.getItems().add(new Text(vehicles.toString()));
-            }
-
-            colorPicker.setValue(null);
-            Platform.runLater(() -> searchField.requestFocus()); // focus on search field
-
-            Platform.runLater(this::ifVehicleChosenSwitchScenes);
-
-            choiceBoxSortBy.getItems().addAll("Price increasing", "Price decreasing", "Year increasing", "Year decreasing", "Relevance");
-            choiceBoxSortBy.setValue("Sort by"); // default value
-
-            priceFromSlider.setMin(PRICE_LOW);
-            priceFromSlider.setMax(PRICE_MAX);
-            priceToSlider.setMin(PRICE_LOW);
-            priceToSlider.setMax(PRICE_MAX);
-
-            priceToSlider.setValue(PRICE_MAX);
-            priceFromSlider.setValue(PRICE_LOW);
-
-
-            yearSpin.setValueFactory(new SpinnerValueFactory.ListSpinnerValueFactory<>(FXCollections.observableArrayList("2018", "2019", "2020", "2021", "2022", "2023", "2024", "Choose year")));
-            yearSpin.valueProperty().addListener((obs, oldValue, newValue) -> searchPressed(new ActionEvent())); // update search results when year changes
-
-            yearSpin.getValueFactory().setValue("Choose year"); // default value
-
-
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+        colorPicker.setValue(null);
+
+        choiceBoxSortBy.getItems().addAll("Price increasing", "Price decreasing", "Year increasing", "Year decreasing", "Relevance");
+        choiceBoxSortBy.setValue("Sort by"); // default value
+
+        priceFromSlider.setMin(PRICE_LOW);
+        priceFromSlider.setMax(PRICE_MAX);
+        priceToSlider.setMin(PRICE_LOW);
+        priceToSlider.setMax(PRICE_MAX);
+
+        priceToSlider.setValue(PRICE_MAX);
+        priceFromSlider.setValue(PRICE_LOW);
+
+        ArrayList<String> years = getYearsArray();
+
+        yearSpin.setValueFactory(new SpinnerValueFactory.ListSpinnerValueFactory<>(FXCollections.observableArrayList(years)));
+        yearSpin.getValueFactory().setValue("Choose year"); // default value
+
+        Platform.runLater(this::ifVehicleChosenSwitchScenes); // switch scenes when vehicle is chosen
+        yearSpin.valueProperty().addListener((obs, oldValue, newValue) -> searchPressed(new ActionEvent())); // update search results when year changes
+        priceFromSlider.valueProperty().addListener((obs, oldValue, newValue) -> searchPressed(new ActionEvent())); // update search results when price changes
+        priceToSlider.valueProperty().addListener((obs, oldValue, newValue) -> searchPressed(new ActionEvent())); // update search results when price changes
+
+        showAll();
+
     }
 
     private void ifVehicleChosenSwitchScenes() {
@@ -184,7 +195,7 @@ public class RentalController implements Initializable {
 
         boolean isPartial = false;
         for (String item : listItems) {
-            if (item.equals("These are all the exact matches!") || item.equals("No exact matches found!")) {
+            if (item.equals("These are all the exact matches found!") || item.equals("No exact matches found!")) {
                 isPartial = true;
                 continue;
             }
@@ -217,7 +228,7 @@ public class RentalController implements Initializable {
         }
 
 
-        if (selected.equals("Relevance")) {
+        if (selected.equals("Relevance") || selected.equals("Sort by")) {
             String[] wordList = searchField.getText().toLowerCase().split(" ");
             Comparator<Vehicle> relevanceComparator = (v1, v2) -> Integer.compare(getWordsMatched(v2, wordList), getWordsMatched(v1, wordList));
 
@@ -240,7 +251,7 @@ public class RentalController implements Initializable {
         if (!vehicleMatches.isEmpty()) {
             vehicleMatches.forEach(vehicle -> vehiclesList.getItems().add(new Text(vehicle.toString())));
             if (!vehiclePartialMatches.isEmpty()) {
-                vehiclesList.getItems().add(new Text("These are all the exact matches!"));
+                vehiclesList.getItems().add(new Text("These are all the exact matches found!"));
                 vehiclesList.getItems().add(new Text("Here are some vehicles that partially match your search:"));
             }
             vehiclePartialMatches.forEach(vehicle -> vehiclesList.getItems().add(new Text(vehicle.toString())));
@@ -273,7 +284,6 @@ public class RentalController implements Initializable {
         String[] wordList = searchField.getText().toLowerCase().split(" ");
         List<Vehicle> partialMatches = new ArrayList<>();
 
-        assert filteredVehicles != null;
         for (Vehicle vehicle : filteredVehicles) {
             vehiclesList.getItems().add(new Text(vehicle.toString()));
         }
@@ -289,7 +299,7 @@ public class RentalController implements Initializable {
         if (vehiclesList.getItems().isEmpty() && partialMatches.isEmpty()) {
             vehiclesList.getItems().add(new Text("No vehicles found!"));
         } else if (!vehiclesList.getItems().isEmpty() && !partialMatches.isEmpty()) {
-            Text text = new Text("These are all the exact matches!");
+            Text text = new Text("These are all the exact matches found!");
             text.setFont(Font.font("Calibre", 12));
             text.setStyle("<font-weight>: italic;"); // whatever we want
             Text text2 = new Text("Here are some vehicles that partially match your search:");
@@ -306,8 +316,10 @@ public class RentalController implements Initializable {
             partialMatches.forEach(vehicle -> vehiclesList.getItems().add(new Text(vehicle.toString())));
 
         }
-        ifVehicleChosenSwitchScenes();
 
+        sortBy(new ActionEvent());
+
+        ifVehicleChosenSwitchScenes();
 
     }
 
@@ -425,7 +437,7 @@ public class RentalController implements Initializable {
 
 
     @FXML
-    void anyColor(ActionEvent event) { // czyszczenie koloru
+    void anyColor(ActionEvent event) { // clear color picker
         colorPicker.setValue(null);
         searchPressed(event);
     }

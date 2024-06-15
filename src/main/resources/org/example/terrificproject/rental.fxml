@@ -28,17 +28,17 @@
   </columnConstraints>
   <rowConstraints>
       <RowConstraints />
-    <RowConstraints maxHeight="129.33334350585938" minHeight="10.0" prefHeight="29.999994913736977" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="149.66666666666669" minHeight="10.0" prefHeight="50.66666158040364" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="196.00000127156574" minHeight="0.0" prefHeight="39.66667683919272" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="129.33334350585938" minHeight="10.0" prefHeight="33.66667366027832" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="149.66666666666669" minHeight="10.0" prefHeight="58.99999300638834" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="196.00000127156574" minHeight="0.0" prefHeight="27.333328247070312" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="324.3333511352539" minHeight="10.0" prefHeight="290.33332316080725" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
       <VBox prefHeight="241.0" prefWidth="211.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="4">
          <children>
-            <HBox prefHeight="48.0" prefWidth="211.0">
+            <HBox prefHeight="76.0" prefWidth="211.0">
                <children>
-                  <VBox prefHeight="97.0" prefWidth="114.0">
+                  <VBox alignment="CENTER_LEFT" prefHeight="95.0" prefWidth="114.0">
                      <children>
                         <HBox prefHeight="63.0" prefWidth="110.0" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Type" />
@@ -48,7 +48,7 @@
                         <CheckBox fx:id="camperCheck" mnemonicParsing="false" onAction="#searchPressed" text="Camper" />
                      </children>
                   </VBox>
-                  <VBox prefHeight="99.0" prefWidth="101.0">
+                  <VBox prefHeight="104.0" prefWidth="98.0">
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Powertrain" />
                         <CheckBox fx:id="iceCheck" mnemonicParsing="false" onAction="#searchPressed" text="ICE" />
@@ -61,8 +61,8 @@
                   </VBox>
                </children>
             </HBox>
-            <Separator prefWidth="200.0" />
-            <VBox alignment="CENTER_LEFT" prefHeight="28.0" prefWidth="211.0">
+            <Separator prefHeight="13.0" prefWidth="211.0" />
+            <VBox prefHeight="21.0" prefWidth="211.0">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Price per day" />
                </children>
@@ -71,21 +71,21 @@
                <children>
                   <HBox prefHeight="25.0" prefWidth="216.0">
                      <children>
-                        <VBox alignment="TOP_CENTER" prefHeight="74.0" prefWidth="39.0">
+                        <VBox alignment="TOP_CENTER" prefHeight="54.0" prefWidth="33.0">
                            <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="From" textAlignment="CENTER" wrappingWidth="33.065128326416016" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="From" textAlignment="CENTER" wrappingWidth="31.731754302978516" />
                               <VBox prefHeight="19.0" prefWidth="36.0" />
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="To" textAlignment="CENTER" wrappingWidth="18.731895446777344" />
                            </children>
                         </VBox>
                         <VBox prefHeight="74.0" prefWidth="184.0">
                            <children>
-                              <Slider fx:id="priceFromSlider" maxHeight="-Infinity" maxWidth="-Infinity" min="50.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="37.0" prefWidth="172.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" VBox.vgrow="NEVER">
+                              <Slider fx:id="priceFromSlider" max="230.0" maxHeight="-Infinity" maxWidth="-Infinity" min="80.0" minHeight="-Infinity" minWidth="-Infinity" minorTickCount="4" prefHeight="37.0" prefWidth="172.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="80.0" VBox.vgrow="NEVER">
                                  <VBox.margin>
                                     <Insets />
                                  </VBox.margin>
                               </Slider>
-                              <Slider fx:id="priceToSlider" maxHeight="-Infinity" maxWidth="-Infinity" min="50.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="37.0" prefWidth="172.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="100.0">
+                              <Slider fx:id="priceToSlider" max="230.0" maxHeight="-Infinity" maxWidth="-Infinity" min="80.0" minHeight="-Infinity" minWidth="-Infinity" minorTickCount="4" prefHeight="37.0" prefWidth="172.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="230.0">
                                  <VBox.margin>
                                     <Insets />
                                  </VBox.margin>
@@ -96,7 +96,7 @@
                   </HBox>
                </children></VBox>
             <Separator prefWidth="200.0" />
-            <VBox alignment="CENTER_LEFT" prefHeight="44.0" prefWidth="211.0">
+            <VBox alignment="CENTER_LEFT" prefHeight="26.0" prefWidth="211.0">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Color" />
                </children>
@@ -115,10 +115,10 @@
                   </Button>
                </children>
             </HBox>
-            <VBox prefHeight="39.0" prefWidth="211.0">
+            <VBox prefHeight="19.0" prefWidth="211.0">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Year" />
-                  <Spinner fx:id="yearSpin" prefHeight="25.0" prefWidth="169.0" />
+                  <Spinner fx:id="yearSpin" prefHeight="15.0" prefWidth="169.0" />
                </children>
             </VBox>
          </children>
@@ -133,7 +133,7 @@
       <ListView fx:id="vehiclesList" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="256.0" prefWidth="394.0" GridPane.columnSpan="2" GridPane.rowIndex="4" />
       <ChoiceBox fx:id="choiceBoxSortBy" onAction="#sortBy" prefWidth="150.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
       <Label fx:id="category" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.valignment="BOTTOM" />
-      <ToolBar maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" prefHeight="28.0" prefWidth="611.0" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="TOP">
+      <ToolBar maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" prefHeight="35.0" prefWidth="611.0" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="TOP">
          <items>
             <Button fx:id="exitButton" mnemonicParsing="false" onAction="#exitPressed" prefHeight="25.0" prefWidth="60.0" text="Exit" />
             <Button mnemonicParsing="false" onAction="#loginPressed" prefHeight="25.0" prefWidth="58.0" text="Login" />
