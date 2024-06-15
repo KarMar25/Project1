@@ -24,8 +24,8 @@
    <children>
       <TextField fx:id="nameField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="183.0" promptText="Enter the name." GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
       <TextField fx:id="surnameField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="189.0" promptText="Enter the surname" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Name:" wrappingWidth="49.294921875" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Surname:" wrappingWidth="61.447265625" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="* Name:" wrappingWidth="49.294921875" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="* Surname:" wrappingWidth="61.447265625" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
       <Button fx:id="backButton" mnemonicParsing="false" onAction="#backPressed" text="go back" GridPane.valignment="TOP" />
       <Button fx:id="rentButton" mnemonicParsing="false" onAction="#rent" text="Rent as guest" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
       <Text fx:id="vehicleReservedText" strokeType="OUTSIDE" strokeWidth="0.0" text="Vehicle reserved" GridPane.columnSpan="3" GridPane.halignment="CENTER" />
@@ -35,7 +35,7 @@
             <Insets bottom="25.0" />
          </GridPane.margin>
       </Text>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Billing address:" wrappingWidth="88.11395955085754" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="* Billing address:" wrappingWidth="88.11395955085754" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
       <TextField fx:id="addressField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="199.0" promptText="Enter the address" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="or " textAlignment="RIGHT" wrappingWidth="43.82360649108887" GridPane.columnIndex="2" GridPane.rowIndex="2" />
       <Button mnemonicParsing="false" onAction="#loginPressed" text="Log in" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
@@ -44,5 +44,10 @@
          </GridPane.margin>
       </Button>
       <Text fx:id="errorText" strokeType="OUTSIDE" strokeWidth="0.0" text="errorText" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="TOP" />
+      <Text fx:id="errorText1" strokeType="OUTSIDE" strokeWidth="0.0" text="* Obligatory fields" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
+         <GridPane.margin>
+            <Insets bottom="10.0" right="10.0" />
+         </GridPane.margin>
+      </Text>
    </children>
 </GridPane>
