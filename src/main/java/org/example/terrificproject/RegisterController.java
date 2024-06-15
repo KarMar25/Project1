@@ -62,14 +62,20 @@ public class RegisterController {
             return;
         } else if (!passwordIsValid(password)) {
             return;
-        } else if (!username.matches("^[a-zA-Z0-9]*$")) {
+        } else if (!username.matches("^[a-zA-Z0-9]*$") ) {
             errorText.setText("Username must contain only letters and numbers");
+            return;
+        } else if (username.length() < 6) {
+            errorText.setText("Username must be at least 6 characters long");
             return;
         } else if (name.length() > 20 || surname.length() > 20 || username.length() > 20 || password.length() > 20) {
             errorText.setText("All fields must be less than 20 characters long");
             return;
         } else if ( !name.matches("^[a-zA-Z]*$") || !surname.matches("^[a-zA-Z]*$")) {
             errorText.setText("Invalid name or surname! Only letters are allowed.");
+            return;
+        } else if (name.length() < 2 || surname.length() <2) {
+            errorText.setText("Name and surname must be at least 2 characters long");
             return;
         }
 

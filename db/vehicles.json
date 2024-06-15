@@ -68,7 +68,10 @@
     "color": "Green",
     "type": "Motorcycle",
     "powertrain": "ICE",
-    "rentalDates": [],
+    "rentalDates": [
+      "2024-06-15",
+      "2024-06-16"
+    ],
     "imagePath": "/org/example/terrificproject/carphotos/Kawa_NinjaZX_G.jpg",
     "pricePerDay": 85,
     "vin": "1HGCM82633A789012",
@@ -128,7 +131,16 @@
     "color": "White",
     "type": "Car",
     "powertrain": "BEV",
-    "rentalDates": [],
+    "rentalDates": [
+      "2024-06-15",
+      "2024-06-16",
+      "2024-06-17",
+      "2024-06-18",
+      "2024-06-19",
+      "2024-06-20",
+      "2024-06-21",
+      "2024-06-22"
+    ],
     "imagePath": "/org/example/terrificproject/carphotos/Must_Mach_W.jpg",
     "pricePerDay": 220,
     "vin": "1HGFA16526L123456",

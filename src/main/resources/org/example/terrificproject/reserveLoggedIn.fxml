@@ -58,6 +58,6 @@
          </GridPane.margin>
       </Text>
       <TextField fx:id="nameField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="errorText" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="TOP" />
+      <Text fx:id="errorText" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="TOP" />
     </children>
 </GridPane>
