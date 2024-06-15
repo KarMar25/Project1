@@ -32,6 +32,7 @@ public class RentalController implements Initializable {
     public static final int PRICE_LOW = 85;
     public static final int PRICE_MAX = 230;
     public static ArrayList<Vehicle> vehicles;
+    public static User loggedInUser;
 
     @FXML
     private TextField searchField;
@@ -67,6 +68,11 @@ public class RentalController implements Initializable {
     @FXML
     private ChoiceBox<String> choiceBoxSortBy;
 
+    @FXML
+    private Text loginInfo;
+    @FXML
+    private Button loginButton;
+
     private static ArrayList<String> getYearsArray() {
         ArrayList<String> years = new ArrayList<>();
         for (Vehicle vehicle : vehicles) {
@@ -81,6 +87,7 @@ public class RentalController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         try {
             addingVehicles();
         } catch (IOException e) {
@@ -111,6 +118,13 @@ public class RentalController implements Initializable {
         priceToSlider.valueProperty().addListener((obs, oldValue, newValue) -> searchPressed(new ActionEvent())); // update search results when price changes
 
         showAll();
+        if(loggedInUser != null){
+            loginInfo.setText("Logged in as: " + LoginController.loggedInUser.getUsername());
+            loginButton.setText("Log out");
+        }
+        else{
+            loginInfo.setText("Not logged in");
+        }
 
     }
 
@@ -172,8 +186,22 @@ public class RentalController implements Initializable {
 
     @FXML
     void loginPressed(ActionEvent event) {
-        // jak sie komus bardzo nudzi a mamy juz cala reszte zrobione to mozna porobić logowanie
-        // ale hasla sie wyywalaja bardzo latwo wiec duzo roboty
+        try {
+            if(loggedInUser != null){
+                loggedInUser = null;
+                loginInfo.setText("Not logged in");
+                loginButton.setText("Log in");
+            }
+            else{
+                root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("login.fxml")));
+                stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+                scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 

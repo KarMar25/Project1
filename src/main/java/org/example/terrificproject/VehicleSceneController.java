@@ -1,7 +1,5 @@
 package org.example.terrificproject;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,7 +12,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
@@ -59,10 +56,29 @@ public class VehicleSceneController {
                 return; // checks if the vehicle is already reserved for this date range
             }
         }
+
+
         updateReserveScene();
+        updateReserveLoggedInScene();
 
-        changeScene("reserve.fxml", event);
+        if (RentalController.loggedInUser == null) {
+            changeScene("reserve.fxml", event);
 
+        }
+        if (RentalController.loggedInUser != null) {
+            changeScene("reserveLoggedIn.fxml", event);
+
+        }
+
+
+    }
+
+    private void updateReserveLoggedInScene() {
+        ReserveLoggedInController.reservedVehicle = selectedVehicle;
+        ReserveLoggedInController.dateFrom = datePickerFrom.getValue();
+        ReserveLoggedInController.dateTo = datePickerTo.getValue();
+        ReserveLoggedInController.periodString = datePickerFrom.getValue() + " to " + datePickerTo.getValue();
+        ReserveLoggedInController.totalAmount = (ChronoUnit.DAYS.between(datePickerFrom.getValue(), datePickerTo.getValue()) + 1) * selectedVehicle.getPricePerDay();
     }
 
     private void changeScene(String name, ActionEvent event) throws IOException {
@@ -77,6 +93,8 @@ public class VehicleSceneController {
         ReserveController.reservedVehicle = selectedVehicle;
         ReserveController.dateFrom = datePickerFrom.getValue();
         ReserveController.dateTo = datePickerTo.getValue();
+        ReserveController.periodString = datePickerFrom.getValue() + " to " + datePickerTo.getValue();
+        ReserveController.totalAmount = (ChronoUnit.DAYS.between(datePickerFrom.getValue(), datePickerTo.getValue()) + 1) * selectedVehicle.getPricePerDay();
     }
 
     @FXML
