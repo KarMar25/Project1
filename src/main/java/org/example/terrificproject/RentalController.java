@@ -73,6 +73,10 @@ public class RentalController implements Initializable {
     @FXML
     private Button loginButton;
 
+    @FXML
+    private Button accountButton;
+
+
     private static ArrayList<String> getYearsArray() {
         ArrayList<String> years = new ArrayList<>();
         for (Vehicle vehicle : vehicles) {
@@ -121,9 +125,12 @@ public class RentalController implements Initializable {
         if(loggedInUser != null){
             loginInfo.setText("Logged in as: " + LoginController.loggedInUser.getUsername());
             loginButton.setText("Log out");
+            accountButton.setVisible(true);
         }
         else{
             loginInfo.setText("Not logged in");
+            loginButton.setText("Log in");
+            accountButton.setVisible(false);
         }
 
     }
@@ -191,6 +198,7 @@ public class RentalController implements Initializable {
                 loggedInUser = null;
                 loginInfo.setText("Not logged in");
                 loginButton.setText("Log in");
+                accountButton.setVisible(false);
             }
             else{
                 root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("login.fxml")));
@@ -516,6 +524,18 @@ public class RentalController implements Initializable {
     void exitPressed(ActionEvent event) {
         stage = (Stage) exitButton.getScene().getWindow();
         stage.close();
+    }
+    @FXML
+    void manageAccountPressed(ActionEvent event){
+        try {
+            root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("account.fxml")));
+            stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }
