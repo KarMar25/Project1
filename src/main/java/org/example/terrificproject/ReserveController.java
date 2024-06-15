@@ -37,6 +37,8 @@ public class ReserveController {
     private TextField nameField;
     @FXML
     private TextField surnameField;
+    @FXML
+    private TextField shippingAddress;
 
     @FXML
     public void initialize() {
@@ -59,6 +61,7 @@ public class ReserveController {
     public void rent(ActionEvent event) throws IOException {
         String ClientName = nameField.getText();
         String ClientSurname = surnameField.getText();
+        String ClientShippingAddress = shippingAddress.getText();
         //   Scanner scanner = new Scanner(Paths.get(invoicesDataFilePath));
         //  int invoiceNumber = scanner.nextInt(); a mialo być tak idealnie ale nie dziala
         int invoiceNumber = 1;
@@ -67,7 +70,7 @@ public class ReserveController {
         generator.printInvoice(
                 "Terrific Rental Company",
                 ClientName + " " + ClientSurname,
-                "Shipping Address",
+                ClientShippingAddress,
                 "https://example.com/img/logo-invoice.png",
                 invoiceNumber,
                 "June 16, 2024",
