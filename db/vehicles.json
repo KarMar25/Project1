@@ -23,9 +23,7 @@
     "color": "Green",
     "type": "Tractor",
     "powertrain": "ICE",
-    "rentalDates": [
-      "2024-06-15"
-    ],
+    "rentalDates": [],
     "imagePath": "/org/example/terrificproject/carphotos/Ursus_C360_Green.jpg",
     "pricePerDay": 85,
     "vin": "URSUS1985C360123456",
@@ -71,9 +69,7 @@
     "color": "Green",
     "type": "Motorcycle",
     "powertrain": "ICE",
-    "rentalDates": [
-      "2024-06-15"
-    ],
+    "rentalDates": [],
     "imagePath": "/org/example/terrificproject/carphotos/Kawa_NinjaZX_G.jpg",
     "pricePerDay": 85,
     "vin": "1HGCM82633A789012",
@@ -88,9 +84,7 @@
     "color": "Blue",
     "type": "Car",
     "powertrain": "Hybrid",
-    "rentalDates": [
-      "2024-06-15"
-    ],
+    "rentalDates": [],
     "imagePath": "/org/example/terrificproject/carphotos/Toyo_Prius_Blue.jpg",
     "pricePerDay": 130,
     "vin": "2G1WF52E759123456",
@@ -135,9 +129,7 @@
     "color": "White",
     "type": "Car",
     "powertrain": "BEV",
-    "rentalDates": [
-      "2024-06-15"
-    ],
+    "rentalDates": [],
     "imagePath": "/org/example/terrificproject/carphotos/Must_Mach_W.jpg",
     "pricePerDay": 220,
     "vin": "1HGFA16526L123456",
@@ -332,16 +324,7 @@
     "color": "White",
     "type": "Camper",
     "powertrain": "ICE",
-    "rentalDates": [
-      "2024-07-09",
-      "2024-07-10",
-      "2024-07-11",
-      "2024-07-12",
-      "2024-07-13",
-      "2024-07-14",
-      "2024-07-15",
-      "2024-07-16"
-    ],
+    "rentalDates": [],
     "imagePath": "/org/example/terrificproject/carphotos/Winn_Trav_W.jpg",
     "pricePerDay": 105,
     "vin": "1GCHK23D56F123456",
@@ -373,10 +356,7 @@
     "color": "Green",
     "type": "Motorcycle",
     "powertrain": "ICE",
-    "rentalDates": [
-      "2024-06-29",
-      "2024-06-30"
-    ],
+    "rentalDates": [],
     "imagePath": "/org/example/terrificproject/carphotos/Ural_GearUp_G.jpg",
     "pricePerDay": 140,
     "vin": "7HGCM66555G123456",
@@ -452,9 +432,7 @@
     "color": "Red",
     "type": "Motorcycle",
     "powertrain": "ICE",
-    "rentalDates": [
-      "2024-06-15"
-    ],
+    "rentalDates": [],
     "imagePath": "/org/example/terrificproject/carphotos/Aprilia_SXR_Red.jpg",
     "pricePerDay": 130,
     "vin": "9HGCM66555I123456",

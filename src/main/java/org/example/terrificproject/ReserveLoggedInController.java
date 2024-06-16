@@ -8,7 +8,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
-
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -44,6 +43,46 @@ public class ReserveLoggedInController {
     @FXML
     private Text errorText;
 
+    public static void saveUserToFile() throws IOException {
+        HashMap<String, ArrayList<LocalDate>> reservedVehicleMap = LoginController.loggedInUser.getRentedVehicles();
+        ArrayList<LocalDate> dates = new ArrayList<>();
+        for (int i = dateFrom.getDayOfYear(); i <= dateTo.getDayOfYear(); i++) {
+            dates.add(LocalDate.ofYearDay(dateFrom.getYear(), i));
+        }
+
+        reservedVehicleMap.put(String.valueOf(reservedVehicle), dates);
+
+        LoginController.loggedInUser.setRentedVehicles(reservedVehicleMap);
+
+        Gson gson2 = new GsonBuilder().registerTypeAdapter(LocalDate.class, new LocalDateTypeAdapter()).setPrettyPrinting().create();
+        FileWriter file2 = new FileWriter("db/users.json");
+        file2.write(gson2.toJson(LoginController.users));
+        file2.close();
+    }
+
+    private static void overwriteFile() throws IOException {
+        Gson gson = new GsonBuilder().registerTypeAdapter(Vehicle.class, new VehicleAdapterFactory()).registerTypeAdapter(LocalDate.class, new LocalDateTypeAdapter()).setPrettyPrinting().create();
+        FileWriter file = new FileWriter("db/vehicles.json");
+        file.write(gson.toJson(RentalController.vehicles));
+        file.close();
+    }
+
+    public static void generateInvoice(String ClientName, String ClientSurname, String ClientAddress) {
+        int invoiceNumber = 1;
+
+        InvoiceGenerator generator = new InvoiceGenerator();
+        generator.printInvoice("Terrific Rental Company", ClientName + " " + ClientSurname, ClientAddress, "https://example.com/img/logo-invoice.png", invoiceNumber, "June 16, 2024", "Reservation Period", periodString, reservedVehicle.toString(), 1, (int) totalAmount);
+
+        for (int i = dateFrom.getDayOfYear(); i <= dateTo.getDayOfYear(); i++) {
+            for (Vehicle vehicle : RentalController.vehicles) {
+                if (vehicle.equals(reservedVehicle)) {
+                    vehicle.getRentalDates().add(LocalDate.ofYearDay(dateFrom.getYear(), i));
+                }
+            }
+
+        }
+    }
+
     @FXML
     public void initialize() {
         errorText.setText("");
@@ -68,45 +107,17 @@ public class ReserveLoggedInController {
         String ClientName = nameField.getText();
         String ClientSurname = surnameField.getText();
         String ClientAddress = addressField.getText();
+
         if (ClientName.isEmpty() || ClientSurname.isEmpty() || ClientAddress.isEmpty()) {
             errorText.setText("All fields must be filled");
             return;
         }
-        int invoiceNumber = 1;
-
-        InvoiceGenerator generator = new InvoiceGenerator();
-        generator.printInvoice("Terrific Rental Company", ClientName + " " + ClientSurname, ClientAddress, "https://example.com/img/logo-invoice.png", invoiceNumber, "June 16, 2024", "Reservation Period", periodString, reservedVehicle.toString(), 1, (int) totalAmount);
-
-        for (int i = dateFrom.getDayOfYear(); i <= dateTo.getDayOfYear(); i++) {
-            for (Vehicle vehicle : RentalController.vehicles) {
-                if (vehicle.equals(reservedVehicle)) {
-                    vehicle.getRentalDates().add(LocalDate.ofYearDay(dateFrom.getYear(), i));
-                }
-            }
-
-        }
+        generateInvoice(ClientName, ClientSurname, ClientAddress);
 
 
-        Gson gson = new GsonBuilder().registerTypeAdapter(Vehicle.class, new VehicleAdapterFactory()).registerTypeAdapter(LocalDate.class, new LocalDateTypeAdapter()).setPrettyPrinting().create();
-        FileWriter file = new FileWriter("db/vehicles.json");
-        file.write(gson.toJson(RentalController.vehicles));
-        file.close();
+        overwriteFile(); // save vehicles file
 
-
-        HashMap<String, ArrayList<LocalDate>> reservedVehicleMap = LoginController.loggedInUser.getRentedVehicles();
-        ArrayList<LocalDate> dates = new ArrayList<>();
-        for (int i = dateFrom.getDayOfYear(); i <= dateTo.getDayOfYear(); i++) {
-            dates.add(LocalDate.ofYearDay(dateFrom.getYear(), i));
-        }
-
-        reservedVehicleMap.put(String.valueOf(reservedVehicle), dates);
-
-        LoginController.loggedInUser.setRentedVehicles(reservedVehicleMap);
-
-        Gson gson2 = new GsonBuilder().registerTypeAdapter(LocalDate.class, new LocalDateTypeAdapter()).setPrettyPrinting().create();
-        FileWriter file2 = new FileWriter("db/users.json");
-        file2.write(gson2.toJson(LoginController.users));
-        file2.close();
+        saveUserToFile(); // save user file
 
 
         changeScene(event, "final.fxml");

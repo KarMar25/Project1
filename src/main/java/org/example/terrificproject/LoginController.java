@@ -14,18 +14,16 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
 
 public class LoginController {
-    public static ArrayList<User> users = new ArrayList<User>(); // list of users for now
+    public static ArrayList<User> users = new ArrayList<>();
     public static User loggedInUser;
-    public static boolean whileRenting;
+    public static boolean whileRenting; // used to determine if the user is logging in while renting a vehicle
     @FXML
     private TextField usernameField;
     @FXML
@@ -33,16 +31,15 @@ public class LoginController {
     @FXML
     private Text errorText;
     private Stage stage;
-    private Scene scene;
 
     @FXML
-    void initialize() throws FileNotFoundException {
+    void initialize() {
         users = loadUsers();
     }
 
-    private ArrayList<User> loadUsers() {
+    private ArrayList<User> loadUsers() { // get the users from the file
         File file = new File("db/users.json");
-        if (!file.exists() || file.length() == 0) {
+        if (!file.exists() || file.length() == 0) { // if the file does not exist or is empty, return an empty list
             return new ArrayList<>();
         }
 
@@ -69,6 +66,7 @@ public class LoginController {
     void loginPressed(ActionEvent event) throws IOException {
         String username = usernameField.getText();
         String password = passwordField.getText();
+
         if (username.isEmpty() || password.isEmpty()) {
             errorText.setText("All fields must be filled");
             return;
@@ -80,6 +78,7 @@ public class LoginController {
                 return;
             }
         }
+
         errorText.setText("Invalid username or password");
 
 
@@ -108,22 +107,25 @@ public class LoginController {
     private void logIn() throws IOException {
         loggedInUser = users.stream().filter(user -> user.getUsername().equals(usernameField.getText())).findFirst().get();
         RentalController.loggedInUser = loggedInUser;
-        if (whileRenting) {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("reserveLoggedIn.fxml"));
+        FXMLLoader loader;
+
+        if (whileRenting) { // if logging in while renting a vehicle, go to the reserveLoggedIn scene
+            loader = new FXMLLoader(getClass().getResource("reserveLoggedIn.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
             stage = (Stage) usernameField.getScene().getWindow();
             stage.setScene(scene);
-            stage.show();
-        } else {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("rental.fxml"));
+        } else { // if  logging in normally, go to the rental scene
+            loader = new FXMLLoader(getClass().getResource("rental.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
             stage = (Stage) usernameField.getScene().getWindow();
             stage.setScene(scene);
-            stage.show();
         }
-        whileRenting = false;
+
+        stage.show();
+
+        whileRenting = false; // reset the whileRenting variable
     }
 
 

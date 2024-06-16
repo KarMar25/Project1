@@ -111,7 +111,7 @@ public class Vehicle {
         return vin;
     }
 
-    public void setVin(String vic) {
+    public void setVin(String vin) {
         this.vin = vin;
     }
 

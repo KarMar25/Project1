@@ -17,7 +17,6 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 public class ReserveController {
-    protected static final String invoicesDataFilePath = "db/invoice.txt";
     public static Vehicle reservedVehicle;
     public static String periodString;
     public static double totalAmount;
@@ -42,6 +41,29 @@ public class ReserveController {
     @FXML
     private Text errorText;
 
+    private static void overwriteFile() throws IOException { // saves the changes to the file
+        Gson gson = new GsonBuilder().registerTypeAdapter(Vehicle.class, new VehicleAdapterFactory()).registerTypeAdapter(LocalDate.class, new LocalDateTypeAdapter()).setPrettyPrinting().create();
+        FileWriter file = new FileWriter("db/vehicles.json");
+        file.write(gson.toJson(RentalController.vehicles));
+        file.close();
+    }
+
+    private static void generateInvoice(String ClientName, String ClientSurname, String ClientAddress) {
+        int invoiceNumber = 1;
+
+        InvoiceGenerator generator = new InvoiceGenerator();
+        generator.printInvoice("Terrific Rental Company", ClientName + " " + ClientSurname, ClientAddress, "https://example.com/img/logo-invoice.png", invoiceNumber, "June 16, 2024", "Reservation Period", periodString, reservedVehicle.toString(), 1, (int) totalAmount);
+
+        for (int i = dateFrom.getDayOfYear(); i <= dateTo.getDayOfYear(); i++) {
+            for (Vehicle vehicle : RentalController.vehicles) {
+                if (vehicle.equals(reservedVehicle)) {
+                    vehicle.getRentalDates().add(LocalDate.ofYearDay(dateFrom.getYear(), i));
+                }
+            }
+
+        }
+    }
+
     @FXML
     public void initialize() {
         errorText.setText("");
@@ -49,7 +71,6 @@ public class ReserveController {
         vehicleReservedText.setText("You are reserving " + reservedVehicle);
         totalAmountText.setText("Total amount: " + totalAmount + "$");
     }
-
 
     @FXML
     public void backPressed(ActionEvent event) throws IOException {
@@ -65,29 +86,16 @@ public class ReserveController {
         String ClientName = nameField.getText();
         String ClientSurname = surnameField.getText();
         String ClientAddress = addressField.getText();
+
         if (ClientName.isEmpty() || ClientSurname.isEmpty() || ClientAddress.isEmpty()) {
             errorText.setText("All fields must be filled");
             return;
         }
-        int invoiceNumber = 1;
-
-        InvoiceGenerator generator = new InvoiceGenerator();
-        generator.printInvoice("Terrific Rental Company", ClientName + " " + ClientSurname, ClientAddress, "https://example.com/img/logo-invoice.png", invoiceNumber, "June 16, 2024", "Reservation Period", periodString, reservedVehicle.toString(), 1, (int) totalAmount);
-
-        for (int i = dateFrom.getDayOfYear(); i <= dateTo.getDayOfYear(); i++) {
-            for (Vehicle vehicle : RentalController.vehicles) {
-                if (vehicle.equals(reservedVehicle)) {
-                    vehicle.getRentalDates().add(LocalDate.ofYearDay(dateFrom.getYear(), i));
-                }
-            }
-
-        }
 
 
-        Gson gson = new GsonBuilder().registerTypeAdapter(Vehicle.class, new VehicleAdapterFactory()).registerTypeAdapter(LocalDate.class, new LocalDateTypeAdapter()).setPrettyPrinting().create();
-        FileWriter file = new FileWriter("db/vehicles.json");
-        file.write(gson.toJson(RentalController.vehicles));
-        file.close();
+        generateInvoice(ClientName, ClientSurname, ClientAddress);
+
+        overwriteFile();
 
         changeScene(event);
 

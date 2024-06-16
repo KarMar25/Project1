@@ -32,15 +32,16 @@ public class AccountController {
 
     @FXML
     void initialize() {
+
         errorText.setText("");
         HashMap<String, ArrayList<LocalDate>> rentedVehicles = user.getRentedVehicles();
 
         TreeItem<String> reservation = new TreeItem<>("");
-        reservation.setExpanded(true);
+        reservation.setExpanded(true); // expand the tree view (show the reservations)
 
         if (rentedVehicles == null || rentedVehicles.isEmpty()) {
             reservation.getChildren().add(new TreeItem<>("No reservations yet"));
-        } else {
+        } else { // add the reservations to the tree view
             for (String vehicle : rentedVehicles.keySet()) {
                 TreeItem<String> vehicleItem = new TreeItem<>(vehicle);
                 reservation.getChildren().add(vehicleItem);
@@ -69,7 +70,7 @@ public class AccountController {
         TreeItem<String> selectedItem = reservations.getSelectionModel().getSelectedItem();
 
         if (selectedItem == null) return;
-        if (selectedItem.getParent() == null || selectedItem.isLeaf()) {
+        if (selectedItem.getParent() == null || selectedItem.isLeaf()) { // if the selected item is a leaf or the root (a date or no reservation)
             errorText.setText("Select a vehicle to cancel");
             return;
         }
@@ -77,30 +78,30 @@ public class AccountController {
         String vehicle = selectedItem.getValue();
         HashMap<String, ArrayList<LocalDate>> rentedVehicles = user.getRentedVehicles();
 
-        for (Vehicle v : RentalController.vehicles) {
+        for (Vehicle v : RentalController.vehicles) { // remove the rental dates from the vehicle
             for (LocalDate date : rentedVehicles.get(vehicle)) {
                 v.getRentalDates().remove(date);
             }
         }
 
-        rentedVehicles.remove(vehicle);
-        user.setRentedVehicles(rentedVehicles);
+        rentedVehicles.remove(vehicle); // remove the vehicle from the user's rented vehicles
+        user.setRentedVehicles(rentedVehicles); // update the rented vehicles
 
         try {
             FileWriter file = new FileWriter("db/users.json");
             Gson gson = new GsonBuilder().registerTypeAdapter(LocalDate.class, new LocalDateTypeAdapter()).setPrettyPrinting().create();
-            file.write(gson.toJson(LoginController.users));
+            file.write(gson.toJson(LoginController.users)); // save the changes to the file
             file.close();
 
             FileWriter file2 = new FileWriter("db/vehicles.json");
             Gson gson2 = new GsonBuilder().registerTypeAdapter(Vehicle.class, new VehicleAdapterFactory()).registerTypeAdapter(LocalDate.class, new LocalDateTypeAdapter()).setPrettyPrinting().create();
-            file2.write(gson2.toJson(RentalController.vehicles));
+            file2.write(gson2.toJson(RentalController.vehicles)); // save the changes to the file
             file2.close();
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-        initialize();
+        initialize(); // refresh the tree view
         errorText.setText("Reservation cancelled successfully");
 
 

@@ -38,6 +38,53 @@ public class VehicleSceneController {
     private Text dateText;
 
     @FXML
+    void initialize() {
+        propertiesList.getItems().add("Price per day: " + selectedVehicle.getPricePerDay() + "$");
+        propertiesList.getItems().add("Year: " + selectedVehicle.getYear());
+        propertiesList.getItems().add("Make: " + selectedVehicle.getMake());
+        propertiesList.getItems().add("Model: " + selectedVehicle.getModel());
+        propertiesList.getItems().add("Color: " + selectedVehicle.getColor());
+        propertiesList.getItems().add("Type: " + selectedVehicle.getType());
+        propertiesList.getItems().add("Powertrain: " + selectedVehicle.getPowertrain());
+        propertiesList.getItems().add("VIN: " + selectedVehicle.getVin());
+        propertiesList.getItems().add("Mileage: " + selectedVehicle.getMileage());
+
+
+        if (selectedVehicle instanceof Motorcycle) {
+            propertiesList.getItems().add("Has sidecar: " + ((Motorcycle) selectedVehicle).hasSidecar());
+            propertiesList.getItems().add("Top speed: " + ((Motorcycle) selectedVehicle).getTopSpeed());
+            propertiesList.getItems().add("ABS: " + ((Motorcycle) selectedVehicle).isAbs());
+        }
+        if (selectedVehicle instanceof Camper) {
+            propertiesList.getItems().add("Number of beds: " + ((Camper) selectedVehicle).getNumberOfBeds());
+            propertiesList.getItems().add("Has bathroom: " + ((Camper) selectedVehicle).isHasBathroom());
+        }
+        if (selectedVehicle instanceof Pickup) {
+            propertiesList.getItems().add("Has tow hitch: " + ((Pickup) selectedVehicle).getLoadCapacity());
+        }
+        if (selectedVehicle instanceof Car) {
+            propertiesList.getItems().add("Number of doors: " + ((Car) selectedVehicle).getDoorCount());
+            propertiesList.getItems().add("Trunk capacity: " + ((Car) selectedVehicle).getTrunkCapacity());
+        }
+        if (selectedVehicle instanceof Tractor) {
+            propertiesList.getItems().add("Type of cab: " + ((Tractor) selectedVehicle).getCabType());
+            propertiesList.getItems().add("Trunk capacity: " + ((Tractor) selectedVehicle).getTrunkCapacity());
+        }
+
+        propertiesList.getItems().add("Unavailable dates: " + selectedVehicle.getRentalDates());
+
+        String imagePath = selectedVehicle.getImagePath();
+        if (imagePath != null && !imagePath.isEmpty()) {
+            Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(imagePath)));
+            if (vehicleImage != null) {
+                vehicleImage.setImage(image);
+            }
+        }
+
+
+    }
+
+    @FXML
     void reservePressed(ActionEvent event) throws IOException {
         if (datePickerFrom.getValue() == null || datePickerTo.getValue() == null) {
             dateText.setText("Select a date");
@@ -103,48 +150,7 @@ public class VehicleSceneController {
         changeScene("rental.fxml", event);
     }
 
-    @FXML
-    void initialize() {
-        propertiesList.getItems().add("Price per day: " + selectedVehicle.getPricePerDay() + "$");
-        propertiesList.getItems().add("Year: " + selectedVehicle.getYear());
-        propertiesList.getItems().add("Make: " + selectedVehicle.getMake());
-        propertiesList.getItems().add("Model: " + selectedVehicle.getModel());
-        propertiesList.getItems().add("Color: " + selectedVehicle.getColor());
-        propertiesList.getItems().add("Type: " + selectedVehicle.getType());
-        propertiesList.getItems().add("Powertrain: " + selectedVehicle.getPowertrain());
-        propertiesList.getItems().add("VIN: " + selectedVehicle.getVin());
-        propertiesList.getItems().add("Mileage: " + selectedVehicle.getMileage());
 
-
-        if (selectedVehicle instanceof Motorcycle) {
-            propertiesList.getItems().add("Has sidecar: " + ((Motorcycle) selectedVehicle).hasSidecar());
-            propertiesList.getItems().add("Top speed: " + ((Motorcycle) selectedVehicle).getTopSpeed());
-            propertiesList.getItems().add("ABS: " + ((Motorcycle) selectedVehicle).isAbs());
-        }
-        if (selectedVehicle instanceof Camper) {
-            propertiesList.getItems().add("Number of beds: " + ((Camper) selectedVehicle).getNumberOfBeds());
-            propertiesList.getItems().add("Has bathroom: " + ((Camper) selectedVehicle).isHasBathroom());
-        }
-        if (selectedVehicle instanceof Pickup) {
-            propertiesList.getItems().add("Has tow hitch: " + ((Pickup) selectedVehicle).getLoadCapacity());
-        }
-        if (selectedVehicle instanceof Car) {
-            propertiesList.getItems().add("Number of doors: " + ((Car) selectedVehicle).getDoorCount());
-            propertiesList.getItems().add("Trunk capacity: " + ((Car) selectedVehicle).getTrunkCapacity());
-        }
-        if (selectedVehicle instanceof Tractor) {
-            propertiesList.getItems().add("Type of cab: " + ((Tractor) selectedVehicle).getCabType());
-            propertiesList.getItems().add("Trunk capacity: " + ((Tractor) selectedVehicle).getTrunkCapacity());
-        }
-        String imagePath = selectedVehicle.getImagePath();
-        if (imagePath != null && !imagePath.isEmpty()) {
-            Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(imagePath)));
-            if (vehicleImage != null) {
-                vehicleImage.setImage(image);
-            }
-        }
-        propertiesList.getItems().add("Unavailable dates: " + selectedVehicle.getRentalDates());
-    }
 }
 
 

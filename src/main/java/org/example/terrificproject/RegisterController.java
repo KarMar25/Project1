@@ -20,7 +20,6 @@ import java.lang.reflect.Type;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 
 public class RegisterController {
@@ -48,12 +47,13 @@ public class RegisterController {
     }
 
     @FXML
-    void registerPressed(ActionEvent event) throws IOException {
+    void registerPressed(ActionEvent event) {
         String name = nameField.getText();
         String surname = surnameField.getText();
         String username = usernameField.getText();
         String password = passwordField.getText();
 
+// validate the input
         if (!usernameTaken(username)) {
             errorText.setText("Username is already taken!");
             return;
@@ -79,7 +79,9 @@ public class RegisterController {
             return;
         }
 
-        saveTheUser(name, surname, username, password);
+
+        User user = new User(name, surname, username, password, new HashMap<>());
+        saveTheUser(user);
 
         errorText.setText("User registered successfully! You can now go back to login.");
         nameField.clear();
@@ -88,19 +90,17 @@ public class RegisterController {
         passwordField.clear();
     }
 
-    public static void saveTheUser(String name, String surname, String username, String password) {
-        User user = new User(name, surname, username, password, new HashMap<>());
+    public static void saveTheUser(User user) {
 
         File file = new File("db/users.json");
         ArrayList<User> users = new ArrayList<>();
-
 
         if (file.exists() && file.length() != 0) {
             try (FileReader reader = new FileReader(file)) {
                 Gson gson = new GsonBuilder().registerTypeAdapter(LocalDate.class, new LocalDateTypeAdapter()).setPrettyPrinting().create();
                 Type userListType = new TypeToken<ArrayList<User>>() {
                 }.getType();
-                users = gson.fromJson(reader, userListType);
+                users = gson.fromJson(reader, userListType); // get the users from the file
                 if (users == null) {
                     users = new ArrayList<>();
                 }
@@ -109,12 +109,12 @@ public class RegisterController {
             }
         }
 
-        users.add(user);
+        users.add(user); // add the new user to the list
 
 
         try (FileWriter writer = new FileWriter("db/users.json")) {
             Gson gson = new GsonBuilder().registerTypeAdapter(LocalDate.class, new LocalDateTypeAdapter()).setPrettyPrinting().create();
-            gson.toJson(users, writer);
+            gson.toJson(users, writer); // save the list back to the file
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -146,9 +146,9 @@ public class RegisterController {
         return true;
     }
 
-    private void switchScene(String s) {
+    private void switchScene() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(s));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
             stage = (Stage) usernameField.getScene().getWindow();
@@ -162,7 +162,7 @@ public class RegisterController {
     @FXML
     void backPressed(ActionEvent event) throws IOException {
         errorText.setText("");
-        switchScene("login.fxml");
+        switchScene();
     }
 }
 
