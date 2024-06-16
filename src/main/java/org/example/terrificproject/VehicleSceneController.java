@@ -113,7 +113,7 @@ public class VehicleSceneController {
         propertiesList.getItems().add("Powertrain: " + selectedVehicle.getPowertrain());
         propertiesList.getItems().add("VIN: " + selectedVehicle.getVin());
         propertiesList.getItems().add("Mileage: " + selectedVehicle.getMileage());
-        propertiesList.getItems().add("Unavailable dates: " + selectedVehicle.getRentalDates()); // testing
+
 
         if (selectedVehicle instanceof Motorcycle) {
             propertiesList.getItems().add("Has sidecar: " + ((Motorcycle) selectedVehicle).hasSidecar());
@@ -142,6 +142,7 @@ public class VehicleSceneController {
                 vehicleImage.setImage(image);
             }
         }
+        propertiesList.getItems().add("Unavailable dates: " + selectedVehicle.getRentalDates()); // testing
     }
 }
 
