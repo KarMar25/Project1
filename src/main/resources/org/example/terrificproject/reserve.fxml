@@ -35,7 +35,7 @@
             <Insets bottom="25.0" />
          </GridPane.margin>
       </Text>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="* Billing address:" wrappingWidth="88.11395955085754" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="* Shipping address:" wrappingWidth="107.78061604499817" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
       <TextField fx:id="addressField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="199.0" promptText="Enter the address" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="or " textAlignment="RIGHT" wrappingWidth="43.82360649108887" GridPane.columnIndex="2" GridPane.rowIndex="2" />
       <Button mnemonicParsing="false" onAction="#loginPressed" text="Log in" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">

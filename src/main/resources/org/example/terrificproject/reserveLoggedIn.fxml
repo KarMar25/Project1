@@ -36,7 +36,7 @@
       </Text>
       <Text fx:id="totalAmountText" strokeType="OUTSIDE" strokeWidth="0.0" text="Total amount  " GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
       <TextField fx:id="addressField" promptText="Enter the address" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="* Billing address:" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="* Shipping address:" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
          <GridPane.margin>
             <Insets right="10.0" />
          </GridPane.margin>
