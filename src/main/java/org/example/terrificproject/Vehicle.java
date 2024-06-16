@@ -10,9 +10,9 @@ public class Vehicle {
     public String color;
     public String type; // Car, Motorcycle, Pickup, Camper
     public String powertrain; // Internal Combustion Engine (ICE), Hybrid, Battery Electric Vehicle (BEV)
-    public ArrayList<LocalDate> rentalDates; // Dates the vehicle is rented out
+    public ArrayList<LocalDate> rentalDates;
 
-    public String imagePath; // path to image
+    public String imagePath;
 
     public int pricePerDay;
 
@@ -99,9 +99,13 @@ public class Vehicle {
         this.powertrain = powertrain;
     }
 
-    public int getPricePerDay() {return pricePerDay;}
+    public int getPricePerDay() {
+        return pricePerDay;
+    }
 
-    public void setPricePerDay(int pricePerDay) {this.pricePerDay = pricePerDay;}
+    public void setPricePerDay(int pricePerDay) {
+        this.pricePerDay = pricePerDay;
+    }
 
     public String getVin() {
         return vin;

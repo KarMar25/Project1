@@ -1,7 +1,7 @@
 package org.example.terrificproject;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
-import javafx.scene.image.Image;
 
 public class Tractor extends Vehicle {
     public String trunkCapacity;

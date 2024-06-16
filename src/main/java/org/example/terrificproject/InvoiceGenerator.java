@@ -1,8 +1,8 @@
 package org.example.terrificproject;
+
 import com.google.gson.Gson;
-import java.io.FileWriter;
+
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.http.HttpClient;
@@ -11,32 +11,17 @@ import java.net.http.HttpResponse;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import static org.example.terrificproject.ReserveController.invoicesDataFilePath;
-
 public class InvoiceGenerator {
     String apiKey = "sk_kiAoeX93rLivVbpNODQtoR9lTB3FsWRK";
 
     public void printInvoice(String from, String to, String shipTo, String logo, int number, String date, String customFieldName, String customFieldValue, String itemName, int itemQuantity, int itemUnitCost) {
-        try {InvoiceRequest invoiceRequest = new InvoiceRequest(
-                    from,
-                    to,
-                    shipTo,
-                    logo,
-                    number,
-                    date,
-                    new CustomField[]{new CustomField(customFieldName, customFieldValue)},
-                    new Item[]{new Item(itemName, itemQuantity, itemUnitCost)}
-            );
+        try {
+            InvoiceRequest invoiceRequest = new InvoiceRequest(from, to, shipTo, logo, number, date, new CustomField[]{new CustomField(customFieldName, customFieldValue)}, new Item[]{new Item(itemName, itemQuantity, itemUnitCost)});
 
             Gson gson = new Gson();
             String requestBody = gson.toJson(invoiceRequest);
             HttpClient client = HttpClient.newHttpClient();
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(new URI("https://invoice-generator.com"))
-                    .POST(HttpRequest.BodyPublishers.ofString(requestBody))
-                    .header("Authorization", "Bearer " + apiKey)
-                    .header("Content-Type", "application/json")
-                    .build();
+            HttpRequest request = HttpRequest.newBuilder().uri(new URI("https://invoice-generator.com")).POST(HttpRequest.BodyPublishers.ofString(requestBody)).header("Authorization", "Bearer " + apiKey).header("Content-Type", "application/json").build();
             HttpResponse<Path> response = client.send(request, HttpResponse.BodyHandlers.ofFile(Paths.get("db/invoices/invoice.pdf")));
             if (response.statusCode() == 200) {
                 System.out.println("Invoice generated");

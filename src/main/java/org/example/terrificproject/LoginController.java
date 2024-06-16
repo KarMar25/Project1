@@ -42,15 +42,12 @@ public class LoginController {
 
     private ArrayList<User> loadUsers() {
         File file = new File("db/users.json");
-        if (!file.exists() || file.length() == 0) { // no users
+        if (!file.exists() || file.length() == 0) {
             return new ArrayList<>();
         }
 
         try (FileReader reader = new FileReader(file)) {
-            Gson gson = new GsonBuilder()
-                    .registerTypeAdapter(LocalDate.class, new LocalDateTypeAdapter())
-                    .setPrettyPrinting()
-                    .create();
+            Gson gson = new GsonBuilder().registerTypeAdapter(LocalDate.class, new LocalDateTypeAdapter()).setPrettyPrinting().create();
             Type userListType = new TypeToken<ArrayList<User>>() {
             }.getType();
             ArrayList<User> users = gson.fromJson(reader, userListType);
@@ -72,7 +69,7 @@ public class LoginController {
     void loginPressed(ActionEvent event) throws IOException {
         String username = usernameField.getText();
         String password = passwordField.getText();
-        if(username.isEmpty() || password.isEmpty()){
+        if (username.isEmpty() || password.isEmpty()) {
             errorText.setText("All fields must be filled");
             return;
         }
@@ -109,7 +106,7 @@ public class LoginController {
     }
 
     private void logIn() throws IOException {
-        loggedInUser = users.stream().filter(user -> user.getUsername().equals(usernameField.getText())).findFirst().get(); // get the user that is logged in
+        loggedInUser = users.stream().filter(user -> user.getUsername().equals(usernameField.getText())).findFirst().get();
         RentalController.loggedInUser = loggedInUser;
         if (whileRenting) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("reserveLoggedIn.fxml"));

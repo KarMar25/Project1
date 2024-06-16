@@ -373,7 +373,10 @@
     "color": "Green",
     "type": "Motorcycle",
     "powertrain": "ICE",
-    "rentalDates": [],
+    "rentalDates": [
+      "2024-06-29",
+      "2024-06-30"
+    ],
     "imagePath": "/org/example/terrificproject/carphotos/Ural_GearUp_G.jpg",
     "pricePerDay": 140,
     "vin": "7HGCM66555G123456",

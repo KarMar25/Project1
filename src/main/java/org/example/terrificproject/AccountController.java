@@ -88,19 +88,12 @@ public class AccountController {
 
         try {
             FileWriter file = new FileWriter("db/users.json");
-            Gson gson = new GsonBuilder()
-                    .registerTypeAdapter(LocalDate.class, new LocalDateTypeAdapter())
-                    .setPrettyPrinting()
-                    .create();
+            Gson gson = new GsonBuilder().registerTypeAdapter(LocalDate.class, new LocalDateTypeAdapter()).setPrettyPrinting().create();
             file.write(gson.toJson(LoginController.users));
             file.close();
 
             FileWriter file2 = new FileWriter("db/vehicles.json");
-            Gson gson2 = new GsonBuilder()
-                    .registerTypeAdapter(Vehicle.class, new VehicleAdapterFactory())
-                    .registerTypeAdapter(LocalDate.class, new LocalDateTypeAdapter())
-                    .setPrettyPrinting()
-                    .create();
+            Gson gson2 = new GsonBuilder().registerTypeAdapter(Vehicle.class, new VehicleAdapterFactory()).registerTypeAdapter(LocalDate.class, new LocalDateTypeAdapter()).setPrettyPrinting().create();
             file2.write(gson2.toJson(RentalController.vehicles));
             file2.close();
 
@@ -109,7 +102,6 @@ public class AccountController {
         }
         initialize();
         errorText.setText("Reservation cancelled successfully");
-
 
 
     }

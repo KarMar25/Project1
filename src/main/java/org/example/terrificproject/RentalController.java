@@ -101,7 +101,7 @@ public class RentalController implements Initializable {
         colorPicker.setValue(null);
 
         choiceBoxSortBy.getItems().addAll("Price increasing", "Price decreasing", "Year increasing", "Year decreasing", "Relevance");
-        choiceBoxSortBy.setValue("Sort by"); // default value
+        choiceBoxSortBy.setValue("Sort by");
 
         priceFromSlider.setMin(PRICE_LOW);
         priceFromSlider.setMax(PRICE_MAX);
@@ -114,20 +114,18 @@ public class RentalController implements Initializable {
         ArrayList<String> years = getYearsArray();
 
         yearSpin.setValueFactory(new SpinnerValueFactory.ListSpinnerValueFactory<>(FXCollections.observableArrayList(years)));
-        yearSpin.getValueFactory().setValue("Choose year"); // default value
+        yearSpin.getValueFactory().setValue("Choose year");
 
-        Platform.runLater(this::ifVehicleChosenSwitchScenes); // switch scenes when vehicle is chosen
-        yearSpin.valueProperty().addListener((obs, oldValue, newValue) -> searchPressed(new ActionEvent())); // update search results when year changes
-        priceFromSlider.valueProperty().addListener((obs, oldValue, newValue) -> searchPressed(new ActionEvent())); // update search results when price changes
-        priceToSlider.valueProperty().addListener((obs, oldValue, newValue) -> searchPressed(new ActionEvent())); // update search results when price changes
-
+        Platform.runLater(this::ifVehicleChosenSwitchScenes);
+        yearSpin.valueProperty().addListener((obs, oldValue, newValue) -> searchPressed(new ActionEvent()));
+        priceFromSlider.valueProperty().addListener((obs, oldValue, newValue) -> searchPressed(new ActionEvent()));
+        priceToSlider.valueProperty().addListener((obs, oldValue, newValue) -> searchPressed(new ActionEvent()));
         showAll();
-        if(loggedInUser != null){
+        if (loggedInUser != null) {
             loginInfo.setText("Logged in as: " + LoginController.loggedInUser.getUsername());
             loginButton.setText("Log out");
             accountButton.setVisible(true);
-        }
-        else{
+        } else {
             loginInfo.setText("Not logged in");
             loginButton.setText("Log in");
             accountButton.setVisible(false);
@@ -143,7 +141,7 @@ public class RentalController implements Initializable {
                     if (newText != null) {
                         Vehicle selectedVehicle = getVehicleFromText(newText);
                         if (selectedVehicle == null) {
-                            return; // Do nothing if the selected item is not a valid vehicle
+                            return;
                         }
                         VehicleSceneController.selectedVehicle = selectedVehicle;
                         try {
@@ -176,11 +174,7 @@ public class RentalController implements Initializable {
     }
 
     private void addingVehicles() throws IOException {
-        Gson gson = new GsonBuilder()
-                .registerTypeAdapter(Vehicle.class, new VehicleAdapterFactory())
-                .registerTypeAdapter(LocalDate.class, new LocalDateTypeAdapter())
-                .setPrettyPrinting()
-                .create();
+        Gson gson = new GsonBuilder().registerTypeAdapter(Vehicle.class, new VehicleAdapterFactory()).registerTypeAdapter(LocalDate.class, new LocalDateTypeAdapter()).setPrettyPrinting().create();
 
         try (JsonReader jsonReader = new JsonReader(new FileReader("db/vehicles.json"))) {
             vehicles = gson.fromJson(jsonReader, new TypeToken<ArrayList<Vehicle>>() {
@@ -194,13 +188,12 @@ public class RentalController implements Initializable {
     @FXML
     void loginPressed(ActionEvent event) {
         try {
-            if(loggedInUser != null){
+            if (loggedInUser != null) {
                 loggedInUser = null;
                 loginInfo.setText("Not logged in");
                 loginButton.setText("Log in");
                 accountButton.setVisible(false);
-            }
-            else{
+            } else {
                 root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("login.fxml")));
                 stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
                 scene = new Scene(root);
@@ -215,7 +208,7 @@ public class RentalController implements Initializable {
 
     @FXML
     public void sortBy(ActionEvent actionEvent) {
-        if (vehiclesList.getItems().size() == 1) { // no vehicles found
+        if (vehiclesList.getItems().size() == 1) {
             return;
         }
 
@@ -264,16 +257,14 @@ public class RentalController implements Initializable {
         }
 
 
-        if ((selected.equals("Relevance") || selected.equals("Sort by") )) {
+        if ((selected.equals("Relevance") || selected.equals("Sort by"))) {
 
             String[] wordList = searchField.getText().toLowerCase().split(" ");
 
-            // add color to wordList
             if (colorPicker.getValue() != null) {
                 wordList = Arrays.copyOf(wordList, wordList.length + 1);
                 wordList[wordList.length - 1] = convertColorToString(colorPicker.getValue()).toLowerCase();
             }
-            // add types to wordList
             if (!checkBoxTypeIsNull()) {
                 List<String> selectedTypes = getSelectedTypes();
                 wordList = Arrays.copyOf(wordList, wordList.length + selectedTypes.size());
@@ -281,7 +272,7 @@ public class RentalController implements Initializable {
                     wordList[wordList.length - selectedTypes.size() + i] = selectedTypes.get(i);
                 }
             }
-            // add powertrains to wordList
+
             if (!checkBoxPowertrainIsNull()) {
                 List<String> selectedPowertrains = getSelectedPowertrains();
                 wordList = Arrays.copyOf(wordList, wordList.length + selectedPowertrains.size());
@@ -291,8 +282,8 @@ public class RentalController implements Initializable {
             }
 
 
-            wordList = Arrays.stream(wordList).filter(word -> !word.isEmpty()).toArray(String[]::new); // remove empty strings
-            wordList = Arrays.stream(wordList).distinct().toArray(String[]::new); // remove duplicates
+            wordList = Arrays.stream(wordList).filter(word -> !word.isEmpty()).toArray(String[]::new);
+            wordList = Arrays.stream(wordList).distinct().toArray(String[]::new);
 
             String[] finalWordList = wordList;
             Comparator<Vehicle> relevanceComparator = (v1, v2) -> Integer.compare(getWordsMatched(v2, finalWordList), getWordsMatched(v1, finalWordList));
@@ -392,9 +383,7 @@ public class RentalController implements Initializable {
         String selectedYear = yearSpin.getValue();
         if (selectedYear.equals("Choose year")) return vehicles;
 
-        return vehicles.stream()
-                .filter(vehicle -> vehicle.getYear().equals(selectedYear))
-                .collect(Collectors.toList());
+        return vehicles.stream().filter(vehicle -> vehicle.getYear().equals(selectedYear)).collect(Collectors.toList());
     }
 
     private int getWordsMatched(Vehicle vehicle, String[] wordList) {
@@ -416,9 +405,7 @@ public class RentalController implements Initializable {
             return Collections.emptyList();
         }
 
-        return vehicles.stream()
-                .filter(vehicle -> vehicle.getColor().equalsIgnoreCase(colorAsString))
-                .collect(Collectors.toList());
+        return vehicles.stream().filter(vehicle -> vehicle.getColor().equalsIgnoreCase(colorAsString)).collect(Collectors.toList());
     }
 
     private List<Vehicle> filterByPrice(List<Vehicle> vehicles) {
@@ -426,8 +413,7 @@ public class RentalController implements Initializable {
         if (priceFromSlider.getValue() == PRICE_LOW && priceToSlider.getValue() == PRICE_MAX) return vehicles;
 
 
-        return vehicles.stream()
-                .filter(vehicle -> vehicle.getPricePerDay() >= priceFromSlider.getValue() && vehicle.getPricePerDay() <= priceToSlider.getValue()) // filter by price
+        return vehicles.stream().filter(vehicle -> vehicle.getPricePerDay() >= priceFromSlider.getValue() && vehicle.getPricePerDay() <= priceToSlider.getValue()) // filter by price
                 .collect(Collectors.toList());
     }
 
@@ -435,25 +421,19 @@ public class RentalController implements Initializable {
         if (checkBoxTypeIsNull()) return vehicles;
 
         List<String> selectedTypes = getSelectedTypes();
-        return vehicles.stream()
-                .filter(vehicle -> selectedTypes.contains(vehicle.getType().toLowerCase()))
-                .collect(Collectors.toList());
+        return vehicles.stream().filter(vehicle -> selectedTypes.contains(vehicle.getType().toLowerCase())).collect(Collectors.toList());
     }
 
     private List<Vehicle> filterByPowertrain(List<Vehicle> vehicles) {
         if (checkBoxPowertrainIsNull()) return vehicles;
 
         List<String> selectedPowertrains = getSelectedPowertrains();
-        return vehicles.stream()
-                .filter(vehicle -> selectedPowertrains.contains(vehicle.getPowertrain().toLowerCase()))
-                .collect(Collectors.toList());
+        return vehicles.stream().filter(vehicle -> selectedPowertrains.contains(vehicle.getPowertrain().toLowerCase())).collect(Collectors.toList());
     }
 
     private List<Vehicle> filterBySearchText(List<Vehicle> vehicles) {
         String[] wordList = searchField.getText().toLowerCase().split(" ");
-        return vehicles.stream()
-                .filter(vehicle -> Arrays.stream(wordList).allMatch(word -> vehicle.toString().toLowerCase().contains(word)))
-                .collect(Collectors.toList());
+        return vehicles.stream().filter(vehicle -> Arrays.stream(wordList).allMatch(word -> vehicle.toString().toLowerCase().contains(word))).collect(Collectors.toList());
     }
 
     private List<String> getSelectedTypes() {
@@ -475,14 +455,7 @@ public class RentalController implements Initializable {
 
 
     private boolean isSearchCriteriaEmpty() {
-        return searchField.getText().isEmpty() &&
-                colorPicker.getValue() == null &&
-                (choiceBoxSortBy.getSelectionModel().getSelectedItem() == null || Objects.equals(choiceBoxSortBy.getValue(), "Sort by")) &&
-                checkBoxTypeIsNull() &&
-                checkBoxPowertrainIsNull() &&
-                priceToSlider.getValue() == PRICE_MAX &&
-                priceFromSlider.getValue() == PRICE_LOW &&
-                (yearSpin.getValue().equals("All") || yearSpin.getValue().equals("Choose year"));
+        return searchField.getText().isEmpty() && colorPicker.getValue() == null && (choiceBoxSortBy.getSelectionModel().getSelectedItem() == null || Objects.equals(choiceBoxSortBy.getValue(), "Sort by")) && checkBoxTypeIsNull() && checkBoxPowertrainIsNull() && priceToSlider.getValue() == PRICE_MAX && priceFromSlider.getValue() == PRICE_LOW && (yearSpin.getValue().equals("All") || yearSpin.getValue().equals("Choose year"));
     }
 
     private boolean checkBoxTypeIsNull() {
@@ -502,7 +475,7 @@ public class RentalController implements Initializable {
 
 
     @FXML
-    void anyColor(ActionEvent event) { // clear color picker
+    void anyColor(ActionEvent event) {
         colorPicker.setValue(null);
         searchPressed(event);
     }
@@ -554,8 +527,9 @@ public class RentalController implements Initializable {
         stage = (Stage) exitButton.getScene().getWindow();
         stage.close();
     }
+
     @FXML
-    void manageAccountPressed(ActionEvent event){
+    void manageAccountPressed(ActionEvent event) {
         try {
             root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("account.fxml")));
             stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();

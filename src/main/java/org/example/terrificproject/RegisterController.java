@@ -56,13 +56,13 @@ public class RegisterController {
 
         if (!usernameTaken(username)) {
             errorText.setText("Username is already taken!");
-            return; // if there is an error, do not register
+            return;
         } else if (name.isEmpty() || surname.isEmpty() || username.isEmpty() || password.isEmpty()) {
             errorText.setText("All fields must be filled");
             return;
         } else if (!passwordIsValid(password)) {
             return;
-        } else if (!username.matches("^[a-zA-Z0-9]*$") ) {
+        } else if (!username.matches("^[a-zA-Z0-9]*$")) {
             errorText.setText("Username must contain only letters and numbers");
             return;
         } else if (username.length() < 6) {
@@ -71,10 +71,10 @@ public class RegisterController {
         } else if (name.length() > 20 || surname.length() > 20 || username.length() > 20 || password.length() > 20) {
             errorText.setText("All fields must be less than 20 characters long");
             return;
-        } else if ( !name.matches("^[a-zA-Z]*$") || !surname.matches("^[a-zA-Z]*$")) {
+        } else if (!name.matches("^[a-zA-Z]*$") || !surname.matches("^[a-zA-Z]*$")) {
             errorText.setText("Invalid name or surname! Only letters are allowed.");
             return;
-        } else if (name.length() < 2 || surname.length() <2) {
+        } else if (name.length() < 2 || surname.length() < 2) {
             errorText.setText("Name and surname must be at least 2 characters long");
             return;
         }
@@ -95,13 +95,11 @@ public class RegisterController {
         ArrayList<User> users = new ArrayList<>();
 
 
-        if (file.exists() && file.length() != 0) {        // Load existing users from the file
+        if (file.exists() && file.length() != 0) {
             try (FileReader reader = new FileReader(file)) {
-                Gson gson = new GsonBuilder()
-                        .registerTypeAdapter(LocalDate.class, new LocalDateTypeAdapter())
-                        .setPrettyPrinting()
-                        .create();
-                Type userListType = new TypeToken<ArrayList<User>>() {}.getType();
+                Gson gson = new GsonBuilder().registerTypeAdapter(LocalDate.class, new LocalDateTypeAdapter()).setPrettyPrinting().create();
+                Type userListType = new TypeToken<ArrayList<User>>() {
+                }.getType();
                 users = gson.fromJson(reader, userListType);
                 if (users == null) {
                     users = new ArrayList<>();
@@ -111,14 +109,11 @@ public class RegisterController {
             }
         }
 
-        users.add(user);  // add the new user to the list
+        users.add(user);
 
 
-        try (FileWriter writer = new FileWriter("db/users.json")) { // save the updated list back to the file
-            Gson gson = new GsonBuilder()
-                    .registerTypeAdapter(LocalDate.class, new LocalDateTypeAdapter())
-                    .setPrettyPrinting()
-                    .create();
+        try (FileWriter writer = new FileWriter("db/users.json")) {
+            Gson gson = new GsonBuilder().registerTypeAdapter(LocalDate.class, new LocalDateTypeAdapter()).setPrettyPrinting().create();
             gson.toJson(users, writer);
         } catch (IOException e) {
             e.printStackTrace();

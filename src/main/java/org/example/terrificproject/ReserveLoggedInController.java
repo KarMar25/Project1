@@ -58,7 +58,7 @@ public class ReserveLoggedInController {
 
     @FXML
     void backPressed(ActionEvent event) {
-        changeScene(event,"vehicleTemplate.fxml");
+        changeScene(event, "vehicleTemplate.fxml");
 
 
     }
@@ -68,68 +68,48 @@ public class ReserveLoggedInController {
         String ClientName = nameField.getText();
         String ClientSurname = surnameField.getText();
         String ClientAddress = addressField.getText();
-        if(ClientName.isEmpty() || ClientSurname.isEmpty() || ClientAddress.isEmpty()){
+        if (ClientName.isEmpty() || ClientSurname.isEmpty() || ClientAddress.isEmpty()) {
             errorText.setText("All fields must be filled");
             return;
         }
         int invoiceNumber = 1;
 
         InvoiceGenerator generator = new InvoiceGenerator();
-        generator.printInvoice(
-                "Terrific Rental Company",
-                ClientName + " " + ClientSurname,
-                ClientAddress,
-                "https://example.com/img/logo-invoice.png",
-                invoiceNumber,
-                "June 16, 2024",
-                "Reservation Period",
-                periodString,
-                reservedVehicle.toString(),
-                1,
-                (int) totalAmount
-        );
+        generator.printInvoice("Terrific Rental Company", ClientName + " " + ClientSurname, ClientAddress, "https://example.com/img/logo-invoice.png", invoiceNumber, "June 16, 2024", "Reservation Period", periodString, reservedVehicle.toString(), 1, (int) totalAmount);
 
-        for (int i =dateFrom.getDayOfYear() ; i <= dateTo.getDayOfYear(); i++) { // add all dates between from and to
+        for (int i = dateFrom.getDayOfYear(); i <= dateTo.getDayOfYear(); i++) {
             for (Vehicle vehicle : RentalController.vehicles) {
-                if (vehicle.equals(reservedVehicle)) { // if the vehicle is the one we are reserving
-                    vehicle.getRentalDates().add(LocalDate.ofYearDay(dateFrom.getYear(), i)); // add the date to the list of reserved dates
+                if (vehicle.equals(reservedVehicle)) {
+                    vehicle.getRentalDates().add(LocalDate.ofYearDay(dateFrom.getYear(), i));
                 }
             }
 
         }
 
 
-        Gson gson = new GsonBuilder()
-                .registerTypeAdapter(Vehicle.class, new VehicleAdapterFactory())
-                .registerTypeAdapter(LocalDate.class, new LocalDateTypeAdapter())
-                .setPrettyPrinting()
-                .create();
+        Gson gson = new GsonBuilder().registerTypeAdapter(Vehicle.class, new VehicleAdapterFactory()).registerTypeAdapter(LocalDate.class, new LocalDateTypeAdapter()).setPrettyPrinting().create();
         FileWriter file = new FileWriter("db/vehicles.json");
         file.write(gson.toJson(RentalController.vehicles));
-        file.close(); // close the file after saving the changes
+        file.close();
 
 
         HashMap<String, ArrayList<LocalDate>> reservedVehicleMap = LoginController.loggedInUser.getRentedVehicles();
         ArrayList<LocalDate> dates = new ArrayList<>();
         for (int i = dateFrom.getDayOfYear(); i <= dateTo.getDayOfYear(); i++) {
             dates.add(LocalDate.ofYearDay(dateFrom.getYear(), i));
-        } // add all dates between from and to
+        }
 
         reservedVehicleMap.put(String.valueOf(reservedVehicle), dates);
 
         LoginController.loggedInUser.setRentedVehicles(reservedVehicleMap);
 
-        Gson gson2 = new GsonBuilder()
-                .registerTypeAdapter(LocalDate.class, new LocalDateTypeAdapter())
-                .setPrettyPrinting()
-                .create();
+        Gson gson2 = new GsonBuilder().registerTypeAdapter(LocalDate.class, new LocalDateTypeAdapter()).setPrettyPrinting().create();
         FileWriter file2 = new FileWriter("db/users.json");
         file2.write(gson2.toJson(LoginController.users));
-        file2.close(); // close the file after saving the changes
+        file2.close();
 
 
-        changeScene(event,"final.fxml");
-
+        changeScene(event, "final.fxml");
 
 
     }

@@ -12,6 +12,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
@@ -19,7 +20,7 @@ import java.util.Objects;
 
 
 public class VehicleSceneController {
-    public static Vehicle selectedVehicle; // selected vehicle
+    public static Vehicle selectedVehicle;
     @FXML
     public DatePicker datePickerFrom;
     @FXML
@@ -38,22 +39,22 @@ public class VehicleSceneController {
 
     @FXML
     void reservePressed(ActionEvent event) throws IOException {
-        if (datePickerFrom.getValue() == null || datePickerTo.getValue() == null) { // if the date is not selected
+        if (datePickerFrom.getValue() == null || datePickerTo.getValue() == null) {
             dateText.setText("Select a date");
             return;
         }
-        if (datePickerFrom.getValue().isAfter(datePickerTo.getValue()) || datePickerTo.getValue().isBefore(datePickerFrom.getValue())) { // from has to be before to
+        if (datePickerFrom.getValue().isAfter(datePickerTo.getValue()) || datePickerTo.getValue().isBefore(datePickerFrom.getValue())) {
             dateText.setText("Invalid date range");
             return;
         }
-        if (datePickerFrom.getValue().isBefore(LocalDate.now()) || datePickerTo.getValue().isBefore(LocalDate.now())) { // before today
+        if (datePickerFrom.getValue().isBefore(LocalDate.now()) || datePickerTo.getValue().isBefore(LocalDate.now())) {
             dateText.setText("Choose a date in the future");
             return;
         }
         for (LocalDate date : selectedVehicle.getRentalDates()) {
             if (date.isAfter(datePickerFrom.getValue()) && date.isBefore(datePickerTo.getValue()) || date.isEqual(datePickerFrom.getValue()) || date.isEqual(datePickerTo.getValue())) {
                 dateText.setText("Vehicle is already reserved for this date range");
-                return; // checks if the vehicle is already reserved for this date range
+                return;
             }
         }
 
@@ -142,7 +143,7 @@ public class VehicleSceneController {
                 vehicleImage.setImage(image);
             }
         }
-        propertiesList.getItems().add("Unavailable dates: " + selectedVehicle.getRentalDates()); // testing
+        propertiesList.getItems().add("Unavailable dates: " + selectedVehicle.getRentalDates());
     }
 }
 

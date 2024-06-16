@@ -14,7 +14,6 @@ import javafx.stage.Stage;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 
 public class ReserveController {
@@ -62,53 +61,38 @@ public class ReserveController {
     }
 
     @FXML
-    public void  rent(ActionEvent event) throws IOException {
+    public void rent(ActionEvent event) throws IOException {
         String ClientName = nameField.getText();
         String ClientSurname = surnameField.getText();
         String ClientAddress = addressField.getText();
-        if(ClientName.isEmpty() || ClientSurname.isEmpty() || ClientAddress.isEmpty()){
+        if (ClientName.isEmpty() || ClientSurname.isEmpty() || ClientAddress.isEmpty()) {
             errorText.setText("All fields must be filled");
             return;
         }
         int invoiceNumber = 1;
 
         InvoiceGenerator generator = new InvoiceGenerator();
-        generator.printInvoice(
-                "Terrific Rental Company",
-                ClientName + " " + ClientSurname,
-                ClientAddress,
-                "https://example.com/img/logo-invoice.png",
-                invoiceNumber,
-                "June 16, 2024",
-                "Reservation Period",
-                periodString,
-                reservedVehicle.toString(),
-                1,
-                (int) totalAmount
-        );
+        generator.printInvoice("Terrific Rental Company", ClientName + " " + ClientSurname, ClientAddress, "https://example.com/img/logo-invoice.png", invoiceNumber, "June 16, 2024", "Reservation Period", periodString, reservedVehicle.toString(), 1, (int) totalAmount);
 
-        for (int i =dateFrom.getDayOfYear() ; i <= dateTo.getDayOfYear(); i++) { // add all dates between from and to
+        for (int i = dateFrom.getDayOfYear(); i <= dateTo.getDayOfYear(); i++) {
             for (Vehicle vehicle : RentalController.vehicles) {
-                if (vehicle.equals(reservedVehicle)) { // if the vehicle is the one we are reserving
-                    vehicle.getRentalDates().add(LocalDate.ofYearDay(dateFrom.getYear(), i)); // add the date to the list of reserved dates
+                if (vehicle.equals(reservedVehicle)) {
+                    vehicle.getRentalDates().add(LocalDate.ofYearDay(dateFrom.getYear(), i));
                 }
             }
 
         }
 
 
-        Gson gson = new GsonBuilder()
-                .registerTypeAdapter(Vehicle.class, new VehicleAdapterFactory())
-                .registerTypeAdapter(LocalDate.class, new LocalDateTypeAdapter())
-                .setPrettyPrinting()
-                .create();
+        Gson gson = new GsonBuilder().registerTypeAdapter(Vehicle.class, new VehicleAdapterFactory()).registerTypeAdapter(LocalDate.class, new LocalDateTypeAdapter()).setPrettyPrinting().create();
         FileWriter file = new FileWriter("db/vehicles.json");
         file.write(gson.toJson(RentalController.vehicles));
-        file.close(); // close the file after saving the changes
+        file.close();
 
         changeScene(event);
 
     }
+
     @FXML
     private void loginPressed(ActionEvent event) throws IOException {
         LoginController.whileRenting = true;
