@@ -22,7 +22,9 @@
     "color": "Green",
     "type": "Tractor",
     "powertrain": "ICE",
-    "rentalDates": [],
+    "rentalDates": [
+      "2024-06-15"
+    ],
     "imagePath": "/org/example/terrificproject/carphotos/Ursus_C360_Green.jpg",
     "pricePerDay": 85,
     "vin": "URSUS1985C360123456",
@@ -69,8 +71,7 @@
     "type": "Motorcycle",
     "powertrain": "ICE",
     "rentalDates": [
-      "2024-06-15",
-      "2024-06-16"
+      "2024-06-15"
     ],
     "imagePath": "/org/example/terrificproject/carphotos/Kawa_NinjaZX_G.jpg",
     "pricePerDay": 85,
@@ -86,7 +87,9 @@
     "color": "Blue",
     "type": "Car",
     "powertrain": "Hybrid",
-    "rentalDates": [],
+    "rentalDates": [
+      "2024-06-15"
+    ],
     "imagePath": "/org/example/terrificproject/carphotos/Toyo_Prius_Blue.jpg",
     "pricePerDay": 130,
     "vin": "2G1WF52E759123456",
@@ -132,14 +135,7 @@
     "type": "Car",
     "powertrain": "BEV",
     "rentalDates": [
-      "2024-06-15",
-      "2024-06-16",
-      "2024-06-17",
-      "2024-06-18",
-      "2024-06-19",
-      "2024-06-20",
-      "2024-06-21",
-      "2024-06-22"
+      "2024-06-15"
     ],
     "imagePath": "/org/example/terrificproject/carphotos/Must_Mach_W.jpg",
     "pricePerDay": 220,
@@ -184,10 +180,7 @@
     "color": "White",
     "type": "Car",
     "powertrain": "BEV",
-    "rentalDates": [
-      "2024-06-29",
-      "2024-06-30"
-    ],
+    "rentalDates": [],
     "imagePath": "/org/example/terrificproject/carphotos/Tesla_Mod3_W.jpg",
     "pricePerDay": 185,
     "vin": "1J4GZ58S6VC123456",
@@ -339,10 +332,6 @@
     "type": "Camper",
     "powertrain": "ICE",
     "rentalDates": [
-      "2024-06-20",
-      "2024-06-21",
-      "2024-06-26",
-      "2024-06-27",
       "2024-07-09",
       "2024-07-10",
       "2024-07-11",
@@ -459,7 +448,9 @@
     "color": "Red",
     "type": "Motorcycle",
     "powertrain": "ICE",
-    "rentalDates": [],
+    "rentalDates": [
+      "2024-06-15"
+    ],
     "imagePath": "/org/example/terrificproject/carphotos/Aprilia_SXR_Red.jpg",
     "pricePerDay": 130,
     "vin": "9HGCM66555I123456",

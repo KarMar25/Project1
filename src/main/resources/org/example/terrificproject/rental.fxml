@@ -130,14 +130,14 @@
             <Font size="15.0" />
          </font>
       </Text>
-      <ListView fx:id="vehiclesList" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="256.0" prefWidth="394.0" GridPane.columnSpan="2" GridPane.rowIndex="4" />
+      <ListView fx:id="vehiclesList" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="290.0" prefWidth="383.0" GridPane.columnSpan="2" GridPane.rowIndex="4" />
       <ChoiceBox fx:id="choiceBoxSortBy" onAction="#sortBy" prefWidth="150.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
       <Label fx:id="category" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.valignment="BOTTOM" />
-      <ToolBar maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" prefHeight="35.0" prefWidth="611.0" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="TOP">
+      <ToolBar maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" prefHeight="35.0" prefWidth="627.0" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="TOP">
          <items>
             <Button fx:id="exitButton" mnemonicParsing="false" onAction="#exitPressed" prefHeight="25.0" prefWidth="60.0" text="Exit" />
             <Button fx:id="loginButton" mnemonicParsing="false" onAction="#loginPressed" prefHeight="25.0" prefWidth="58.0" text="Log in" />
-            <Text fx:id="loginInfo" strokeType="OUTSIDE" strokeWidth="0.0" />
+            <Text fx:id="loginInfo" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="133.66664123535156" />
          </items>
       </ToolBar>
       <Text cache="true" strokeType="OUTSIDE" strokeWidth="0.0" text="Filtr:" textAlignment="CENTER" wrappingWidth="46.7689208984375" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.valignment="CENTER">
@@ -148,6 +148,11 @@
       <Button mnemonicParsing="false" onAction="#clearFilterPressed" prefHeight="25.0" prefWidth="64.0" text="Clear all" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
          <GridPane.margin>
             <Insets right="20.0" />
+         </GridPane.margin>
+      </Button>
+      <Button fx:id="accountButton" mnemonicParsing="false" onAction="#manageAccountPressed" prefHeight="25.0" prefWidth="171.0" text="Manage your reservations" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets left="5.0" />
          </GridPane.margin>
       </Button>
    </children>

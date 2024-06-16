@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TreeView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Text?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.terrificproject.AccountController">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="359.6666259765625" minWidth="10.0" prefWidth="318.6666259765625" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="294.0" minWidth="10.0" prefWidth="281.3333740234375" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="250.33331553141278" minHeight="10.0" prefHeight="112.00001017252605" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="380.3333384195964" minHeight="10.0" prefHeight="288.6666564941406" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <TreeView fx:id="reservations" prefHeight="289.0" prefWidth="300.0" GridPane.rowIndex="1" />
+      <Button mnemonicParsing="false" onAction="#backPressed" text="Go back" GridPane.valignment="TOP" />
+      <Button mnemonicParsing="false" onAction="#cancelPressed" text="Cancel the reservation" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
+         <GridPane.margin>
+            <Insets top="40.0" />
+         </GridPane.margin>
+      </Button>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Your reservations:" GridPane.halignment="CENTER" />
+      <Text fx:id="errorText" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets bottom="40.0" />
+         </GridPane.margin>
+      </Text>
+   </children>
+</GridPane>

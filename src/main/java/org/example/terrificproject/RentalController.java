@@ -73,6 +73,10 @@ public class RentalController implements Initializable {
     @FXML
     private Button loginButton;
 
+    @FXML
+    private Button accountButton;
+
+
     private static ArrayList<String> getYearsArray() {
         ArrayList<String> years = new ArrayList<>();
         for (Vehicle vehicle : vehicles) {
@@ -121,9 +125,12 @@ public class RentalController implements Initializable {
         if(loggedInUser != null){
             loginInfo.setText("Logged in as: " + LoginController.loggedInUser.getUsername());
             loginButton.setText("Log out");
+            accountButton.setVisible(true);
         }
         else{
             loginInfo.setText("Not logged in");
+            loginButton.setText("Log in");
+            accountButton.setVisible(false);
         }
 
     }
@@ -191,6 +198,7 @@ public class RentalController implements Initializable {
                 loggedInUser = null;
                 loginInfo.setText("Not logged in");
                 loginButton.setText("Log in");
+                accountButton.setVisible(false);
             }
             else{
                 root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("login.fxml")));
@@ -256,9 +264,38 @@ public class RentalController implements Initializable {
         }
 
 
-        if (selected.equals("Relevance") || selected.equals("Sort by")) {
+        if ((selected.equals("Relevance") || selected.equals("Sort by") )) {
+
             String[] wordList = searchField.getText().toLowerCase().split(" ");
-            Comparator<Vehicle> relevanceComparator = (v1, v2) -> Integer.compare(getWordsMatched(v2, wordList), getWordsMatched(v1, wordList));
+
+            // add color to wordList
+            if (colorPicker.getValue() != null) {
+                wordList = Arrays.copyOf(wordList, wordList.length + 1);
+                wordList[wordList.length - 1] = convertColorToString(colorPicker.getValue()).toLowerCase();
+            }
+            // add types to wordList
+            if (!checkBoxTypeIsNull()) {
+                List<String> selectedTypes = getSelectedTypes();
+                wordList = Arrays.copyOf(wordList, wordList.length + selectedTypes.size());
+                for (int i = 0; i < selectedTypes.size(); i++) {
+                    wordList[wordList.length - selectedTypes.size() + i] = selectedTypes.get(i);
+                }
+            }
+            // add powertrains to wordList
+            if (!checkBoxPowertrainIsNull()) {
+                List<String> selectedPowertrains = getSelectedPowertrains();
+                wordList = Arrays.copyOf(wordList, wordList.length + selectedPowertrains.size());
+                for (int i = 0; i < selectedPowertrains.size(); i++) {
+                    wordList[wordList.length - selectedPowertrains.size() + i] = selectedPowertrains.get(i);
+                }
+            }
+
+
+            wordList = Arrays.stream(wordList).filter(word -> !word.isEmpty()).toArray(String[]::new); // remove empty strings
+            wordList = Arrays.stream(wordList).distinct().toArray(String[]::new); // remove duplicates
+
+            String[] finalWordList = wordList;
+            Comparator<Vehicle> relevanceComparator = (v1, v2) -> Integer.compare(getWordsMatched(v2, finalWordList), getWordsMatched(v1, finalWordList));
 
             vehicleMatches.sort(relevanceComparator);
             vehiclePartialMatches.sort(relevanceComparator);
@@ -516,6 +553,18 @@ public class RentalController implements Initializable {
     void exitPressed(ActionEvent event) {
         stage = (Stage) exitButton.getScene().getWindow();
         stage.close();
+    }
+    @FXML
+    void manageAccountPressed(ActionEvent event){
+        try {
+            root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("account.fxml")));
+            stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }
