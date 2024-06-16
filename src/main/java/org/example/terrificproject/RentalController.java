@@ -76,8 +76,7 @@ public class RentalController implements Initializable {
     @FXML
     private Button accountButton;
 
-
-    private static ArrayList<String> getYearsArray() {
+    private static ArrayList<String> getYearsArray() { // get all years from vehicles
         ArrayList<String> years = new ArrayList<>();
         for (Vehicle vehicle : vehicles) {
             if (!years.contains(vehicle.getYear())) {
@@ -98,7 +97,7 @@ public class RentalController implements Initializable {
             throw new RuntimeException(e);
         }
 
-        colorPicker.setValue(null);
+        colorPicker.setValue(null); // clear color picker
 
         choiceBoxSortBy.getItems().addAll("Price increasing", "Price decreasing", "Year increasing", "Year decreasing", "Relevance");
         choiceBoxSortBy.setValue("Sort by");
@@ -113,14 +112,17 @@ public class RentalController implements Initializable {
 
         ArrayList<String> years = getYearsArray();
 
-        yearSpin.setValueFactory(new SpinnerValueFactory.ListSpinnerValueFactory<>(FXCollections.observableArrayList(years)));
+        yearSpin.setValueFactory(new SpinnerValueFactory.ListSpinnerValueFactory<>(FXCollections.observableArrayList(years))); // set years to spinner
         yearSpin.getValueFactory().setValue("Choose year");
 
-        Platform.runLater(this::ifVehicleChosenSwitchScenes);
-        yearSpin.valueProperty().addListener((obs, oldValue, newValue) -> searchPressed(new ActionEvent()));
-        priceFromSlider.valueProperty().addListener((obs, oldValue, newValue) -> searchPressed(new ActionEvent()));
-        priceToSlider.valueProperty().addListener((obs, oldValue, newValue) -> searchPressed(new ActionEvent()));
+        Platform.runLater(this::ifVehicleChosenSwitchScenes); // switch scenes if vehicle chosen
+
+        yearSpin.valueProperty().addListener((obs, oldValue, newValue) -> searchPressed(new ActionEvent())); // search when year changes
+        priceFromSlider.valueProperty().addListener((obs, oldValue, newValue) -> searchPressed(new ActionEvent())); // search when price from changes
+        priceToSlider.valueProperty().addListener((obs, oldValue, newValue) -> searchPressed(new ActionEvent())); // search when price to changes
+
         showAll();
+
         if (loggedInUser != null) {
             loginInfo.setText("Logged in as: " + LoginController.loggedInUser.getUsername());
             loginButton.setText("Log out");
@@ -258,38 +260,7 @@ public class RentalController implements Initializable {
 
 
         if ((selected.equals("Relevance") || selected.equals("Sort by"))) {
-
-            String[] wordList = searchField.getText().toLowerCase().split(" ");
-
-            if (colorPicker.getValue() != null) {
-                wordList = Arrays.copyOf(wordList, wordList.length + 1);
-                wordList[wordList.length - 1] = convertColorToString(colorPicker.getValue()).toLowerCase();
-            }
-            if (!checkBoxTypeIsNull()) {
-                List<String> selectedTypes = getSelectedTypes();
-                wordList = Arrays.copyOf(wordList, wordList.length + selectedTypes.size());
-                for (int i = 0; i < selectedTypes.size(); i++) {
-                    wordList[wordList.length - selectedTypes.size() + i] = selectedTypes.get(i);
-                }
-            }
-
-            if (!checkBoxPowertrainIsNull()) {
-                List<String> selectedPowertrains = getSelectedPowertrains();
-                wordList = Arrays.copyOf(wordList, wordList.length + selectedPowertrains.size());
-                for (int i = 0; i < selectedPowertrains.size(); i++) {
-                    wordList[wordList.length - selectedPowertrains.size() + i] = selectedPowertrains.get(i);
-                }
-            }
-
-
-            wordList = Arrays.stream(wordList).filter(word -> !word.isEmpty()).toArray(String[]::new);
-            wordList = Arrays.stream(wordList).distinct().toArray(String[]::new);
-
-            String[] finalWordList = wordList;
-            Comparator<Vehicle> relevanceComparator = (v1, v2) -> Integer.compare(getWordsMatched(v2, finalWordList), getWordsMatched(v1, finalWordList));
-
-            vehicleMatches.sort(relevanceComparator);
-            vehiclePartialMatches.sort(relevanceComparator);
+            sortByRelevance(vehicleMatches, vehiclePartialMatches);
         } else if (selected.equals("Price increasing")) {
             vehicleMatches.sort(Comparator.comparing(Vehicle::getPricePerDay));
             vehiclePartialMatches.sort(Comparator.comparing(Vehicle::getPricePerDay));
@@ -320,6 +291,38 @@ public class RentalController implements Initializable {
         }
     }
 
+    private void sortByRelevance(List<Vehicle> vehicleMatches, List<Vehicle> vehiclePartialMatches) {
+        String[] wordList = searchField.getText().toLowerCase().split(" "); // get search words
+
+        if (colorPicker.getValue() != null) {
+            wordList = Arrays.copyOf(wordList, wordList.length + 1);
+            wordList[wordList.length - 1] = convertColorToString(colorPicker.getValue()).toLowerCase(); // add color to search words
+        }
+
+        wordList = addToList(checkBoxTypeIsNull(), getSelectedTypes(), wordList); // add types to search words
+        wordList = addToList(checkBoxPowertrainIsNull(), getSelectedPowertrains(), wordList); // add powertrains to search words
+        wordList = addToList(yearSpin.getValue().equals("Choose year"), Collections.singletonList(yearSpin.getValue()), wordList); // add year to search words
+
+        wordList = Arrays.stream(wordList).filter(word -> !word.isEmpty()).toArray(String[]::new); // remove empty strings
+        wordList = Arrays.stream(wordList).distinct().toArray(String[]::new); // remove duplicates
+
+        String[] finalWordList = wordList; // final word list for lambda
+        Comparator<Vehicle> relevanceComparator = (v1, v2) -> Integer.compare(getWordsMatched(v2, finalWordList), getWordsMatched(v1, finalWordList));
+
+        vehicleMatches.sort(relevanceComparator);
+        vehiclePartialMatches.sort(relevanceComparator);
+    }
+
+    private String[] addToList(boolean checkBoxTypeIsNull, List<String> SelectedTypes, String[] wordList) {
+        if (!checkBoxTypeIsNull) {
+            wordList = Arrays.copyOf(wordList, wordList.length + SelectedTypes.size());
+            for (int i = 0; i < SelectedTypes.size(); i++) {
+                wordList[wordList.length - SelectedTypes.size() + i] = SelectedTypes.get(i);
+            }
+        }
+        return wordList;
+    }
+
     @FXML
     void searchPressed(ActionEvent event) {
         if (isSearchCriteriaEmpty()) {
@@ -338,6 +341,7 @@ public class RentalController implements Initializable {
         filteredVehicles = filterByYear(filteredVehicles);
 
         String[] wordList = searchField.getText().toLowerCase().split(" ");
+
         List<Vehicle> partialMatches = new ArrayList<>();
 
         for (Vehicle vehicle : filteredVehicles) {
