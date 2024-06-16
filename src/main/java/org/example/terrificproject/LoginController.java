@@ -42,7 +42,7 @@ public class LoginController {
 
     private ArrayList<User> loadUsers() {
         File file = new File("db/users.json");
-        if (!file.exists() || file.length() == 0) {
+        if (!file.exists() || file.length() == 0) { // no users
             return new ArrayList<>();
         }
 

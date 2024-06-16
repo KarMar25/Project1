@@ -88,7 +88,7 @@ public class RegisterController {
         passwordField.clear();
     }
 
-    private static void saveTheUser(String name, String surname, String username, String password) {
+    public static void saveTheUser(String name, String surname, String username, String password) {
         User user = new User(name, surname, username, password, new HashMap<>());
 
         File file = new File("db/users.json");

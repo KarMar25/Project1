@@ -264,9 +264,38 @@ public class RentalController implements Initializable {
         }
 
 
-        if (selected.equals("Relevance") || selected.equals("Sort by")) {
+        if ((selected.equals("Relevance") || selected.equals("Sort by") )) {
+
             String[] wordList = searchField.getText().toLowerCase().split(" ");
-            Comparator<Vehicle> relevanceComparator = (v1, v2) -> Integer.compare(getWordsMatched(v2, wordList), getWordsMatched(v1, wordList));
+
+            // add color to wordList
+            if (colorPicker.getValue() != null) {
+                wordList = Arrays.copyOf(wordList, wordList.length + 1);
+                wordList[wordList.length - 1] = convertColorToString(colorPicker.getValue()).toLowerCase();
+            }
+            // add types to wordList
+            if (!checkBoxTypeIsNull()) {
+                List<String> selectedTypes = getSelectedTypes();
+                wordList = Arrays.copyOf(wordList, wordList.length + selectedTypes.size());
+                for (int i = 0; i < selectedTypes.size(); i++) {
+                    wordList[wordList.length - selectedTypes.size() + i] = selectedTypes.get(i);
+                }
+            }
+            // add powertrains to wordList
+            if (!checkBoxPowertrainIsNull()) {
+                List<String> selectedPowertrains = getSelectedPowertrains();
+                wordList = Arrays.copyOf(wordList, wordList.length + selectedPowertrains.size());
+                for (int i = 0; i < selectedPowertrains.size(); i++) {
+                    wordList[wordList.length - selectedPowertrains.size() + i] = selectedPowertrains.get(i);
+                }
+            }
+
+
+            wordList = Arrays.stream(wordList).filter(word -> !word.isEmpty()).toArray(String[]::new); // remove empty strings
+            wordList = Arrays.stream(wordList).distinct().toArray(String[]::new); // remove duplicates
+
+            String[] finalWordList = wordList;
+            Comparator<Vehicle> relevanceComparator = (v1, v2) -> Integer.compare(getWordsMatched(v2, finalWordList), getWordsMatched(v1, finalWordList));
 
             vehicleMatches.sort(relevanceComparator);
             vehiclePartialMatches.sort(relevanceComparator);
